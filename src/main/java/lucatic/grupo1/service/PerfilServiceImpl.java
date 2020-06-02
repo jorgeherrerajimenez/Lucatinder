@@ -10,7 +10,7 @@ import lucatic.grupo1.repository.DAOPerfil;
 @Service
 public class PerfilServiceImpl implements PerfilService{
 	
-	//Inyección de dependencia 
+	//Inyección de dependencia en capa servicios
 	@Autowired
 	private DAOPerfil perfilDAO;
 	
