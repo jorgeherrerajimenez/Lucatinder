@@ -1,13 +1,20 @@
 package lucatic.grupo1;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 class LucatinderApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
+		assertThat(false).isTrue();
 	}
 
 }
