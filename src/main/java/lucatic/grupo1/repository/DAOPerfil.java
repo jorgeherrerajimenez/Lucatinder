@@ -1,6 +1,8 @@
 package lucatic.grupo1.repository;
 
-public interface DAOPerfil extends JPARepository<Perfil, Integer>{
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DAOPerfil extends JpaRepository<Perfil, Integer>{
 	
 
 	

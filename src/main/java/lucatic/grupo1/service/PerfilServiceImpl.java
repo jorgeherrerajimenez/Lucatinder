@@ -1,5 +1,23 @@
 package lucatic.grupo1.service;
 
-public class PerfilServiceImpl {
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Service;
+
+import lucatic.grupo1.repository.DAOPerfil;
+
+//Componente servicios
+@Service
+public class PerfilServiceImpl implements PerfilService{
+	
+	//Inyección de dependencia 
+	@Autowired
+	private DAOPerfil perfilDAO;
+	
+	@Override
+	public void add(Perfil perfil) {
+		
+		perfilDAO.save(perfil);
+	}
 
 }
