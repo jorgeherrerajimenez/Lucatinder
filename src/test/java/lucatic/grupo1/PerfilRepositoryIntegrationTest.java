@@ -38,13 +38,16 @@ public class PerfilRepositoryIntegrationTest {
 		
 		Long numero = perfilDAO.count();
 		
-		//boolean existia = perfilDAO.exists(id);
+
+		perfilDAO.save(perfil);
+		
+		boolean existia = perfilDAO.existsById(perfil.getId());
 		
 		Long numeroSumado = perfilDAO.count();
 		
-		//perfilDAO.deleteById(id);
+		perfilDAO.deleteById(perfil.getId());
 		
-		//boolean existe = perfilDAO.exists(id);
+		boolean existe = perfilDAO.existsById(perfil.getId());
 		
 		assertThat(numeroSumado).isEqualTo(numero + 1);
 		
