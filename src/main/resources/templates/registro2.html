@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Static content -->
+<!-- Fijate que ahora no uso los recursos de Thymeleaf para el css -->
+<!-- Echa un vistazo al .properties -->
+
+<title>Registro</title>
+</head>
+<body>
+
+	<div id="contenedor">
+		<h2>Registro perfil<br />Formulario 1
+		</h2>
+		<form 
+				method="post" 
+				th:object="${perfil}"
+				th:action="@{/perfil}">
+			<table>
+				<tr>
+					<td><label for="nombre">Nombre</label></td>
+					<td><input type="text" th:field="*{nombre}" /></td>
+				</tr>
+				<tr>
+					<td><label for="genero">Genero</label></td>
+					<td><input type="text" th:field="*{genero}" /></td>
+				</tr>
+				<tr>
+					<td><label for="edad">Edad</label></td>
+					<td><input type="number" th:field="*{edad}" /></td>
+				</tr>
+					<td><label for="descripcion">Descrpicion</label></td>
+					<td><input type="text" th:field="*{descripcion}" /></td>
+			</table>
+			<br />
+			<p>
+				<input type="submit" value="Dar de alta" />
+			</p>
+		</form>
+	</div>
+</body>
+</html>
