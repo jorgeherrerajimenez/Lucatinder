@@ -38,6 +38,7 @@ public class PerfilRepositoryIntegrationTest {
 		
 		Long numero = perfilDAO.count();
 		
+
 		perfilDAO.save(perfil);
 		
 		boolean existia = perfilDAO.existsById(perfil.getId());
