@@ -110,5 +110,13 @@ public class Perfil implements Serializable {
 	public List<Materia> getGustosInformaticos() {
 		return gustosInformaticos;
 	}
+
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
+				+ descripcion + "]";
+	}
+	
+	
 	
 }
