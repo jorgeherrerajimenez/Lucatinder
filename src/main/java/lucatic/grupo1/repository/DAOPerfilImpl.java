@@ -12,8 +12,8 @@ public class DAOPerfilImpl {
 	//creo el entityManager para futuros métodos que implementemos y no vengan en JPARepository.
 	@PersistenceContext
 	EntityManager entityManager;
-	
 
-	}
+
+}
 
 

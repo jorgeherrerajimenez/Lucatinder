@@ -14,8 +14,7 @@ public class PerfilServiceImpl implements PerfilService{
 	//Inyección de dependencia en capa servicios
 	@Autowired
 	private DAOPerfil perfilDAO;
-	
-	@Override
+  
 	public void add(Perfil perfil) {	
 		perfilDAO.save(perfil);	
 	}
@@ -24,6 +23,7 @@ public class PerfilServiceImpl implements PerfilService{
 	public void deleteById(Long id) {
 		perfilDAO.deleteById(id);
 	}
+	
 
 
 }
