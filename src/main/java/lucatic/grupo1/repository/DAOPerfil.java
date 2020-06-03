@@ -8,5 +8,3 @@ import lucatic.grupo1.model.Perfil;
 @Repository
 public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 
-
-}
