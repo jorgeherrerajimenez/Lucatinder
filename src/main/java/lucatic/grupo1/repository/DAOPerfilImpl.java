@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 //Componente repositorio
 @Repository
-public class DAOPerfilImpl {
+public class DAOPerfilImpl implements DAOPerfil{
 	
 	//creo el entityManager para futuros métodos que implementemos y no vengan en JPARepository.
 	@PersistenceContext
