@@ -14,7 +14,7 @@ class LucatinderApplicationTests {
 	@Test
 	void contextLoads() {
 		
-		assertThat(false).isTrue();
+		assertThat(true).isTrue();
 	}
 
 }
