@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.repository.DAOPerfil;
 
 //Componente servicios
@@ -18,6 +19,13 @@ public class PerfilServiceImpl implements PerfilService{
 	public void add(Perfil perfil) {
 		
 		perfilDAO.save(perfil);
+		
+	}
+	
+	@Override
+	public void deleteById(int id) {
+		
+		perfilDAO.deleteById(id);
 	}
 
 }
