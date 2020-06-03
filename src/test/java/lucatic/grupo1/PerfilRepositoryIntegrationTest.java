@@ -30,8 +30,9 @@ public class PerfilRepositoryIntegrationTest {
 	@Autowired
 	private DAOPerfil perfilDAO;
 	
+	
+	
 	public void addDeleteTest() {
-		
 	 
 		Perfil perfil = new Perfil("Marco Rueda", "H".charAt(0), (short)27, "Soltero y amante de Python");
 		

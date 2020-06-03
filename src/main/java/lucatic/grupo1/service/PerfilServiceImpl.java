@@ -26,7 +26,7 @@ public class PerfilServiceImpl implements PerfilService{
 	@Override
 	public void deleteById(int id) {
 		
-		perfilDAO.deleteById(id);
+		perfilDAO.deleteById((long) id);
 	}
 	
 
