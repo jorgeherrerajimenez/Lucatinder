@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.github.javafaker.Faker;
 
@@ -35,11 +36,11 @@ public class Perfil implements Serializable {
 			  inverseJoinColumns = @JoinColumn(name = "perfil_id"))
 	private List<Materia> gustosInformaticos;
 	
-	/*private List<Descarte> descartados;
+	@OneToMany(mappedBy = "descartador")
+	private List<Descarte> descartados;
 	
-	private List<Match> matchs;
-	
-	private List<Contacto> contactos;*/
+	@OneToMany(mappedBy = "descartado")
+	private List<Descarte> descartadores;
 	
 	
 
@@ -114,6 +115,18 @@ public class Perfil implements Serializable {
 		return gustosInformaticos;
 	}
 	
+	public List<Descarte> getDescartados() {
+		return descartados;
+	}
+
+	public void setDescartados(List<Descarte> descartados) {
+		this.descartados = descartados;
+	}
+
+	public void setGustosInformaticos(List<Materia> gustosInformaticos) {
+		this.gustosInformaticos = gustosInformaticos;
+	}
+
 	public void generarFake() {
 		Faker f = new Faker();
 		this.nombre = f.funnyName().name();
