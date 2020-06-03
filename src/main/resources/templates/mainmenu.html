@@ -19,16 +19,13 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     
-  
 </head>
 
 <body>
-
-    <!-- Just an image -->
     
         <nav class="navbar navbar-light bg-dark">
             <a class="navbar-brand" href="#">
-                <img src="images/logopekeblanco.png" alt="logoimage">
+                <img th:src="@{/images/logopekeblanco.png}" alt="logoimage">
             </a>
             <a class="navbar-brand" style="color:white" href="#">
                 user <div>logout</div>
@@ -83,10 +80,6 @@
 	</div>
     
 
-
-
-
- <!--===============================================================================================-->
 	<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
 	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
