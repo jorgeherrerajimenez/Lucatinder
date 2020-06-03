@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import lucatic.grupo1.model.Perfil;
 
-public interface DAOPerfil extends JpaRepository<Perfil, Integer>{
+public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 	
 
 	

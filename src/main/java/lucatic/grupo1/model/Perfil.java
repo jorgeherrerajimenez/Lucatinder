@@ -43,6 +43,18 @@ public class Perfil implements Serializable {
 	public Perfil() {
 		super();
 	}
+	
+	
+
+	public Perfil(String nombre, char genero, short edad, String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.genero = genero;
+		this.edad = edad;
+		this.descripcion = descripcion;
+	}
+
+
 
 	public Perfil(Long id, String nombre, char genero, short edad, String descripcion,
 			List<Materia> gustosInformaticos) {

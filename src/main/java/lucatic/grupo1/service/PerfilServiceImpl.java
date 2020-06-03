@@ -19,6 +19,14 @@ public class PerfilServiceImpl implements PerfilService{
 	public void add(Perfil perfil) {
 		// TODO Auto-generated method stub
 		
+		perfilDAO.save(perfil);
+		
+	}
+	
+	@Override
+	public void deleteById(int id) {
+		
+		perfilDAO.deleteById(id);
 	}
 	
 
