@@ -37,7 +37,6 @@ public class PerfilRepositoryIntegrationTest {
 		Perfil perfil = new Perfil("Marco Rueda", "H".charAt(0), (short)27, "Soltero y amante de Python");
 		
 		Long numero = perfilDAO.count();
-		
 
 		perfilDAO.save(perfil);
 		
@@ -50,8 +49,6 @@ public class PerfilRepositoryIntegrationTest {
 		boolean existe = perfilDAO.existsById(perfil.getId());
 		
 		assertThat(numeroSumado).isEqualTo(numero + 1);
-		
-		
 	}
 
 }

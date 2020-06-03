@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
+
 <head>
 	<title>Registro</title>
 	<meta charset="UTF-8">
@@ -16,6 +18,8 @@
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	
+	
 
 </head>
 <body>
@@ -23,24 +27,40 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form">
+				
+				
+				
+				<form class="login100-form validate-form" method="post" th:object="${perfil}" th:action="@{addPerfil}">
 					<span class="login100-form-title p-b-33">
 					    <img src="images/lucatinderlogo5.png" alt="logo" style="width: 400px;">
 					</span>
 
 					<div class="wrap-input100 validate-input" required>
-						<input class="input100" type="text" name="usuario" placeholder="Usuario">
+						<input class="input100" type="text" name="nombre" placeholder="Nombre" th:field="*{nombre}"> 
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
 					
-					<div class="wrap-input100 validate-input" data-validate = "Se requiere correo electrónico válido:: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+					<div class="wrap-input100 validate-input" required>
+						<input class="input100" type="number" name="edad" placeholder="Edad" th:field="*{edad}">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
+					
+					<div class="wrap-input100 validate-input" required>
+						<input class="input100" type="text" name="genero" placeholder="Genero" th:field="*{genero}">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+					
+					<div class="wrap-input100 validate-input" required>
+						<input class="input100" type="text" name="descripcion" placeholder="Descripcion" th:field="*{descripcion}">
+						<span class="focus-input100-1"></span>
+						<span class="focus-input100-2"></span>
+					</div>
+					
 
-					<div class="wrap-input100 rs1 validate-input" data-validate="Se requiere contraseña:">
+					<!--  <div class="wrap-input100 rs1 validate-input" data-validate="Se requiere contraseña:">
 						<input class="input100" type="password" name="pass" placeholder="Contraseña">
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
@@ -51,9 +71,11 @@
 						<span class="focus-input100-1"></span>
 						<span class="focus-input100-2"></span>
 					</div>
+					
+					-->
 
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" type="submit">
 							registrar
 						</button>
 					</div>
@@ -69,11 +91,16 @@
 							¿Ya tienes una cuenta?
 						</span>
 
-						<a href="index.html" class="txt2 hov1">
+						<a href="index" class="txt2 hov1">
 							Entra aquí
 						</a>
 					</div>
 				</form>
+				
+				
+				
+				
+				
 			</div>
 		</div>
 	</div>
