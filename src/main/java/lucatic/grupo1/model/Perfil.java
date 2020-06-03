@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import com.github.javafaker.Faker;
+
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -110,13 +113,15 @@ public class Perfil implements Serializable {
 	public List<Materia> getGustosInformaticos() {
 		return gustosInformaticos;
 	}
-
-	@Override
-	public String toString() {
-		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
-				+ descripcion + "]";
+	
+	public void generarFake() {
+		Faker f = new Faker();
+		this.nombre = f.funnyName().name();
+		this.edad = (short) f.number().numberBetween(18, 90);
+		if((f.number().randomDigit() % 2) == 0)
+			this.genero = 'M';
+		else
+			this.genero = 'H';
+		this.descripcion = f.lorem().paragraph();
 	}
-	
-	
-	
 }
