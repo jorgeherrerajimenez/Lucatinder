@@ -38,4 +38,11 @@ public class PerfilController {
 		perfilService.add(perfil);
 		return "mainmenu";
 	}
+	
+	@RequestMapping(value= "/listaContactos", method= RequestMethod.GET)
+	public ModelAndView mostrarPerfiles() {
+		
+		ModelAndView model = new ModelAndView("sugerencias");
+		return model;
+	}
 }
