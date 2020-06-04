@@ -13,6 +13,16 @@ import org.springframework.web.servlet.ModelAndView;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.service.PerfilService;
 
+
+/**
+* @author Adnan H.
+* @author Jorge H.
+* @author Marco R.
+* @author Maira Q.
+* @version 04/06/20
+* @category MVC
+*/
+
 @Controller
 @RequestMapping("/perfil")
 public class PerfilController {
