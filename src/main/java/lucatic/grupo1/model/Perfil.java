@@ -3,6 +3,7 @@ package lucatic.grupo1.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.github.javafaker.Faker;
 
@@ -36,11 +40,25 @@ public class Perfil implements Serializable {
 			  inverseJoinColumns = @JoinColumn(name = "perfil_id"))
 	private List<Materia> gustosInformaticos;
 	
-	@OneToMany(mappedBy = "descartador")
+	
+	@OneToMany(mappedBy = "descartador",cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Descarte> descartados;
 	
-	@OneToMany(mappedBy = "descartado")
+	
+	@OneToMany(mappedBy = "descartado", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Descarte> descartadores;
+	
+	
+	@OneToMany(mappedBy = "liker",cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Contacto> contactos;
+	
+	
+	@OneToMany(mappedBy = "liked", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Contacto> contactoDe;
 	
 	
 
@@ -126,6 +144,40 @@ public class Perfil implements Serializable {
 	public void setGustosInformaticos(List<Materia> gustosInformaticos) {
 		this.gustosInformaticos = gustosInformaticos;
 	}
+
+	public List<Descarte> getDescartadores() {
+		return descartadores;
+	}
+
+	public void setDescartadores(List<Descarte> descartadores) {
+		this.descartadores = descartadores;
+	}
+
+	
+
+	public List<Contacto> getContactos() {
+		return contactos;
+	}
+
+
+
+	public void setContactos(List<Contacto> contactos) {
+		this.contactos = contactos;
+	}
+
+
+
+	public List<Contacto> getContactoDe() {
+		return contactoDe;
+	}
+
+
+
+	public void setContactoDe(List<Contacto> contactoDe) {
+		this.contactoDe = contactoDe;
+	}
+
+
 
 	public void generarFake() {
 		Faker f = new Faker();

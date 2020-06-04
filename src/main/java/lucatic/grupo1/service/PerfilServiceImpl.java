@@ -3,7 +3,6 @@ package lucatic.grupo1.service;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 import lucatic.grupo1.model.Perfil;
@@ -20,7 +19,6 @@ public class PerfilServiceImpl implements PerfilService{
 	
 	@Autowired
 	private FakeFactory_I fakeFactory;
-	
 	
 	
 	public void add(Perfil perfil) {	
@@ -40,5 +38,5 @@ public class PerfilServiceImpl implements PerfilService{
 	public void inicializar() {
 		this.generarNPerfilesFalsos(20);
 	}
-
+	
 }

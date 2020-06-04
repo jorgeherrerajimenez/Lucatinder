@@ -19,29 +19,33 @@ public class Contacto  implements Serializable {
 	private Long id;
 
 	@ManyToOne
-	@JoinColumn(name="perfil_id")
+	@JoinColumn(name="liker_id")
 	private Perfil liker;
 	
-	private Perfil like;
+	@ManyToOne
+	@JoinColumn(name="liked_id")
+	private Perfil liked;
 
 	public Contacto() {
 		super();
 	}
 
-	public Contacto(Long id, Perfil liker, Perfil like) {
+	public Contacto(Long id, Perfil liker, Perfil liked) {
 		super();
 		this.id = id;
 		this.liker = liker;
-		this.like = like;
+		this.liked = liked;
 	}
+
 
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public Perfil getLiker() {
 		return liker;
 	}
@@ -50,17 +54,12 @@ public class Contacto  implements Serializable {
 		this.liker = liker;
 	}
 
-	public Perfil getLike() {
-		return like;
+	public Perfil getLiked() {
+		return liked;
 	}
 
-	public void setLike(Perfil like) {
-		this.like = like;
-	}
-
-	@Override
-	public String toString() {
-		return "Contacto [id=" + id + ", liker=" + liker + ", like=" + like + "]";
+	public void setLiked(Perfil liked) {
+		this.liked = liked;
 	}
 
 }
