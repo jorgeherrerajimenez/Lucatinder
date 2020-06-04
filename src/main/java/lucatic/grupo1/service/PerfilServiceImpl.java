@@ -47,5 +47,11 @@ public class PerfilServiceImpl implements PerfilService{
 		return perfilDAO.showTenProfiles();
 	}
 
+	@Override
+	public Perfil findById(Long id) {
+		// TODO Auto-generated method stub
+		return this.perfilDAO.getOne(id);
+	}
+
 }
 

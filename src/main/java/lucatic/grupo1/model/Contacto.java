@@ -30,6 +30,12 @@ public class Contacto  implements Serializable {
 		super();
 	}
 
+	public Contacto(Perfil liker, Perfil liked) {
+		super();
+		this.liker = liker;
+		this.liked = liked;
+	}
+
 	public Contacto(Long id, Perfil liker, Perfil liked) {
 		super();
 		this.id = id;
