@@ -9,6 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.github.javafaker.Faker;
+
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -32,11 +36,11 @@ public class Perfil implements Serializable {
 			  inverseJoinColumns = @JoinColumn(name = "perfil_id"))
 	private List<Materia> gustosInformaticos;
 	
-	/*private List<Descarte> descartados;
+	@OneToMany(mappedBy = "descartador")
+	private List<Descarte> descartados;
 	
-	private List<Match> matchs;
-	
-	private List<Contacto> contactos;*/
+	@OneToMany(mappedBy = "descartado")
+	private List<Descarte> descartadores;
 	
 	
 
@@ -110,13 +114,27 @@ public class Perfil implements Serializable {
 	public List<Materia> getGustosInformaticos() {
 		return gustosInformaticos;
 	}
-
-	@Override
-	public String toString() {
-		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
-				+ descripcion + "]";
+	
+	public List<Descarte> getDescartados() {
+		return descartados;
 	}
-	
-	
-	
+
+	public void setDescartados(List<Descarte> descartados) {
+		this.descartados = descartados;
+	}
+
+	public void setGustosInformaticos(List<Materia> gustosInformaticos) {
+		this.gustosInformaticos = gustosInformaticos;
+	}
+
+	public void generarFake() {
+		Faker f = new Faker();
+		this.nombre = f.funnyName().name();
+		this.edad = (short) f.number().numberBetween(18, 90);
+		if((f.number().randomDigit() % 2) == 0)
+			this.genero = 'M';
+		else
+			this.genero = 'H';
+		this.descripcion = f.lorem().paragraph();
+	}
 }
