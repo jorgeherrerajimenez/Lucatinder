@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-   	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">	
@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    
 
 </head>
 
@@ -25,48 +26,51 @@
 
     <nav class="navbar navbar-light bg-dark">
         <a class="navbar-brand" href="#">
-            <img th:src="@{/images/logopekeblanco.png}" alt="logoimage">
+            <img class="pl-5" th:src="@{/images/logopekeblanco.png}" alt="logoimage">
         </a>
         <a class="navbar-brand" style="color:white" href="#">
-            user <div>logout</div>
+            user <div><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></div>
         </a>
     </nav>
 
     <!-- Menú-->
 
 
-
     <!-- cuadrado blanco principal-->
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-              
-               <div class="card" style="width: 24rem;">
-                  <div class="card-body" th:each= "perfil, status : ${listaSugerencias}" style= "background-color:whitesmoke;">
-                  	
-                        <h5 class="card-title" th:text= "${perfil.nombre}"></h5>
-                        <p class="card-text" th:text= "${perfil.edad}" />
-                        <p class="card-text"th:text= "${perfil.genero}" />
-                        <p class="card-text"th:text= "${perfil.descripcion}" />
-                        
-                        <div class="row">
-                            <div class="col ">
-                            	<a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="btn btn-primary">Me gusta</a> 
-                            </div>
-                            
-                            <div class="col">
-                                <a href="#" class="btn btn-primary">Descartar</a>         
-                            </div>
-                        </div>
-                  </div>
+
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50" th:each= "perfil : ${listaSugerencias}">
+                <img class="card-img-top img-thumbnail" th:src="@{/images/usericon.png}" alt="Image Icon">
+                <div class="card-body">
+                    <h5 class="card-title" th:text= "${perfil.nombre}"></h5>
+                    <p class="card-text" th:text= "${perfil.descripcion}"/></p>
                 </div>
-               </div>
-               
-               
+                <ul class="list-group list-group-flush">
+                    Edad: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.edad}"></li>
+                    Género: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.genero}"></li>
+                </ul>
+                <div class="card-body">
+                    <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                    <a href="#" class="card-link" style="color:red"><i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i></a>
+                </div>
+
+
             </div>
         </div>
-    
+    </div>
     <!-- cuadrado blanco principal -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 
