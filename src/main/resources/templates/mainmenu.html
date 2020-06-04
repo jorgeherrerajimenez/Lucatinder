@@ -24,14 +24,18 @@
 
 <body>
     
-        <nav class="navbar navbar-light bg-dark">
-            <a class="navbar-brand" href="#">
-                <img th:src="@{/images/logopekeblanco.png}" alt="logoimage">
-            </a>
-            <a class="navbar-brand" style="color:white" href="#">
-                user <div>logout</div>
-            </a>
-        </nav>
+         <!-- Menú-->
+
+		    <nav class="navbar navbar-light bg-dark">
+		        <a class="navbar-brand" href="#">
+		            <img class="pl-5" th:src="@{/images/logopekeblanco.png}" alt="logoimage">
+		        </a>
+		        <a class="navbar-brand" style="color:white" href="#">
+		            user <div><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></div>
+		        </a>
+		    </nav>
+
+    	<!-- Menú-->
 
        
         <div class="limiter">
@@ -44,7 +48,7 @@
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-						<a href="/perfil/listaContactos" class="stretched-link">
+						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="stretched-link">
 							sugerencias <i class="pl-3 fa fa-search fa-2x" aria-hidden="true"></i>
 						</a>
 						</button>
