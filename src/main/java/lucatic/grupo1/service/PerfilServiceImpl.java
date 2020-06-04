@@ -1,10 +1,13 @@
 package lucatic.grupo1.service;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+
 
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.repository.DAOPerfil;
@@ -40,5 +43,11 @@ public class PerfilServiceImpl implements PerfilService{
 	public void inicializar() {
 		this.generarNPerfilesFalsos(20);
 	}
+	
+	@Override
+	public List<Perfil> showTenProfiles() {
+		return perfilDAO.showTenProfiles();
+	}
+
 
 }
