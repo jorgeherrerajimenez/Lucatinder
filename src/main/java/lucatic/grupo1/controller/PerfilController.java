@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.PerfilService;
 
 @Controller
@@ -19,6 +20,7 @@ public class PerfilController {
 	
 	@Autowired
 	PerfilService perfilService;
+	
 
 	// Raíz
 	@RequestMapping("/")
@@ -47,7 +49,7 @@ public class PerfilController {
 		return model;
 	}
 	
-	//nuevo método para aceptar sugerencia
-	//requestmethod.put
-	//public void darLike()...
+	
+	
+	
 }
