@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Service;
 
 
@@ -35,7 +34,6 @@ public class PerfilServiceImpl implements PerfilService{
 	private FakeFactory_I fakeFactory;
 	
 	
-	
 	public void add(Perfil perfil) {	
 		perfilDAO.save(perfil);	
 	}
@@ -53,11 +51,8 @@ public class PerfilServiceImpl implements PerfilService{
 	public void inicializar() {
 		this.generarNPerfilesFalsos(20);
 	}
-	
+
 	@Override
 	public List<Perfil> showTenProfiles() {
 		return perfilDAO.showTenProfiles();
 	}
-
-
-}

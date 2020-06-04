@@ -49,10 +49,15 @@ public class PerfilController {
 		return "mainmenu";
 	}
 	
-	@RequestMapping(value= "/listaContactos", method= RequestMethod.GET)
+	@RequestMapping(method= RequestMethod.GET, value= "/listaContactos")
 	public ModelAndView mostrarPerfiles() {
 		
 		ModelAndView model = new ModelAndView("sugerencias");
+		//model.AddAttribute("listaSugerencias", perfilService.showTenProfiles());
 		return model;
 	}
+	
+	//nuevo método para aceptar sugerencia
+	//requestmethod.put
+	//public void darLike()...
 }

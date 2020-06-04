@@ -40,9 +40,8 @@ public class Descarte implements Serializable {
 		super();
 	}
 
-	public Descarte(Long id, Perfil descartador, Perfil descartado) {
+	public Descarte(Perfil descartador, Perfil descartado) {
 		super();
-		this.id = id;
 		this.descartador = descartador;
 		this.descartado = descartado;
 	}
