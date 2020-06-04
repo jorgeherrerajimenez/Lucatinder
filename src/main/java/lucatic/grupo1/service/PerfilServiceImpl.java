@@ -13,6 +13,16 @@ import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.repository.DAOPerfil;
 import lucatic.grupo1.util.FakeFactory_I;
 
+/**
+* @author Jorge H.
+* @author Marco R.
+* @author Adnan H.
+* @author Maira Q.
+* @version 04/06/20
+* @category MVC
+*/
+
+
 //Componente servicios
 @Service
 public class PerfilServiceImpl implements PerfilService{

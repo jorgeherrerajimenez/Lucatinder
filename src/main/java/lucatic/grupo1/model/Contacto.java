@@ -2,6 +2,13 @@ package lucatic.grupo1.model;
 
 import java.io.Serializable;
 
+/**
+* @author Jorge H.
+* @author Maira Q.
+* @version 04/06/20
+* @category MVC
+*/
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

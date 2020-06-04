@@ -17,6 +17,11 @@ import com.github.javafaker.Faker;
 import javax.persistence.JoinColumn;
 
 
+/**
+* @author Jorge H.
+* @author Maira Q.
+*/
+
 @Entity
 public class Perfil implements Serializable {
 
