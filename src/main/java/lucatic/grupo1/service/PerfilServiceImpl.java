@@ -56,3 +56,5 @@ public class PerfilServiceImpl implements PerfilService{
 	public List<Perfil> showTenProfiles() {
 		return perfilDAO.showTenProfiles();
 	}
+	
+}

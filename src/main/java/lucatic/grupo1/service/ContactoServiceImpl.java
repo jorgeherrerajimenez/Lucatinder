@@ -4,6 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.repository.DAOContacto;
 
+/**
+* @author Maira Q.
+* @version 04/06/20
+* @category MVC
+*/
+
 public class ContactoServiceImpl implements ContactoService {
 	
 	@Autowired
