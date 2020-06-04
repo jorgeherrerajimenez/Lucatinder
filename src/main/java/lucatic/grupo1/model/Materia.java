@@ -1,5 +1,6 @@
 package lucatic.grupo1.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,7 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Materia {
+public class Materia implements Serializable {
+	
+	private static final long serialVersionUID = 6292177161988922695L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
