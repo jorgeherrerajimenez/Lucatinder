@@ -1,6 +1,7 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import com.github.javafaker.Faker;
 
 import javax.persistence.JoinColumn;
 
+
 @Entity
 public class Perfil implements Serializable {
 
@@ -27,7 +29,6 @@ public class Perfil implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
 	private String nombre;
 	private char genero;
 	private short edad;
