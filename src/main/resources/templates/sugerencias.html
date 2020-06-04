@@ -39,6 +39,7 @@
     <!-- cuadrado blanco principal-->
     <div class="limiter">
         <div class="container-login100">
+
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50" th:each= "perfil : ${listaSugerencias}">
                 <img class="card-img-top img-thumbnail" th:src="@{/images/usericon.png}" alt="Image Icon">
                 <div class="card-body">
@@ -50,7 +51,7 @@
                     Género: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.genero}"></li>
                 </ul>
                 <div class="card-body">
-                    <a href="#" class="card-link" style="color:limegreen"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                    <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
                     <a href="#" class="card-link" style="color:red"><i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i></a>
                 </div>
 
