@@ -43,7 +43,7 @@ public class PerfilController {
 	public ModelAndView mostrarPerfiles() {
 		
 		ModelAndView model = new ModelAndView("sugerencias");
-		//model.AddAttribute("listaSugerencias", perfilService.showTenProfiles());
+		model.addObject("listaSugerencias", perfilService.showTenProfiles());
 		return model;
 	}
 	
