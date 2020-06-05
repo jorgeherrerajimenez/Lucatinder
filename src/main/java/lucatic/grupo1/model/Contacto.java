@@ -2,6 +2,13 @@ package lucatic.grupo1.model;
 
 import java.io.Serializable;
 
+/**
+* @author Jorge H.
+* @author Maira Q.
+* @version 04/06/20
+* @category MVC
+*/
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +35,12 @@ public class Contacto  implements Serializable {
 
 	public Contacto() {
 		super();
+	}
+
+	public Contacto(Perfil liker, Perfil liked) {
+		super();
+		this.liker = liker;
+		this.liked = liked;
 	}
 
 	public Contacto(Long id, Perfil liker, Perfil liked) {
