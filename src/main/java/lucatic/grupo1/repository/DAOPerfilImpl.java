@@ -1,15 +1,7 @@
 package lucatic.grupo1.repository;
 
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-
-import lucatic.grupo1.model.Perfil;
 
 
 /**

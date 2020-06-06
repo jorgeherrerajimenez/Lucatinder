@@ -1,7 +1,7 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
-
+import java.util.List;
 
 /**
 * @author Jorge H.
@@ -15,6 +15,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -33,7 +35,6 @@ public class Descarte implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="descartado_id")
 	private Perfil descartado;
-
 	
 	
 	public Descarte() {

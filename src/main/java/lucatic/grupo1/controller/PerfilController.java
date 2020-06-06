@@ -1,5 +1,7 @@
 package lucatic.grupo1.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +62,8 @@ public class PerfilController {
 		return mv;
 	}
 	
-	@RequestMapping(method= RequestMethod.GET, value= "/listaContactos")
+	//Lista de Sugerencias
+	@RequestMapping(method= RequestMethod.GET, value= "/listaSugerencias")
 	public ModelAndView mostrarPerfiles(@RequestParam("id") Long id, Model model) {
 		Perfil perfilUsuario = this.perfilService.findById(id);
 		ModelAndView mv = new ModelAndView("sugerencias");
@@ -68,6 +71,26 @@ public class PerfilController {
 		mv.addObject("listaSugerencias", perfilService.showTenProfiles());
 		return mv;
 	}
+	
+		// Lista de Contactos
+		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
+		public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
+		ModelAndView mv = new ModelAndView("contacto1");
+			List<Contacto> contactos = this.contactoService.mostrarContactos(id);
+			mv.addObject("contactos", contactos);
+		return mv;
+	}
+		
+		//Lista de Descartes
+		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
+		public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
+		ModelAndView mv = new ModelAndView("descarte1");
+			List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
+			mv.addObject("descartes", descartes);
+		return mv;
+		}
+		
+		
 	
 	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
 	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
