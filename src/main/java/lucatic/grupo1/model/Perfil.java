@@ -183,6 +183,15 @@ public class Perfil implements Serializable {
 		this.contactoDe = contactoDe;
 	}
 
+	
+
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
+				+ descripcion + ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados
+				+ ", descartadores=" + descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + "]";
+	}
+
 
 
 	public void generarFake() {
