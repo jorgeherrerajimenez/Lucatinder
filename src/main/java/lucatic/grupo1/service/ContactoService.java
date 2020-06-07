@@ -16,5 +16,4 @@ public interface ContactoService {
 
 	public List<Contacto> mostrarContactos(Long id);
 	
-	
 }

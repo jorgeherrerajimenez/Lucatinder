@@ -75,7 +75,7 @@ public class PerfilController {
 		// Lista de Contactos
 		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
 		public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
-		ModelAndView mv = new ModelAndView("contacto1");
+		ModelAndView mv = new ModelAndView("contactos");
 			List<Contacto> contactos = this.contactoService.mostrarContactos(id);
 			mv.addObject("contactos", contactos);
 		return mv;
@@ -84,7 +84,7 @@ public class PerfilController {
 		//Lista de Descartes
 		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
 		public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
-		ModelAndView mv = new ModelAndView("descarte1");
+		ModelAndView mv = new ModelAndView("descartes");
 			List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
 			mv.addObject("descartes", descartes);
 		return mv;

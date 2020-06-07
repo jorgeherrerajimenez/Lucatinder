@@ -24,8 +24,6 @@ public class ContactoServiceImpl implements ContactoService {
 	public List<Contacto> mostrarContactos(Long id) {
 		return contactoDAO.buscarContactosPorLiker(id);
 	}
-	
-	
 
 }
 
