@@ -53,8 +53,26 @@ public class PerfilServiceImpl implements PerfilService{
 	}
 
 	@Override
-	public List<Perfil> showTenProfiles() {
-		return perfilDAO.showTenProfiles();
+	public Long showLikedProfiles(long id) {
+		return perfilDAO.showLikedProfiles(id);
+	}
+
+	@Override
+	public Perfil findById(Long id) {
+		// TODO Auto-generated method stub
+		return this.perfilDAO.getOne(id);
+	}
+
+	@Override
+	public List<Perfil> showThreeProfiles() {
+		// TODO Auto-generated method stub
+		return perfilDAO.showThreeProfiles();
+	}
+	
+	@Override
+	public List<Perfil> showOthersProfiles(long id) {
+		// TODO Auto-generated method stub
+		return perfilDAO.showOthersProfiles(id);
 	}
 
 	@Override
