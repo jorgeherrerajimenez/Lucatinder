@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import lucatic.grupo1.model.Contacto;
+import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.service.ContactoService;
+import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.PerfilService;
 
 
@@ -33,6 +35,9 @@ public class PerfilController {
 	
 	@Autowired
 	ContactoService contactoService;
+	
+	@Autowired
+	DescarteService descarteService;
 
 	// Raíz
 	@RequestMapping("/")
@@ -63,6 +68,7 @@ public class PerfilController {
 	
 		mv.addObject("perfilUsuario", perfilUsuario);
 		mv.addObject("listaSugerencias", perfilService.showThreeProfiles());
+
 		return mv;
 	}
 	
