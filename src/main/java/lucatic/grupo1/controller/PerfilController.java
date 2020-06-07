@@ -19,7 +19,7 @@ import lucatic.grupo1.service.PerfilService;
 * @author Adnan H.
 * @author Jorge H.
 * @author Marco R.
-* @author Maira Q.
+* @author Maira P.
 * @version 04/06/20
 * @category MVC
 */
@@ -58,21 +58,40 @@ public class PerfilController {
 	@RequestMapping(method= RequestMethod.GET, value= "/listaContactos")
 	public ModelAndView mostrarPerfiles(@RequestParam("id") Long id, Model model) {
 		Perfil perfilUsuario = this.perfilService.findById(id);
+		
 		ModelAndView mv = new ModelAndView("sugerencias");
+	
 		mv.addObject("perfilUsuario", perfilUsuario);
-		mv.addObject("listaSugerencias", perfilService.showTenProfiles());
+		mv.addObject("listaSugerencias", perfilService.showThreeProfiles());
 		return mv;
 	}
 	
 	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
 	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
+		
+		//Añade a bd contactos
 		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
 				this.perfilService.findById(id2)));
-		ModelAndView model = new ModelAndView("contactoGuardado");
+		
+		Perfil perfilUsuario = this.perfilService.findById(id1);
+		
+		//Vuelve a cargar la pag sugerencias
+		ModelAndView model = new ModelAndView("sugerencias");
+		
+		//Pregunta si hay me gustas asignados a ese perfil
+		Long thereLikes = null;
+		thereLikes = perfilService.showLikedProfiles(id2);
+		
+		
+		if(thereLikes==0L) {
+			model.addObject("perfilUsuario", perfilUsuario);
+			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+		}else {
+			model.addObject("perfilUsuario", perfilUsuario);
+			model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
+		}
+		
 		return model;
 	}
 	
-	//nuevo método para aceptar sugerencia
-	//requestmethod.put
-	//public void darLike()...
 }

@@ -51,14 +51,17 @@
                     Género: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.genero}"></li>
                 </ul>
                 <div class="card-body">
-                    <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                     <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
                     <a href="#" class="card-link" style="color:red"><i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i></a>
                 </div>
 
-
+				
+		<!- ${perfilAnnadido.id}==${perfil.id} &&  -->
             </div>
         </div>
     </div>
+
+    
     <!-- cuadrado blanco principal -->
     
     
