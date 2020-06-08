@@ -48,27 +48,29 @@
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="stretched-link">
-							sugerencias <i class="pl-3 fa fa-search fa-2x" aria-hidden="true"></i>
+						<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}" class="stretched-link">
+							Sugerencias <i class="pl-3 fa fa-search fa-2x" aria-hidden="true"></i>
 						</a>
 						</button>
 					</div>
 					
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-							match <i class="pl-3 fa fa-venus-mars fa-2x" aria-hidden="true"></i>
+							Match <i class="pl-3 fa fa-venus-mars fa-2x" aria-hidden="true"></i>
 						</button>
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-							me gustan<i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i>
+						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="stretched-link">
+							Contactos<i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i>
 						</button>
 					</div>
 					
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-							descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
+						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="stretched-link">
+							Descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
 						</button>
 					</div>
 

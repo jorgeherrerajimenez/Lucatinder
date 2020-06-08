@@ -1,5 +1,6 @@
 package lucatic.grupo1.service;
-import java.util.Collection;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,12 @@ public class ContactoServiceImpl implements ContactoService {
 	public void add(Contacto contacto) {
 		contactoDAO.save(contacto);
 	}
+
+
 	@Override
-	public Collection<Contacto> findAll() {
-		return contactoDAO.findAll();
+	public List<Contacto> mostrarContactos(Long id) {
+		return contactoDAO.buscarContactosPorLiker(id);
 	}
+
 }
 
