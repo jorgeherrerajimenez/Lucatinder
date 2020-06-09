@@ -49,6 +49,8 @@ public class PerfilController {
 	
 
 	// Raíz, genera una entrada (previa autenticación) a la página general de la aplicación
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+
 	public ModelAndView handleRequest(Authentication auth) throws Exception {
 		
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO PARA PROCESAR LA ENTRADA A LA APLICACIÓN");

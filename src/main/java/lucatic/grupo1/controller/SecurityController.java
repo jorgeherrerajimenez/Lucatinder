@@ -14,21 +14,12 @@ import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.repository.DAOPerfil;
 
 @Controller
-public class HomeController {
+public class SecurityController {
 	
-	@Autowired
-	private DAOPerfil perfilDAO;
 	
 	@GetMapping("/login")
 	public String loginForm() {
 		return "loginPersonalizado";
-	}
-
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public ModelAndView handleRequest(Authentication auth) throws Exception {
-		ModelAndView model = new ModelAndView("mainmenu");
-		model.addObject("perfil", perfilDAO.findByUsername(auth.getName()));
-		return model;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET,
@@ -36,4 +27,5 @@ public class HomeController {
 	public String initForm(@ModelAttribute("perfil") Perfil perfil, Model model) {
 		return "registro";
 	}
+	
 }
