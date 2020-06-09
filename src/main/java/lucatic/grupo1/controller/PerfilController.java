@@ -43,11 +43,10 @@ public class PerfilController {
 	DescarteService descarteService;
 
 	// Raíz
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String handleRequest(Authentication auth) throws Exception {
+	public ModelAndView handleRequest(Authentication auth) throws Exception {
 		ModelAndView model = new ModelAndView("mainmenu");
-		System.out.println(auth.getName());
-		return "mainmenu";
+		model.addObject("perfil", perfilService.findByUsername(auth.getName()));
+		return model;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
@@ -109,7 +108,6 @@ public class PerfilController {
 	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
 		this.descarteService.add(new Descarte(this.perfilService.findById(id1),
 				this.perfilService.findById(id2)));
-		ModelAndView model = new ModelAndView("contactoGuardado");
 		
 		Perfil perfilUsuario = this.perfilService.findById(id1);
 		

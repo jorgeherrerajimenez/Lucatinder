@@ -57,6 +57,10 @@ public class PerfilServiceImpl implements PerfilService{
 	@Override
 	public List<Perfil> generateCandidatesFor(Long id) {
 		return perfilDAO.showTenProfiles();
+		
+	}
+	
+	@Override
 	public Long showLikedProfiles(long id) {
 		return perfilDAO.showLikedProfiles(id);
 	}
@@ -80,9 +84,15 @@ public class PerfilServiceImpl implements PerfilService{
 	}
 
 	@Override
-	public Perfil findById(Long id) {
+	public List<Perfil> showTenProfiles() {
 		// TODO Auto-generated method stub
-		return this.perfilDAO.getOne(id);
+		return this.perfilDAO.showTenProfiles();
+	}
+
+	@Override
+	public Perfil findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return this.perfilDAO.findByUsername(username);
 	}
 
 }

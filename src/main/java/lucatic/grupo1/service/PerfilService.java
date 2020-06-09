@@ -19,8 +19,10 @@ public interface PerfilService {
 	public List<Perfil> generateCandidatesFor(Long id);
 	public Perfil findById(Long id);
 	public Long showLikedProfiles(long id);
+	public List<Perfil> showTenProfiles();
 	public List<Perfil> showThreeProfiles();
 	public List<Perfil> showOthersProfiles(long id);
+	public Perfil findByUsername(String username);
 
 
 }
