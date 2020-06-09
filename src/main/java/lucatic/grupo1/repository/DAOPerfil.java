@@ -21,6 +21,9 @@ public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 	@Query(value = "select liked_id from contacto where liked_id= ?1", nativeQuery = true)
 	public Long showLikedProfiles(long id);
 	
+	@Query(value = "select liked_id from descarte where descartado_id= ?1", nativeQuery = true)
+	public Long showDislikedProfiles(long id);
+	
 	
 	
 	public Perfil findByUsername(String username);
