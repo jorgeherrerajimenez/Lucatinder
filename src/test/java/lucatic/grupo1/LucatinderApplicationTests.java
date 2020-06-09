@@ -1,4 +1,4 @@
-package lucatic.grupo1;
+/*package lucatic.grupo1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -17,4 +17,4 @@ class LucatinderApplicationTests {
 		assertThat(true).isTrue();
 	}
 
-}
+}*/
