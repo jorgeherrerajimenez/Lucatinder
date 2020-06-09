@@ -16,7 +16,7 @@ public interface PerfilService {
 	
 	public void add(Perfil perfil);
 	public void deleteById(Long id);
-	public List<Perfil> showTenProfiles();
+	public List<Perfil> generateCandidatesFor(Long id);
 	public Perfil findById(Long id);
 
 }

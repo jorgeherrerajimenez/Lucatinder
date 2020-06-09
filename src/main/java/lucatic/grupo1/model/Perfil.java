@@ -1,8 +1,9 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.github.javafaker.Faker;
 
@@ -30,14 +33,19 @@ import javax.persistence.JoinColumn;
 public class Perfil implements Serializable {
 
 	private static final long serialVersionUID = 6529425024800979551L;
+	private static final Role role = new Role("USER");
+	private  static final PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String nombre;
+	private String username;
 	private char genero;
 	private short edad;
 	private String descripcion;
+	private String password = encoder.encode("xxx");
+	private boolean enabled = true;
 	
 	@ManyToMany
 	@JoinTable(
@@ -66,33 +74,44 @@ public class Perfil implements Serializable {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Contacto> contactoDe;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "user_role", 
+			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	private Set<Role> roles = new HashSet<Role>();
+	
 	
 
 	public Perfil() {
 		super();
+		this.roles.add(Perfil.role);
 	}
 	
 	
 
-	public Perfil(String nombre, char genero, short edad, String descripcion) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion) {
 		super();
 		this.nombre = nombre;
+		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
+		this.roles.add(Perfil.role);
 	}
 
 
 
-	public Perfil(Long id, String nombre, char genero, short edad, String descripcion,
+	public Perfil(Long id, String nombre, String username, char genero, short edad, String descripcion,
 			List<Materia> gustosInformaticos) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
+		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
 		this.gustosInformaticos = gustosInformaticos;
+		this.roles.add(Perfil.role);
 	}
 
 	public Long getId() {
@@ -109,6 +128,20 @@ public class Perfil implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public static Role getRole() {
+		return role;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public char getGenero() {
@@ -182,12 +215,44 @@ public class Perfil implements Serializable {
 	public void setContactoDe(List<Contacto> contactoDe) {
 		this.contactoDe = contactoDe;
 	}
+	
+
+	public String getPassword() {
+		return password;
+	}
 
 
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 	public void generarFake() {
 		Faker f = new Faker();
-		this.nombre = f.funnyName().name();
+		this.username = f.funnyName().name();
+		this.nombre = this.username;
 		this.edad = (short) f.number().numberBetween(18, 90);
 		if((f.number().randomDigit() % 2) == 0)
 			this.genero = 'M';

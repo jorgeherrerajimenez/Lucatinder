@@ -18,5 +18,8 @@ public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 			  nativeQuery = true)
 	public List<Perfil> showTenProfiles();
 	
+	
+	public Perfil findByUsername(String username);
+	
 }
 
