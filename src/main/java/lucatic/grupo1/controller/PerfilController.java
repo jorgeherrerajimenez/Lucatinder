@@ -89,30 +89,23 @@ public class PerfilController {
 	}
 
 	
-		// Lista de Contactos: Igual que sugerencias, solo que recibe el servicio a través de ContactoService
-		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
-		public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
-			
-		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR CONTACTOS");
-      
+	// Lista de Contactos
+	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
+	public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
 		ModelAndView mv = new ModelAndView("contactos");
 		List<Contacto> contactos = this.contactoService.mostrarContactos(id);
 		mv.addObject("contactos", contactos);
 		return mv;
 	}
-
-		
-		//Lista de Descartes: Recibe el DescarteService
-		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
-		public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
-			
-		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR DESCARTES");
-			
+	
+	//Lista de Descartes
+	@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
+	public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
 		ModelAndView mv = new ModelAndView("descartes");
 		List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
 		mv.addObject("descartes", descartes);
 		return mv;
-		}
+	}
 		
 		
 	
@@ -159,30 +152,6 @@ public class PerfilController {
 		return model;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/addDescarte")
-	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-
-		// Añade a bd contactos
-		this.descarteService.add(new Descarte(this.perfilService.findById(id1), this.perfilService.findById(id2)));
-
-		Perfil perfilUsuario = this.perfilService.findById(id1);
-
-		// Vuelve a cargar la pag sugerencias
-		ModelAndView model = new ModelAndView("sugerencias");
-
-		// Pregunta si hay me gustas asignados a ese perfil
-		Long thereDislikes = null;
-		thereDislikes = perfilService.showLikedProfiles(id2);
-
-		if (thereDislikes == 0L) {
-			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
-		} else {
-			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showOthersDislikesProfiles(id1));
-		}
-
-		return model;
-	}
+	
 
 }

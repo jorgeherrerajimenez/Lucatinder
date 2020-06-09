@@ -23,6 +23,7 @@ public interface PerfilService {
 	public List<Perfil> showThreeProfiles();
 	public List<Perfil> showOthersProfiles(long id);
 	public Object showOthersDislikesProfiles(Long id1);
+	public Perfil findByUsername(String name);
 
 
 }

@@ -44,7 +44,7 @@ public class Perfil implements Serializable {
 	private char genero;
 	private short edad;
 	private String descripcion;
-	private String password = encoder.encode("xxx");
+	private String password;
 	private boolean enabled = true;
 	
 	@ManyToMany
@@ -252,8 +252,6 @@ public class Perfil implements Serializable {
 		return enabled;
 	}
 
-
-
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -268,5 +266,7 @@ public class Perfil implements Serializable {
 		else
 			this.genero = 'H';
 		this.descripcion = f.lorem().paragraph();
+		this.password = encoder.encode("xxx");
 	}
+	
 }
