@@ -42,42 +42,43 @@ public class PerfilController {
 
 	@Autowired
 	DescarteService descarteService;
-	
-	//Crea un servicio logger en la clase PerfilController
-	private final static Logger LOGGER = Logger.getLogger(PerfilController.class.getName());
-	
 
-	// Raíz, genera una entrada (previa autenticación) a la página general de la aplicación
+	// Crea un servicio logger en la clase PerfilController
+	private final static Logger LOGGER = Logger.getLogger(PerfilController.class.getName());
+
+	// Raíz, genera una entrada (previa autenticación) a la página general de la
+	// aplicación
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 
 	public ModelAndView handleRequest(Authentication auth) throws Exception {
-		
-		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO PARA PROCESAR LA ENTRADA A LA APLICACIÓN");
-		
-		
+
+		LOGGER.log(Level.INFO,
+				"- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO PARA PROCESAR LA ENTRADA A LA APLICACIÓN");
+
 		ModelAndView model = new ModelAndView("mainmenu");
 		model.addObject("perfil", perfilService.findByUsername(auth.getName()));
 		return model;
 	}
-	
-	//dar de alta a un nuevo usuario desde el Front - añadir perfil a la base de datos
+
+	// dar de alta a un nuevo usuario desde el Front - añadir perfil a la base de
+	// datos
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
-	public ModelAndView addPerfil(Perfil perfil,Model model) {
-		
+	public ModelAndView addPerfil(Perfil perfil, Model model) {
+
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO AÑADIR PERFIL");
 		ModelAndView mv = new ModelAndView("mainmenu");
 		mv.addObject("perfilUsuario", perfil);
 		perfilService.add(perfil);
 		return mv;
 	}
-	
-	//Lista de Sugerencias: Recoge el método de la capa de servicios y genera una Vista con las sugerencias en función del ID del Usuario.
-	@RequestMapping(method= RequestMethod.GET, value= "/listaSugerencias")
+
+	// Lista de Sugerencias: Recoge el método de la capa de servicios y genera una
+	// Vista con las sugerencias en función del ID del Usuario.
+	@RequestMapping(method = RequestMethod.GET, value = "/listaSugerencias")
 	public ModelAndView mostrarPerfiles(@RequestParam("id") Long id, Model model) {
-		
+
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR PERFILES");
 
-		
 		Perfil perfilUsuario = this.perfilService.findById(id);
 
 		ModelAndView mv = new ModelAndView("sugerencias");
@@ -88,58 +89,38 @@ public class PerfilController {
 		return mv;
 	}
 
-	
-		// Lista de Contactos: Igual que sugerencias, solo que recibe el servicio a través de ContactoService
-		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
-		public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
-			
+	// Lista de Contactos: Igual que sugerencias, solo que recibe el servicio a
+	// través de ContactoService
+	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
+	public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
+
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR CONTACTOS");
-      
+
 		ModelAndView mv = new ModelAndView("contactos");
 		List<Contacto> contactos = this.contactoService.mostrarContactos(id);
 		mv.addObject("contactos", contactos);
 		return mv;
 	}
 
-		
-		//Lista de Descartes: Recibe el DescarteService
-		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
-		public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
-			
+	// Lista de Descartes: Recibe el DescarteService
+	@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
+	public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
+
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR DESCARTES");
-			
+
 		ModelAndView mv = new ModelAndView("descartes");
 		List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
 		mv.addObject("descartes", descartes);
 		return mv;
-		}
-		
-		
-	
-	//El Usuario añade a una sugerencia a Contactos tras dar 'Like' a través del Front (/sugerencias)
-	//El método envía la petición POST a la base de datos a través de servicios.
-	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
-	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-		
-		//Añade a bd contactos
-		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
-				this.perfilService.findById(id2)));
-
-		//List<Perfil> listaSugerencias = (List<Perfil>) model.getAttribute("listaSugerencias");
-		//listaSugerencias.remove(this.perfilService.findById(id2));
-		ModelAndView mv = new ModelAndView("sugerencias");
-		//mv.addObject("listaSugerencias", listaSugerencias);
-		return mv;
 	}
-	
 
-	//El Usuario añade a una sugerencia a Descartes tras dar 'Like' a través del Front (/sugerencias)
-	//El método envía la petición POST a la base de datos a través de servicios.
-	@RequestMapping(method= RequestMethod.GET, value= "/addDescarte")
-	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-		this.descarteService.add(new Descarte(this.perfilService.findById(id1),
-				this.perfilService.findById(id2)));
-		
+	// El Usuario añade a una sugerencia a Descartes tras dar 'Like' a través del
+	// Front (/sugerencias)
+	// El método envía la petición POST a la base de datos a través de servicios.
+	@RequestMapping(method = RequestMethod.GET, value = "/addContacto")
+	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
+		this.contactoService.add(new Contacto(this.perfilService.findById(id1), this.perfilService.findById(id2)));
+
 		Perfil perfilUsuario = this.perfilService.findById(id1);
 
 		// Vuelve a cargar la pag sugerencias
@@ -158,7 +139,10 @@ public class PerfilController {
 		}
 		return model;
 	}
-	
+
+	// El Usuario añade a una sugerencia a Contactos tras dar 'DisLike' a través del
+	// Front (/sugerencias)
+	// El método envía la petición POST a la base de datos a través de servicios.
 	@RequestMapping(method = RequestMethod.GET, value = "/addDescarte")
 	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
 
@@ -172,7 +156,7 @@ public class PerfilController {
 
 		// Pregunta si hay me gustas asignados a ese perfil
 		Long thereDislikes = null;
-		thereDislikes = perfilService.showLikedProfiles(id2);
+		thereDislikes = perfilService.showDislikedProfiles(id2);
 
 		if (thereDislikes == 0L) {
 			model.addObject("perfilUsuario", perfilUsuario);
