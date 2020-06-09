@@ -60,6 +60,7 @@ public class PerfilServiceImpl implements PerfilService{
 	@Override
 	public Perfil findById(Long id) {
 		// TODO Auto-generated method stub
+		
 		return this.perfilDAO.getOne(id);
 	}
 
@@ -75,11 +76,7 @@ public class PerfilServiceImpl implements PerfilService{
 		return perfilDAO.showOthersProfiles(id);
 	}
 
-	@Override
-	public Perfil findById(Long id) {
-		// TODO Auto-generated method stub
-		return this.perfilDAO.getOne(id);
-	}
+	
 
 }
 

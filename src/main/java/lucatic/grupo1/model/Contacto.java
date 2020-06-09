@@ -43,7 +43,7 @@ public class Contacto  implements Serializable {
 		this.liked = liked;
 	}
 
-	public Contacto(Long id, Perfil liker, Perfil liked) {
+	public Contacto(Long id, Perfil liker,Perfil liked) {
 		super();
 		this.id = id;
 		this.liker = liker;
