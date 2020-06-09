@@ -18,26 +18,25 @@ import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.PerfilService;
 
-
 /**
-* @author Adnan H.
-* @author Jorge H.
-* @author Marco R.
-* @author Maira P.
-* @version 04/06/20
-* @category MVC
-*/
+ * @author Adnan H.
+ * @author Jorge H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 04/06/20
+ * @category MVC
+ */
 
 @Controller
 @RequestMapping("/perfil")
 public class PerfilController {
-	
+
 	@Autowired
 	PerfilService perfilService;
-	
+
 	@Autowired
 	ContactoService contactoService;
-	
+
 	@Autowired
 	DescarteService descarteService;
 
@@ -47,80 +46,101 @@ public class PerfilController {
 		ModelAndView model = new ModelAndView("index");
 		return model;
 	}
-	
-	@RequestMapping(method = RequestMethod.GET,
-					value = "/registro")
+
+	@RequestMapping(method = RequestMethod.GET, value = "/registro")
 	public String initForm(@ModelAttribute("perfil") Perfil perfil, Model model) {
 		return "registro";
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
-	public ModelAndView addPerfil(Perfil perfil,Model model) {
+	public ModelAndView addPerfil(Perfil perfil, Model model) {
 		ModelAndView mv = new ModelAndView("mainmenu");
 		mv.addObject("perfilUsuario", perfil);
-		perfilService.add(perfil);	
+		perfilService.add(perfil);
 		return mv;
 	}
-	
-	//Lista de Sugerencias
-	@RequestMapping(method= RequestMethod.GET, value= "/listaSugerencias")
+
+	// Lista de Sugerencias
+	@RequestMapping(method = RequestMethod.GET, value = "/listaSugerencias")
 	public ModelAndView mostrarPerfiles(@RequestParam("id") Long id, Model model) {
 		Perfil perfilUsuario = this.perfilService.findById(id);
-		
+
 		ModelAndView mv = new ModelAndView("sugerencias");
-	
+
 		mv.addObject("perfilUsuario", perfilUsuario);
 		mv.addObject("listaSugerencias", perfilService.showThreeProfiles());
 
 		return mv;
 	}
-	
-		// Lista de Contactos
-		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
-		public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
+
+	// Lista de Contactos
+	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
+	public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
 		ModelAndView mv = new ModelAndView("contactos");
-			List<Contacto> contactos = this.contactoService.mostrarContactos(id);
-			mv.addObject("contactos", contactos);
+		List<Contacto> contactos = this.contactoService.mostrarContactos(id);
+		mv.addObject("contactos", contactos);
 		return mv;
 	}
-		
-		//Lista de Descartes
-		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
-		public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
+
+	// Lista de Descartes
+	@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
+	public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
 		ModelAndView mv = new ModelAndView("descartes");
-			List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
-			mv.addObject("descartes", descartes);
+		List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
+		mv.addObject("descartes", descartes);
 		return mv;
-		}
-		
-		
-	
-	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/addContacto")
 	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-		
-		//Añade a bd contactos
-		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
-				this.perfilService.findById(id2)));
-		
+
+		// Añade a bd contactos
+		this.contactoService.add(new Contacto(this.perfilService.findById(id1), this.perfilService.findById(id2)));
+
 		Perfil perfilUsuario = this.perfilService.findById(id1);
-		
-		//Vuelve a cargar la pag sugerencias
+
+		// Vuelve a cargar la pag sugerencias
 		ModelAndView model = new ModelAndView("sugerencias");
-		
-		//Pregunta si hay me gustas asignados a ese perfil
+
+		// Pregunta si hay me gustas asignados a ese perfil
 		Long thereLikes = null;
 		thereLikes = perfilService.showLikedProfiles(id2);
-		
-		
-		if(thereLikes==0L) {
+
+		if (thereLikes == 0L) {
 			model.addObject("perfilUsuario", perfilUsuario);
 			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
-		}else {
+		} else {
 			model.addObject("perfilUsuario", perfilUsuario);
 			model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
 		}
-		
+
 		return model;
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/addDescarte")
+	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
+
+		// Añade a bd contactos
+		this.descarteService.add(new Descarte(this.perfilService.findById(id1), this.perfilService.findById(id2)));
+
+		Perfil perfilUsuario = this.perfilService.findById(id1);
+
+		// Vuelve a cargar la pag sugerencias
+		ModelAndView model = new ModelAndView("sugerencias");
+
+		// Pregunta si hay me gustas asignados a ese perfil
+		Long thereDislikes = null;
+		thereDislikes = perfilService.showLikedProfiles(id2);
+
+		if (thereDislikes == 0L) {
+			model.addObject("perfilUsuario", perfilUsuario);
+			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+		} else {
+			model.addObject("perfilUsuario", perfilUsuario);
+			model.addObject("listaSugerencias", perfilService.showOthersDislikesProfiles(id1));
+		}
+
+		return model;
+	}
+
 }

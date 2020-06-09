@@ -20,6 +20,7 @@ public interface PerfilService {
 	public Long showLikedProfiles(long id);
 	public List<Perfil> showThreeProfiles();
 	public List<Perfil> showOthersProfiles(long id);
+	public Object showOthersDislikesProfiles(Long id1);
 
 
 }

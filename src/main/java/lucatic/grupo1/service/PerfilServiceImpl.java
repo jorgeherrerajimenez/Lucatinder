@@ -76,9 +76,9 @@ public class PerfilServiceImpl implements PerfilService{
 	}
 
 	@Override
-	public Perfil findById(Long id) {
+	public Object showOthersDislikesProfiles(Long id) {
 		// TODO Auto-generated method stub
-		return this.perfilDAO.getOne(id);
+		return perfilDAO.showOthersDislikesProfiles(id);
 	}
 
 }
