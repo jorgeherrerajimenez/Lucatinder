@@ -52,33 +52,16 @@ public class PerfilRESTController {
 		this.perfilService.add(perfil);
 	}
 	// Lista de Contactos
-	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
-	public List<PerfilResponse> mostrarContactos(@RequestParam("id") Long id) {
-		List<Contacto> contactos = this.contactoService.mostrarContactos(id);
-		List<PerfilResponse> listContactos = new ArrayList<PerfilResponse>();
-		for (Contacto contac : contactos) {
-			PerfilResponse pr = new PerfilResponse();
-			pr.setNombre(contac.getLiked().getNombre());
-			pr.setDescripcion(contac.getLiked().getDescripcion());
-			pr.setEdad(contac.getLiked().getEdad());
-			pr.setGenero(contac.getLiked().getGenero());
-			listContactos.add(pr);
+		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
+		public List<PerfilResponse> mostrarContactos(@RequestParam("id") Long id) {
+			List<PerfilResponse> listContactos = this.contactoService.mostrarContactosREST(id);
+			return listContactos;
 		}
-	return listContactos;
-}
+		
 	// Lista de Descartes
 		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
 		public List<PerfilResponse> mostrarDescartes(@RequestParam("id") Long id) {
-			List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
-			List<PerfilResponse> listDescartes = new ArrayList<PerfilResponse>();
-			for (Descarte descart : descartes) {
-				PerfilResponse pr = new PerfilResponse();
-				pr.setNombre(descart.getDescartado().getNombre());
-				pr.setDescripcion(descart.getDescartado().getDescripcion());
-				pr.setEdad(descart.getDescartado().getEdad());
-				pr.setGenero(descart.getDescartado().getGenero());
-				listDescartes.add(pr);
-			}
-		return listDescartes;
+			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
+			return listDescartes;
 		}
 }
