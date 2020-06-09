@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -49,9 +51,15 @@ public class PerfilServiceImpl implements PerfilService{
 	
 	@PostConstruct
 	public void inicializar() {
-		this.generarNPerfilesFalsos(20);
+		this.generarNPerfilesFalsos(12);
 	}
 
+	@Override
+	public List<Perfil> generateCandidatesFor(Long id) {
+		return perfilDAO.showTenProfiles();
+		
+	}
+	
 	@Override
 	public Long showLikedProfiles(long id) {
 		return perfilDAO.showLikedProfiles(id);
@@ -76,9 +84,15 @@ public class PerfilServiceImpl implements PerfilService{
 	}
 
 	@Override
-	public Perfil findById(Long id) {
+	public List<Perfil> showTenProfiles() {
 		// TODO Auto-generated method stub
-		return this.perfilDAO.getOne(id);
+		return this.perfilDAO.showTenProfiles();
+	}
+
+	@Override
+	public Perfil findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return this.perfilDAO.findByUsername(username);
 	}
 
 }

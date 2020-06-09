@@ -3,6 +3,7 @@ package lucatic.grupo1.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,16 +43,10 @@ public class PerfilController {
 	DescarteService descarteService;
 
 	// Raíz
-	@RequestMapping("/")
-	public ModelAndView handleRequest() throws Exception {
-		ModelAndView model = new ModelAndView("index");
+	public ModelAndView handleRequest(Authentication auth) throws Exception {
+		ModelAndView model = new ModelAndView("mainmenu");
+		model.addObject("perfil", perfilService.findByUsername(auth.getName()));
 		return model;
-	}
-	
-	@RequestMapping(method = RequestMethod.GET,
-					value = "/registro")
-	public String initForm(@ModelAttribute("perfil") Perfil perfil, Model model) {
-		return "registro";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
@@ -101,6 +96,18 @@ public class PerfilController {
 		//Añade a bd contactos
 		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
 				this.perfilService.findById(id2)));
+
+		//List<Perfil> listaSugerencias = (List<Perfil>) model.getAttribute("listaSugerencias");
+		//listaSugerencias.remove(this.perfilService.findById(id2));
+		ModelAndView mv = new ModelAndView("sugerencias");
+		//mv.addObject("listaSugerencias", listaSugerencias);
+		return mv;
+	}
+	
+	@RequestMapping(method= RequestMethod.GET, value= "/addDescarte")
+	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
+		this.descarteService.add(new Descarte(this.perfilService.findById(id1),
+				this.perfilService.findById(id2)));
 		
 		Perfil perfilUsuario = this.perfilService.findById(id1);
 		
@@ -119,7 +126,6 @@ public class PerfilController {
 			model.addObject("perfilUsuario", perfilUsuario);
 			model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
 		}
-		
 		return model;
 	}
 	
