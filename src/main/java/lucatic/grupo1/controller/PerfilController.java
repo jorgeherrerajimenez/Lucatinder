@@ -93,9 +93,7 @@ public class PerfilController {
 	// través de ContactoService
 	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
 	public ModelAndView mostrarContactos(@RequestParam("id") Long id, Model model) {
-
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR CONTACTOS");
-
 		ModelAndView mv = new ModelAndView("contactos");
 		List<Contacto> contactos = this.contactoService.mostrarContactos(id);
 		mv.addObject("contactos", contactos);
@@ -105,12 +103,28 @@ public class PerfilController {
 	// Lista de Descartes: Recibe el DescarteService
 	@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
 	public ModelAndView mostrarDescartes(@RequestParam("id") Long id, Model model) {
-
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO MOSTRAR DESCARTES");
-
 		ModelAndView mv = new ModelAndView("descartes");
 		List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
 		mv.addObject("descartes", descartes);
+		return mv;
+	}
+		
+		
+	
+	//El Usuario añade a una sugerencia a Contactos tras dar 'Like' a través del Front (/sugerencias)
+	//El método envía la petición POST a la base de datos a través de servicios.
+	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
+	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
+		
+		//Añade a bd contactos
+		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
+				this.perfilService.findById(id2)));
+
+		//List<Perfil> listaSugerencias = (List<Perfil>) model.getAttribute("listaSugerencias");
+		//listaSugerencias.remove(this.perfilService.findById(id2));
+		ModelAndView mv = new ModelAndView("sugerencias");
+		//mv.addObject("listaSugerencias", listaSugerencias);
 		return mv;
 	}
 
