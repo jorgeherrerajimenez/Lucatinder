@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -107,24 +106,6 @@ public class PerfilController {
 		ModelAndView mv = new ModelAndView("descartes");
 		List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
 		mv.addObject("descartes", descartes);
-		return mv;
-	}
-		
-		
-	
-	//El Usuario añade a una sugerencia a Contactos tras dar 'Like' a través del Front (/sugerencias)
-	//El método envía la petición POST a la base de datos a través de servicios.
-	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
-	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-		
-		//Añade a bd contactos
-		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
-				this.perfilService.findById(id2)));
-
-		//List<Perfil> listaSugerencias = (List<Perfil>) model.getAttribute("listaSugerencias");
-		//listaSugerencias.remove(this.perfilService.findById(id2));
-		ModelAndView mv = new ModelAndView("sugerencias");
-		//mv.addObject("listaSugerencias", listaSugerencias);
 		return mv;
 	}
 
