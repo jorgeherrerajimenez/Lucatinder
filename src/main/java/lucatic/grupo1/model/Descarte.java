@@ -2,7 +2,6 @@ package lucatic.grupo1.model;
 
 import java.io.Serializable;
 
-
 /**
 * @author Jorge H.
 * @author Maira Q.
@@ -33,7 +32,6 @@ public class Descarte implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="descartado_id")
 	private Perfil descartado;
-
 	
 	
 	public Descarte() {

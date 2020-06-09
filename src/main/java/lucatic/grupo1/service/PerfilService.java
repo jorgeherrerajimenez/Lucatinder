@@ -18,6 +18,10 @@ public interface PerfilService {
 	public void deleteById(Long id);
 	public List<Perfil> generateCandidatesFor(Long id);
 	public Perfil findById(Long id);
+	public Long showLikedProfiles(long id);
+	public List<Perfil> showThreeProfiles();
+	public List<Perfil> showOthersProfiles(long id);
+
 
 }
 
