@@ -1,83 +1,74 @@
 package lucatic.grupo1.controller;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Descarte;
-import lucatic.grupo1.model.Perfil;
-import lucatic.grupo1.repository.DAOPerfil;
+import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.PerfilService;
 
+/**
+* @author Adnan H.
+* @author Jorge H.
+* @author Marco R.
+* @author Maira Q.
+* @version 04/06/20
+* @category MVC
+*/
+
 @RestController
-@RequestMapping("/rperfil")
-public class PerfilRESTController {
-	
+public class PerfilRestController {
+
 	@Autowired
 	PerfilService perfilService;
 	
+	@Autowired
+	ContactoService contactoService;
 	
-	public PerfilRESTController(PerfilService perfilService) {
-		
-		this.perfilService = perfilService;
-	}
+	@Autowired
+	DescarteService descarteService;
 	
-	//para desplegar el error Antonio usa objetos de tipo Optional...
-	@SuppressWarnings("serial")
-	@ResponseStatus(HttpStatus.FORBIDDEN)
-	public class PerfilNotFoundException extends RuntimeException{
-		
-		public PerfilNotFoundException() {
-			
-			super("El perfil que buscas no existe");
+
+	// Lista de Contactos
+	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
+	public List<PerfilResponse> mostrarContactos(@RequestParam("id") Long id) {
+		List<Contacto> contactos = this.contactoService.mostrarContactos(id);
+		List<PerfilResponse> listContactos = new ArrayList<PerfilResponse>();
+		for (Contacto contac : contactos) {
+			PerfilResponse pr = new PerfilResponse();
+			pr.setNombre(contac.getLiked().getNombre());
+			pr.setDescripcion(contac.getLiked().getDescripcion());
+			pr.setEdad(contac.getLiked().getEdad());
+			pr.setGenero(contac.getLiked().getGenero());
+			listContactos.add(pr);
 		}
-	}
+	return listContactos;
+}
 	
-	@RequestMapping(value="/sugerencias", method= RequestMethod.GET)
-	public List<Perfil> mostrarSugerencias(){
-		
-		return perfilService.showTenProfiles();
-	}
+	// Lista de Descartes
+		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
+		public List<PerfilResponse> mostrarDescartes(@RequestParam("id") Long id) {
+			List<Descarte> descartes = this.descarteService.mostrarDescartes(id);
+			List<PerfilResponse> listDescartes = new ArrayList<PerfilResponse>();
+			for (Descarte descart : descartes) {
+				PerfilResponse pr = new PerfilResponse();
+				pr.setNombre(descart.getDescartado().getNombre());
+				pr.setDescripcion(descart.getDescartado().getDescripcion());
+				pr.setEdad(descart.getDescartado().getEdad());
+				pr.setGenero(descart.getDescartado().getGenero());
+				listDescartes.add(pr);
+			}
+		return listDescartes;
 	
-	@RequestMapping(value= "/add", method=RequestMethod.PUT)
-	public void addPerfil(@RequestBody Perfil perfil) {
-		
-		System.out.println(perfil);
-		this.perfilService.add(perfil);
-		
-	}
-	
-	
-	
-	//no funciona aún el método
-	@GetMapping("/{id}")
-	public Perfil getPerfil(@PathVariable Long id) {
-		
-	
-		
-		return perfilService.findById(id); }
-		
-		
-		
-	}
-	
+		}
 
-	
-	
-	
-	
-	
-
-
+}
