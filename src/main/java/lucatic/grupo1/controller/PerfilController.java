@@ -42,7 +42,7 @@ public class PerfilController {
 	@Autowired
 	DescarteService descarteService;
 
-	// Raíz
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public ModelAndView handleRequest(Authentication auth) throws Exception {
 		ModelAndView model = new ModelAndView("mainmenu");
 		model.addObject("perfil", perfilService.findByUsername(auth.getName()));
