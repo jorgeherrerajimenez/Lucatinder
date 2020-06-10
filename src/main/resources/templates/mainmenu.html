@@ -27,11 +27,11 @@
          <!-- Menú-->
 
 		    <nav class="navbar navbar-light bg-dark">
-		        <a class="navbar-brand" href="#">
+		        <a class="navbar-brand" href="/logout">
 		            <img class="pl-5" th:src="@{/images/logopekeblanco.png}" alt="logoimage">
 		        </a>
-		        <a class="navbar-brand" style="color:white" href="#">
-		            user <div><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></div>
+		        <a class="navbar-brand" style="color:white" href="/logout">
+		            Cerrar Sesion <div><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></div>
 		        </a>
 		    </nav>
 
@@ -72,16 +72,6 @@
 						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="stretched-link">
 							Descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
 						</button>
-					</div>
-
-					<div class="text-center">
-						<span class="txt1">
-							¿salir?
-						</span>
-
-						<a href="/" class="txt2 hov1">
-							Entra aquí
-						</a>
 					</div>
 				</form>
 			</div>
