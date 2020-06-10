@@ -41,37 +41,41 @@
         <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-				<form class="login100-form validate-form">
+				
 					<span class="login100-form-title p-b-33">
 					    ¿QUÉ DESEA?
 					</span>
 
 					<div class="container-login100-form-btn m-t-20">
+					<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}" class="login100-form-btn">
 						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}" class="stretched-link">
 							Sugerencias <i class="pl-3 fa fa-search fa-2x" aria-hidden="true"></i>
-						</a>
 						</button>
+						</a>
 					</div>
 					
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
-							Match <i class="pl-3 fa fa-venus-mars fa-2x" aria-hidden="true"></i>
-						</button>
+						<a th:href="#" class="login100-form-btn stretched-link">
+							<button class="login100-form-btn">
+								Match <i class="pl-3 fa fa-venus-mars fa-2x" aria-hidden="true"></i>
+							</button>
+						</a>
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="stretched-link">
-							Contactos<i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i>
-						</button>
+						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="login100-form-btn stretched-link">
+							<button class="login100-form-btn">
+								Contactos<i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i>
+							</button>
+						</a>
 					</div>
 					
 					<div class="container-login100-form-btn m-t-20">
-						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="stretched-link">
-							Descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
-						</button>
+						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="login100-form-btn stretched-link">
+							<button class="login100-form-btn">
+								Descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
+							</button>
+						</a>
 					</div>
 
 					<div class="text-center">
@@ -83,7 +87,6 @@
 							Entra aquí
 						</a>
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>

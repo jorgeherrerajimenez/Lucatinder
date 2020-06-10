@@ -41,9 +41,17 @@ public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 	@Query(value = "SELECT * FROM perfil WHERE id NOT IN ( SELECT liked_id FROM contacto where liker_id=?1) LIMIT 3", nativeQuery = true)
 	public List<Perfil> showOthersProfiles(long id);
 	
-	//Dame 3 perfiles que no estén en la tabla "Contactos" Es decir, que ya les haya dado me gusta
+	//Dame 3 perfiles que no estén en la tabla "Descarte" Es decir, que ya les haya dado NO ME GUSTA
 	@Query(value = "SELECT * FROM perfil WHERE id NOT IN ( SELECT descartado_id FROM descarte where descartador_id=?1) LIMIT 3", nativeQuery = true)
 	public List<Perfil> showOthersDislikesProfiles(long id);
+
+	//Pregunta cuantas veces se le ha dado me gusta.
+	@Query(value = "select count(*) from contacto where liked_id=?1 and liker_id=?2;", nativeQuery = true)
+	public Long moreThanOneLike(long id,long id2);
+	
+	//Pregunta cuantas veces se le ha dado NO me gusta.
+	@Query(value = "select count(*) from descarte where descartado_id=?1 and descartador_id=?2;", nativeQuery = true)
+	public Long moreThanOneDislike(long id,long id2);
 
 }
 

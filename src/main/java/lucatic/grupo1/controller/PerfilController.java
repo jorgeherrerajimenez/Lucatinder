@@ -109,49 +109,55 @@ public class PerfilController {
 		mv.addObject("descartes", descartes);
 		return mv;
 	}
-		
-		
-	
-	//El Usuario añade a una sugerencia a Contactos tras dar 'Like' a través del Front (/sugerencias)
-	//El método envía la petición POST a la base de datos a través de servicios.
-	@RequestMapping(method= RequestMethod.GET, value= "/addContacto")
-	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-		
-		//Añade a bd contactos
-		this.contactoService.add(new Contacto(this.perfilService.findById(id1),
-				this.perfilService.findById(id2)));
-
-		//List<Perfil> listaSugerencias = (List<Perfil>) model.getAttribute("listaSugerencias");
-		//listaSugerencias.remove(this.perfilService.findById(id2));
-		ModelAndView mv = new ModelAndView("sugerencias");
-		//mv.addObject("listaSugerencias", listaSugerencias);
-		return mv;
-	}
 
 	// El Usuario añade a una sugerencia a Descartes tras dar 'Like' a través del
 	// Front (/sugerencias)
 	// El método envía la petición POST a la base de datos a través de servicios.
 	@RequestMapping(method = RequestMethod.GET, value = "/addContacto")
 	public ModelAndView addContacto(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
-		this.contactoService.add(new Contacto(this.perfilService.findById(id1), this.perfilService.findById(id2)));
-
-		Perfil perfilUsuario = this.perfilService.findById(id1);
-
-		// Vuelve a cargar la pag sugerencias
-		ModelAndView model = new ModelAndView("sugerencias");
-
-		// Pregunta si hay me gustas asignados a ese perfil
 		Long thereLikes = null;
-		thereLikes = perfilService.showLikedProfiles(id2);
+		Long likes = perfilService.moreThanOneLike(id1, id2);
 
-		if (thereLikes == 0L) {
-			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+		if (likes > 0) {
+			// Si el usuario no existia lo añade a la bd
+			this.contactoService.add(new Contacto(this.perfilService.findById(id1), this.perfilService.findById(id2)));
+			Perfil perfilUsuario = this.perfilService.findById(id1);
+
+			// Vuelve a cargar la pag sugerencias
+			ModelAndView model = new ModelAndView("sugerencias");
+
+			// Pregunta si hay me gustas asignados a ese perfil
+			thereLikes = perfilService.showLikedProfiles(id2);
+
+			if (thereLikes == 0L) {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			} else {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
+			}
+
+			return model;
+
 		} else {
-			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
+			// Si ya existía no lo añade y devuelve la página otra vez
+			Perfil perfilUsuario = this.perfilService.findById(id1);
+			ModelAndView model = new ModelAndView("sugerencias");
+
+			// Pregunta si hay me gustas asignados a ese perfil
+			thereLikes = perfilService.showLikedProfiles(id2);
+
+			if (thereLikes == 0L) {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			} else {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
+			}
+
+			return model;
 		}
-		return model;
+
 	}
 
 	// El Usuario añade a una sugerencia a Contactos tras dar 'DisLike' a través del
@@ -159,28 +165,47 @@ public class PerfilController {
 	// El método envía la petición POST a la base de datos a través de servicios.
 	@RequestMapping(method = RequestMethod.GET, value = "/addDescarte")
 	public ModelAndView addDescarte(@RequestParam("id") Long id1, @RequestParam("id2") Long id2) {
+		Long thereDisLikes = null;
+		Long dislikes = perfilService.moreThanOneDislike(id1, id2);
 
-		// Añade a bd contactos
-		this.descarteService.add(new Descarte(this.perfilService.findById(id1), this.perfilService.findById(id2)));
+		if (dislikes > 0) {
+			// Si el usuario no existia lo añade a la bd
+			this.descarteService.add(new Descarte(this.perfilService.findById(id1), this.perfilService.findById(id2)));
+			Perfil perfilUsuario = this.perfilService.findById(id1);
 
-		Perfil perfilUsuario = this.perfilService.findById(id1);
+			// Vuelve a cargar la pag sugerencias
+			ModelAndView model = new ModelAndView("sugerencias");
 
-		// Vuelve a cargar la pag sugerencias
-		ModelAndView model = new ModelAndView("sugerencias");
+			// Pregunta si hay me gustas asignados a ese perfil
+			thereDisLikes = perfilService.showDislikedProfiles(id2);
 
-		// Pregunta si hay me gustas asignados a ese perfil
-		Long thereDislikes = null;
-		thereDislikes = perfilService.showDislikedProfiles(id2);
+			if (thereDisLikes == 0L) {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			} else {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showOthersDislikesProfiles(id1));
+			}
 
-		if (thereDislikes == 0L) {
-			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			return model;
+
 		} else {
-			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showOthersDislikesProfiles(id1));
+			// Si ya existía no lo añade y devuelve la página otra vez
+			Perfil perfilUsuario = this.perfilService.findById(id1);
+			ModelAndView model = new ModelAndView("sugerencias");
+
+			// Pregunta si hay me gustas asignados a ese perfil
+			thereDisLikes = perfilService.showDislikedProfiles(id2);
+
+			if (thereDisLikes == 0L) {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			} else {
+				model.addObject("perfilUsuario", perfilUsuario);
+				model.addObject("listaSugerencias", perfilService.showOthersDislikesProfiles(id1));
+			}
+
+			return model;
 		}
-
-		return model;
 	}
-
 }

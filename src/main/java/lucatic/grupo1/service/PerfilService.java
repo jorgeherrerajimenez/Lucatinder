@@ -25,6 +25,8 @@ public interface PerfilService {
 	public List<Perfil> showOthersProfiles(long id);
 	public List<Perfil> showOthersDislikesProfiles(Long id1);
 	public Perfil findByUsername(String name);
+	public Long moreThanOneLike(long id,long id2);
+	public Long moreThanOneDislike(long id,long id2);
 	
 }
 

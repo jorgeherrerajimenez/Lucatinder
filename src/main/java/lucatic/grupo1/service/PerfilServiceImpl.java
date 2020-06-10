@@ -108,5 +108,17 @@ public class PerfilServiceImpl implements PerfilService{
 		return perfilDAO.showDislikedProfiles(id);
 	}
 
+	@Override
+	public Long moreThanOneLike(long id, long id2) {
+		// TODO Auto-generated method stub
+		return perfilDAO.moreThanOneLike(id,id2);
+	}
+
+	@Override
+	public Long moreThanOneDislike(long id, long id2) {
+		// TODO Auto-generated method stub
+		return perfilDAO.moreThanOneDislike(id,id2);
+	}
+
 }
 
