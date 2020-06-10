@@ -52,18 +52,19 @@ public class PerfilRESTController {
 			super("El perfil que buscas no existe");
 		}
 	}
-	@RequestMapping(value="/sugerencias", method= RequestMethod.GET)
+	@RequestMapping(value="/sugerencias/{id}", method= RequestMethod.GET)
 	public List<Perfil> mostrarSugerencias(@RequestParam("id") Long id){
 		
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR SUGERENCIAS");
 		
-		return perfilService.showThreeProfiles();
+		return perfilService.showTenRandomProfilesOtherThanUser(id);
 	}
 	@RequestMapping(value= "/add", method=RequestMethod.PUT)
 	public void addPerfil(@RequestBody Perfil perfil) {
 		
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: AÑADIR PERFIL");
 		
+			
 		this.perfilService.add(perfil);
 	}
 	// Lista de Contactos

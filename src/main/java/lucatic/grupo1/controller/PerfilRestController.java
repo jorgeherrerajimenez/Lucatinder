@@ -1,6 +1,10 @@
 package lucatic.grupo1.controller;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+import java.util.logging.Level;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,13 +33,18 @@ import lucatic.grupo1.service.PerfilService;
 @RestController
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
+	
+	
 	@Autowired
 	PerfilService perfilService;
 	@Autowired
 	ContactoService contactoService;
 	@Autowired
 	DescarteService descarteService;
-	//para desplegar el error Antonio usa objetos de tipo Optional...
+	
+	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
+	
+	
 	@SuppressWarnings("serial")
 	@ResponseStatus(HttpStatus.FORBIDDEN)
 	public class PerfilNotFoundException extends RuntimeException{
@@ -43,17 +52,27 @@ public class PerfilRESTController {
 			super("El perfil que buscas no existe");
 		}
 	}
-	@RequestMapping(value="/sugerencias", method= RequestMethod.GET)
+	@RequestMapping(value="/sugerencias/{id}", method= RequestMethod.GET)
 	public List<Perfil> mostrarSugerencias(@RequestParam("id") Long id){
-		return perfilService.showThreeProfiles();
+		
+		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR SUGERENCIAS");
+		
+		return perfilService.showTenRandomProfilesOtherThanUser(id);
 	}
 	@RequestMapping(value= "/add", method=RequestMethod.PUT)
 	public void addPerfil(@RequestBody Perfil perfil) {
+		
+		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: AÑADIR PERFIL");
+		
+			
 		this.perfilService.add(perfil);
 	}
 	// Lista de Contactos
 		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
 		public List<PerfilResponse> mostrarContactos(@RequestParam("id") Long id) {
+			
+			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR CONTACTOS");
+			
 			List<PerfilResponse> listContactos = this.contactoService.mostrarContactosREST(id);
 			return listContactos;
 		}
@@ -61,6 +80,9 @@ public class PerfilRESTController {
 	// Lista de Descartes
 		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
 		public List<PerfilResponse> mostrarDescartes(@RequestParam("id") Long id) {
+			
+			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
+			
 			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
 			return listDescartes;
 		}

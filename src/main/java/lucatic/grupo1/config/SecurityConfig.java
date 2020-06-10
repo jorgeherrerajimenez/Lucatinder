@@ -45,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/registro").permitAll()
 			.antMatchers("/login").permitAll()
 			.antMatchers("/perfil/addPerfil").permitAll()
+			.antMatchers("/rperfil/**").permitAll()
+			.antMatchers("/login").permitAll()
 			.anyRequest().hasAuthority("USER")
 				.and()
 			.csrf()
