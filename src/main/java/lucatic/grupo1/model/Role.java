@@ -1,8 +1,11 @@
 package lucatic.grupo1.model;
 
+import java.util.Collection;
+
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -13,6 +16,12 @@ public class Role {
 	private Long id;
 	private String role;
 	
+	@ManyToMany(mappedBy = "roles")
+	private Collection<Perfil> perfiles;
+	
+	public Role() {
+		super();
+	}
 	
 	public Role(String role) {
 		super();
@@ -33,6 +42,14 @@ public class Role {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public Collection<Perfil> getPerfiles() {
+		return perfiles;
+	}
+
+	public void setPerfiles(Collection<Perfil> perfiles) {
+		this.perfiles = perfiles;
 	}
 
 	@Override

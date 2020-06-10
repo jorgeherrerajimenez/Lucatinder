@@ -33,9 +33,8 @@ public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 	public List<Perfil> showThreeProfiles();
 	
 	//Dame 10 perfil
-		@Query(
-				value = "SELECT * FROM perfil LIMIT 10", nativeQuery = true)
-		public List<Perfil> showTenProfiles();
+	@Query(value = "SELECT * FROM perfil LIMIT 10", nativeQuery = true)
+	public List<Perfil> showTenProfiles();
 
 	//Dame 3 perfiles que no estén en la tabla "Contactos" Es decir, que ya les haya dado me gusta
 	@Query(value = "SELECT * FROM perfil WHERE id NOT IN ( SELECT liked_id FROM contacto where liker_id=?1) LIMIT 3", nativeQuery = true)
@@ -44,6 +43,9 @@ public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 	//Dame 3 perfiles que no estén en la tabla "Contactos" Es decir, que ya les haya dado me gusta
 	@Query(value = "SELECT * FROM perfil WHERE id NOT IN ( SELECT descartado_id FROM descarte where descartador_id=?1) LIMIT 3", nativeQuery = true)
 	public List<Perfil> showOthersDislikesProfiles(long id);
+	
+	@Query(value= "SELECT * FROM perfil WHERE perfil.id <> ?1 ORDER BY RAND() LIMIT 10", nativeQuery = true)
+	public List<Perfil> showTenRandomProfilesOtherThanUser(Long id);
 
 }
 

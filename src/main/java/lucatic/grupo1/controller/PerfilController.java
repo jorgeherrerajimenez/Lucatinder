@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -12,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Role;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.PerfilService;
@@ -48,7 +52,6 @@ public class PerfilController {
 	// Raíz, genera una entrada (previa autenticación) a la página general de la
 	// aplicación
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
-
 	public ModelAndView handleRequest(Authentication auth) throws Exception {
 
 		LOGGER.log(Level.INFO,
@@ -58,17 +61,16 @@ public class PerfilController {
 		model.addObject("perfil", perfilService.findByUsername(auth.getName()));
 		return model;
 	}
-
-	// dar de alta a un nuevo usuario desde el Front - añadir perfil a la base de
-	// datos
+	
+	//dar de alta a un nuevo usuario desde el Front - añadir perfil a la base de datos
+	@Transactional
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
-	public ModelAndView addPerfil(Perfil perfil, Model model) {
-
-		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO AÑADIR PERFIL");
-		ModelAndView mv = new ModelAndView("mainmenu");
-		mv.addObject("perfilUsuario", perfil);
+	public RedirectView addPerfil(Perfil perfil,Model model) {
+		
+		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO AÑADIR PERFIL");	
+		perfil.encodePassword();
 		perfilService.add(perfil);
-		return mv;
+		return new RedirectView("/login");
 	}
 
 	// Lista de Sugerencias: Recoge el método de la capa de servicios y genera una
@@ -83,7 +85,7 @@ public class PerfilController {
 		ModelAndView mv = new ModelAndView("sugerencias");
 
 		mv.addObject("perfilUsuario", perfilUsuario);
-		mv.addObject("listaSugerencias", perfilService.showThreeProfiles());
+		mv.addObject("listaSugerencias", perfilService.showTenRandomProfilesOtherThanUser(id));
 
 		return mv;
 	}
@@ -108,8 +110,11 @@ public class PerfilController {
 		mv.addObject("descartes", descartes);
 		return mv;
 	}
+		
 
-	// El Usuario añade a una sugerencia a Descartes tras dar 'Like' a través del
+	
+
+	// El Usuario añade a una sugerencia a Contactos tras dar 'Like' a través del
 	// Front (/sugerencias)
 	// El método envía la petición POST a la base de datos a través de servicios.
 	@RequestMapping(method = RequestMethod.GET, value = "/addContacto")
@@ -127,7 +132,7 @@ public class PerfilController {
 
 		if (thereLikes == 0L) {
 			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			model.addObject("listaSugerencias", perfilService.showTenRandomProfilesOtherThanUser(id1));
 		} else {
 			model.addObject("perfilUsuario", perfilUsuario);
 			model.addObject("listaSugerencias", perfilService.showOthersProfiles(id1));
@@ -135,7 +140,7 @@ public class PerfilController {
 		return model;
 	}
 
-	// El Usuario añade a una sugerencia a Contactos tras dar 'DisLike' a través del
+	// El Usuario añade a una sugerencia a Descartes tras dar 'DisLike' a través del
 	// Front (/sugerencias)
 	// El método envía la petición POST a la base de datos a través de servicios.
 	@RequestMapping(method = RequestMethod.GET, value = "/addDescarte")
@@ -155,7 +160,7 @@ public class PerfilController {
 
 		if (thereDislikes == 0L) {
 			model.addObject("perfilUsuario", perfilUsuario);
-			model.addObject("listaSugerencias", perfilService.showThreeProfiles());
+			model.addObject("listaSugerencias", perfilService.showTenRandomProfilesOtherThanUser(id1));
 		} else {
 			model.addObject("perfilUsuario", perfilUsuario);
 			model.addObject("listaSugerencias", perfilService.showOthersDislikesProfiles(id1));
