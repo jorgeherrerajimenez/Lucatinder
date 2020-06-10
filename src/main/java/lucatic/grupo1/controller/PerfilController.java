@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Role;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.PerfilService;
@@ -61,14 +65,14 @@ public class PerfilController {
 	}
 	
 	//dar de alta a un nuevo usuario desde el Front - añadir perfil a la base de datos
+	@Transactional
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
-	public ModelAndView addPerfil(Perfil perfil,Model model) {
+	public RedirectView addPerfil(Perfil perfil,Model model) {
 		
-		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO AÑADIR PERFIL");
-		ModelAndView mv = new ModelAndView("mainmenu");
-		mv.addObject("perfilUsuario", perfil);
+		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO AÑADIR PERFIL");	
+		perfil.encodePassword();
 		perfilService.add(perfil);
-		return mv;
+		return new RedirectView("/login");
 	}
 	
 	//Lista de Sugerencias: Recoge el método de la capa de servicios y genera una Vista con las sugerencias en función del ID del Usuario.

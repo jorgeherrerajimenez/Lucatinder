@@ -1,6 +1,7 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -74,18 +75,19 @@ public class Perfil implements Serializable {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Contacto> contactoDe;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "user_role", 
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
-			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-	private Set<Role> roles = new HashSet<Role>();
+	@ManyToMany
+    @JoinTable( 
+        name = "users_roles", 
+        joinColumns = @JoinColumn(
+          name = "user_id", referencedColumnName = "id"), 
+        inverseJoinColumns = @JoinColumn(
+          name = "role_id", referencedColumnName = "id")) 
+    private Collection<Role> roles;
 	
 	
 
 	public Perfil() {
 		super();
-		this.roles.add(Perfil.role);
 	}
 	
 	
@@ -97,7 +99,6 @@ public class Perfil implements Serializable {
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
-		this.roles.add(Perfil.role);
 	}
 
 
@@ -111,7 +112,6 @@ public class Perfil implements Serializable {
 		this.edad = edad;
 		this.descripcion = descripcion;
 		this.gustosInformaticos = gustosInformaticos;
-		this.roles.add(Perfil.role);
 	}
 
 	public Long getId() {
@@ -129,12 +129,6 @@ public class Perfil implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-	public static Role getRole() {
-		return role;
-	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -222,29 +216,19 @@ public class Perfil implements Serializable {
 	}
 
 
-	
-
-	@Override
-	public String toString() {
-		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
-				+ descripcion + ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados
-				+ ", descartadores=" + descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + "]";
-	}
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 
 
-	public Set<Role> getRoles() {
+	public Collection<Role> getRoles() {
 		return roles;
 	}
 
 
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
 
@@ -268,5 +252,20 @@ public class Perfil implements Serializable {
 		this.descripcion = f.lorem().paragraph();
 		this.password = encoder.encode("xxx");
 	}
+
+	public void encodePassword() {
+		this.password = encoder.encode(this.password);
+	}
+
+
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", nombre=" + nombre + ", username=" + username + ", genero=" + genero + ", edad="
+				+ edad + ", descripcion=" + descripcion + ", password=" + password + ", enabled=" + enabled
+				+ ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados + ", descartadores="
+				+ descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+	}
+	
+	
 	
 }
