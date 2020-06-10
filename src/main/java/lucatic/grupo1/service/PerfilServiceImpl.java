@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 
 import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Role;
 import lucatic.grupo1.repository.DAOPerfil;
+import lucatic.grupo1.repository.DAORole;
 import lucatic.grupo1.util.FakeFactory_I;
 
 /**
@@ -40,12 +42,16 @@ public class PerfilServiceImpl implements PerfilService{
 	@Autowired
 	private FakeFactory_I fakeFactory;
 	
+	@Autowired
+	private DAORole roleDAO;
 	
+	
+
 	//Añadir registro en base de datos
 	public void add(Perfil perfil) {
-		
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: AÑADIENDO PERFIL");
-		
+		List<Role> r = roleDAO.findByRole("USER");
+		perfil.setRoles(r);
 		perfilDAO.save(perfil);	
 	}
 	
@@ -61,15 +67,19 @@ public class PerfilServiceImpl implements PerfilService{
 	
 	//Generar perfiles Faker para rellenar la base de datos
 	public void generarNPerfilesFalsos(int number) {
-		
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: GENERANDO PERFILES FALSOS");
+		List<Perfil> perfiles = fakeFactory.generarNPerfiles(number);
+		List<Role> r = roleDAO.findByRole("USER");
+		for(Perfil p : perfiles)
+			p.setRoles(r);
+		perfilDAO.saveAll(perfiles);
 
-		perfilDAO.saveAll(fakeFactory.generarNPerfiles(number));
 	}
 	
 	//Inicializando método de generación de perfiles falsos
 	@PostConstruct
 	public void inicializar() {
+		this.roleDAO.save(new Role("USER"));
 		this.generarNPerfilesFalsos(12);
 	}
 	
