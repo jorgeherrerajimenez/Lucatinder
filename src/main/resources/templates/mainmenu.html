@@ -48,7 +48,7 @@
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}" class="stretched-link">
+						<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}" class="stretched-link" styles="color:white;">
 							Sugerencias <i class="pl-3 fa fa-search fa-2x" aria-hidden="true"></i>
 						</a>
 						</button>
@@ -56,20 +56,22 @@
 					
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
+							<a th:href="@{/perfil/listaMatches(id=${perfil.id})}" class="stretched-link" styles="color:white;">
 							Match <i class="pl-3 fa fa-venus-mars fa-2x" aria-hidden="true"></i>
+							</a>
 						</button>
 					</div>
 
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="stretched-link">
+						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="stretched-link" styles="color:white;">
 							Contactos<i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i>
 						</button>
 					</div>
 					
 					<div class="container-login100-form-btn m-t-20">
 						<button class="login100-form-btn">
-						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="stretched-link">
+						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="stretched-link" styles="color:white;">
 							Descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
 						</button>
 					</div>

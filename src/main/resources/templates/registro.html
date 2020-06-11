@@ -76,6 +76,19 @@
                            
                         </tr>
                     </div>
+                    
+                    <div class="wrap-input100 pt-3 pb-3 text-center">
+                        <tr>
+                        	<p>Selecciona tus gustos (Opcional):</p>
+                            <td>
+                            	<th:block th:each="gusto : ${listaGustos}">
+            						<input type="checkbox" name="gustos" th:value="${gusto.id}"/>
+                 					<label th:text="${gusto.nombre}"></label>
+               					</th:block>
+                            </td>
+                           
+                        </tr>
+                    </div>
 
                     <div class="wrap-input100 validate-input" required>
                         <input class="input100" type="text-area" name="descripcion" placeholder="Descripcion" th:field="*{descripcion}">
