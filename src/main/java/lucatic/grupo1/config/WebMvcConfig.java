@@ -5,6 +5,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+* @author Jorge H.
+* @version 05/06/20
+* @category MVC
+*/
+
+//Clase de configuración que contiene el Encoder de las contraseñas
 @Configuration
 public class WebMvcConfig {
 	

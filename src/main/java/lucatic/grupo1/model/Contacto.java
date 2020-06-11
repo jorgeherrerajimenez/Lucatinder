@@ -75,4 +75,36 @@ public class Contacto  implements Serializable {
 		this.liked = liked;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((liked == null) ? 0 : liked.hashCode());
+		result = prime * result + ((liker == null) ? 0 : liker.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contacto other = (Contacto) obj;
+		if (liked == null) {
+			if (other.liked != null)
+				return false;
+		} else if (!liked.equals(other.liked))
+			return false;
+		if (liker == null) {
+			if (other.liker != null)
+				return false;
+		} else if (!liker.equals(other.liker))
+			return false;
+		return true;
+	}
+
+	
 }
