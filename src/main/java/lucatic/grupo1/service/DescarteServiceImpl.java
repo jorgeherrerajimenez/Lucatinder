@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.repository.DAODescarte;
@@ -20,7 +19,7 @@ public class DescarteServiceImpl implements DescarteService {
 	@Autowired
 	DAODescarte descarteDAO;
 	
-	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(DescarteService.class.getName());
 
 	
 	//Añadir descartes

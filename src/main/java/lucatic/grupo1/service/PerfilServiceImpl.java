@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.Role;
 import lucatic.grupo1.repository.DAOPerfil;
@@ -32,7 +31,7 @@ import lucatic.grupo1.util.FakeFactory_I;
 @Service
 public class PerfilServiceImpl implements PerfilService{
 	
-	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(PerfilService.class.getName());
 
 	
 	//Inyección de dependencia en capa servicios

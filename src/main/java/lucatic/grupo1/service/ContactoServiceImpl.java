@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.repository.DAOContacto;
@@ -19,7 +18,7 @@ public class ContactoServiceImpl implements ContactoService {
 	@Autowired
 	private DAOContacto contactoDAO;
 	
-	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ContactoService.class.getName());
 	
 	//Añadir un contacto
 	@Override
