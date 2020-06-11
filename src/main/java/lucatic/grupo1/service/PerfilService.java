@@ -20,11 +20,7 @@ public interface PerfilService {
 	public Perfil findById(Long id);
 	public Long showLikedProfiles(long id);
 	public Long showDislikedProfiles(Long id2);
-	public List<Perfil> showThreeProfiles();
-	public List<Perfil> showOthersProfiles(long id);
-	public List<Perfil> showOthersDislikesProfiles(Long id1);
 	public Perfil findByUsername(String name);
-	public List<Perfil> showTenRandomProfilesOtherThanUser(Long id);
-	
+
 }
 

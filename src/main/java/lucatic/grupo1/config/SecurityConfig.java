@@ -3,19 +3,20 @@ package lucatic.grupo1.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+/**
+* @author Jorge H.
+* @version 05/06/20
+* @category MVC
+*/
 
 @Configuration
 @EnableWebSecurity
@@ -27,6 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder encoder;
 
+	//Configuración de querys personalizadas para acceder a los nombres de usuario y las autoridades
+	//Todos los usuarios tendrán autoridad 'USER'
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
@@ -37,6 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordEncoder(encoder);
 	}
 
+	//Configuración de rutas y permisos necesarios para llegar a ellas
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
@@ -68,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.accessDeniedPage("/access-denied");
 	}
 
-	//Para ignorar la seguridad en estos ficheros
+	//Ignora la seguridad en ciertos direcctorios
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web

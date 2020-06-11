@@ -2,11 +2,10 @@ package lucatic.grupo1.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,13 +33,13 @@ import javax.persistence.JoinColumn;
 public class Perfil implements Serializable {
 
 	private static final long serialVersionUID = 6529425024800979551L;
-	private static final Role role = new Role("USER");
 	private  static final PasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String nombre;
+	@Column(unique=true)
 	private String username;
 	private char genero;
 	private short edad;
@@ -51,8 +50,8 @@ public class Perfil implements Serializable {
 	@ManyToMany
 	@JoinTable(
 			  name = "materia_perfil", 
-			  joinColumns = @JoinColumn(name = "materia_id"), 
-			  inverseJoinColumns = @JoinColumn(name = "perfil_id"))
+			  joinColumns = @JoinColumn(name = "perfil_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "materia_id"))
 	private List<Materia> gustosInformaticos;
 	
 	
@@ -84,14 +83,20 @@ public class Perfil implements Serializable {
           name = "role_id", referencedColumnName = "id")) 
     private Collection<Role> roles;
 	
+	@OneToMany(mappedBy = "matcher",cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<Match> matches;
 	
-
+	
+	@OneToMany(mappedBy = "matched", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Collection<Match> matchOf;
+	
 	public Perfil() {
 		super();
 	}
 	
 	
-
 	public Perfil(String nombre, String username, char genero, short edad, String descripcion) {
 		super();
 		this.nombre = nombre;
@@ -100,7 +105,6 @@ public class Perfil implements Serializable {
 		this.edad = edad;
 		this.descripcion = descripcion;
 	}
-
 
 
 	public Perfil(Long id, String nombre, String username, char genero, short edad, String descripcion,
@@ -186,30 +190,21 @@ public class Perfil implements Serializable {
 		this.descartadores = descartadores;
 	}
 
-	
-
 	public List<Contacto> getContactos() {
 		return contactos;
 	}
-
-
 
 	public void setContactos(List<Contacto> contactos) {
 		this.contactos = contactos;
 	}
 
-
-
 	public List<Contacto> getContactoDe() {
 		return contactoDe;
 	}
 
-
-
 	public void setContactoDe(List<Contacto> contactoDe) {
 		this.contactoDe = contactoDe;
 	}
-	
 
 	public String getPassword() {
 		return password;
@@ -239,6 +234,25 @@ public class Perfil implements Serializable {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+	
+	public Collection<Match> getMatches() {
+		return matches;
+	}
+
+
+	public void setMatcher(Collection<Match> matches) {
+		this.matches = matches;
+	}
+
+
+	public Collection<Match> getMatchOf() {
+		return matchOf;
+	}
+
+
+	public void setMatchOf(Collection<Match> matchOf) {
+		this.matchOf = matchOf;
+	}
 
 	public void generarFake() {
 		Faker f = new Faker();
@@ -256,7 +270,6 @@ public class Perfil implements Serializable {
 	public void encodePassword() {
 		this.password = encoder.encode(this.password);
 	}
-
 
 	@Override
 	public String toString() {

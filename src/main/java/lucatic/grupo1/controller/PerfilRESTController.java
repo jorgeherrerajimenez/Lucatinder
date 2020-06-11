@@ -16,6 +16,7 @@ import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.PerfilService;
+
 /**
 * @author Adnan H.
 * @author Jorge H.
@@ -24,6 +25,7 @@ import lucatic.grupo1.service.PerfilService;
 * @version 04/06/20
 * @category MVC
 */
+
 @RestController
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
@@ -51,7 +53,7 @@ public class PerfilRESTController {
 		
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR SUGERENCIAS");
 		
-		return perfilService.showThreeProfiles();
+		return perfilService.generateCandidatesFor(id);
 	}
 	@RequestMapping(value= "/add", method=RequestMethod.PUT)
 	public void addPerfil(@RequestBody Perfil perfil) {

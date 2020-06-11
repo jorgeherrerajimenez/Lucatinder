@@ -16,7 +16,7 @@ public class Materia implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private short id;
 	private String nombre;
 	
 	@ManyToMany(mappedBy = "gustosInformaticos")
@@ -30,10 +30,10 @@ public class Materia implements Serializable {
 		super();
 		this.nombre = nombre;
 	}
-	public int getId() {
+	public short getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(short id) {
 		this.id = id;
 	}
 	public String getNombre() {
