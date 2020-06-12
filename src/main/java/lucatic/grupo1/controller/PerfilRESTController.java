@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
+import lucatic.grupo1.service.MatchService;
 import lucatic.grupo1.service.PerfilService;
 
 /**
@@ -26,6 +28,7 @@ import lucatic.grupo1.service.PerfilService;
 * @category MVC
 */
 
+@CrossOrigin(origins="http:localhost:8080", maxAge=3600)
 @RestController
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
@@ -37,6 +40,8 @@ public class PerfilRESTController {
 	ContactoService contactoService;
 	@Autowired
 	DescarteService descarteService;
+	@Autowired
+	MatchService matchService;
 	
 	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
 	
@@ -81,4 +86,14 @@ public class PerfilRESTController {
 			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
 			return listDescartes;
 		}
+		
+	//Lista Matches 
+		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches")
+		public List<PerfilResponse> mostrarMatches(@RequestParam("id") Long id){
+			
+			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
+			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
+			return listMatches;
+		}
+		
 }
