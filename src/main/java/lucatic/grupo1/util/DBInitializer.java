@@ -16,7 +16,6 @@ import lucatic.grupo1.model.Role;
 import lucatic.grupo1.repository.DAOMateria;
 import lucatic.grupo1.repository.DAOPerfil;
 import lucatic.grupo1.repository.DAORole;
-import lucatic.grupo1.service.PerfilService;
 
 @Component
 public class DBInitializer {
