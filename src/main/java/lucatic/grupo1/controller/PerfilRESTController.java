@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
@@ -48,8 +48,8 @@ public class PerfilRESTController {
 			super("El perfil que buscas no existe");
 		}
 	}
-	@RequestMapping(value="/sugerencias", method= RequestMethod.GET)
-	public List<Perfil> mostrarSugerencias(@RequestParam("id") Long id){
+	@RequestMapping(value="/sugerencias/{id}", method= RequestMethod.GET)
+	public List<Perfil> mostrarSugerencias(@PathVariable("id") Long id){
 		
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR SUGERENCIAS");
 		
@@ -63,8 +63,8 @@ public class PerfilRESTController {
 		this.perfilService.add(perfil);
 	}
 	// Lista de Contactos
-		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos")
-		public List<PerfilResponse> mostrarContactos(@RequestParam("id") Long id) {
+		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos/{id}")
+		public List<PerfilResponse> mostrarContactos(@PathVariable("id") Long id) {
 			
 			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR CONTACTOS");
 			
@@ -73,8 +73,8 @@ public class PerfilRESTController {
 		}
 		
 	// Lista de Descartes
-		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes")
-		public List<PerfilResponse> mostrarDescartes(@RequestParam("id") Long id) {
+		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes/{id}")
+		public List<PerfilResponse> mostrarDescartes(@PathVariable("id") Long id) {
 			
 			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
 			
