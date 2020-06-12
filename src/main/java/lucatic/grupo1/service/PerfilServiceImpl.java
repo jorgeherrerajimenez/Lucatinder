@@ -1,18 +1,14 @@
 package lucatic.grupo1.service;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.Role;
 import lucatic.grupo1.repository.DAOPerfil;
 import lucatic.grupo1.repository.DAORole;
-
 /**
 * @author Jorge H.
 * @author Marco R.
@@ -21,23 +17,15 @@ import lucatic.grupo1.repository.DAORole;
 * @version 04/06/20
 * @category MVC
 */
-
-
 //Componente servicios
 @Service
 public class PerfilServiceImpl implements PerfilService{
-	
 	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
-
-	
 	//Inyección de dependencia en capa servicios
 	@Autowired
 	private DAOPerfil perfilDAO;
-	
 	@Autowired
 	private DAORole roleDAO;
-	
-	
 	//Añadir registro en base de datos
 	public void add(Perfil perfil) {
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: AÑADIENDO PERFIL");
@@ -45,47 +33,31 @@ public class PerfilServiceImpl implements PerfilService{
 		perfil.setRoles(r);
 		perfilDAO.save(perfil);	
 	}
-	
 	//Borrar registro de la base de datos por ID
 	@Override
 	public void deleteById(Long id) {
-		
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: BORRANDO PERFIL POR ID");
-
-		
 		perfilDAO.deleteById(id);
 	}
-	
-	
 	//Mandando perfiles falsos del DAO a la capa de control
 	@Override
 	public List<Perfil> generateCandidatesFor(Long id) {
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: GENERANDO DIEZ PERFILES FALSOS EN BASE AL ID");
-
 		return perfilDAO.generateCandidatesFor(id);
-		
 	}
-	
 	//Mostrar perfiles a los que se les ha dado Like
 	@Override
 	public Long showLikedProfiles(long id) {
-		
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: MOSTRANDO LA LISTA DE 'ME GUSTA'");
-
-		
 		return perfilDAO.showLikedProfiles(id);
 	}
-	
 	//Buscar un perfil en base a su ID
 	@Override
 	public Perfil findById(Long id) {
-		
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: BUSCANDO A UN PERFIL POR SU ID");
-
 		// TODO Auto-generated method stub
 		return this.perfilDAO.getOne(id);
 	}
-	
 	//Buscar usuario en base a su nombre (no ID)
 	@Override
 	public Perfil findByUsername(String name) {
@@ -93,28 +65,11 @@ public class PerfilServiceImpl implements PerfilService{
 		// TODO Auto-generated method stub
 		return perfilDAO.findByUsername(name);
 	}
-	
 	//Muestra usuarios a los que se les ha dado 'dislike'
 	@Override
 	public Long showDislikedProfiles(Long id) {
-		
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: MOSTRANDO DISLIKES");
-
 		// TODO Auto-generated method stub
 		return perfilDAO.showDislikedProfiles(id);
 	}
-
-	@Override
-	public Long moreThanOneLike(long id, long id2) {
-		// TODO Auto-generated method stub
-		return perfilDAO.moreThanOneLike(id,id2);
-	}
-
-	@Override
-	public Long moreThanOneDislike(long id, long id2) {
-		// TODO Auto-generated method stub
-		return perfilDAO.moreThanOneDislike(id,id2);
-	}
-
 }
-

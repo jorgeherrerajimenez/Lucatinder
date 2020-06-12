@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <title>Descartes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">	
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    
+
+</head>
+
+<body>
+
+    <!-- Menú-->
+
+    <nav class="navbar navbar-light bg-dark">
+        <a class="navbar-brand" href="#">
+            <img class="pl-5" th:src="@{/images/logopekeblanco.png}" alt="logoimage">
+        </a>
+        <a class="navbar-brand" style="color:white" href="/perfil/main">
+            Atrás <div><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></div>
+        </a>
+    </nav>
+
+    <!-- Menú-->
+
+
+    <!-- cuadrado blanco principal-->
+    <div class="limiter">
+        <div class="container-login100">
+
+            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50" th:each= "descarte : ${descartes}">
+                <img class="card-img-top img-thumbnail" th:src="@{/images/usericon.png}" alt="Image Icon">
+                <div class="card-body">
+                    <h5 class="card-title" th:text= "${descarte.descartado.nombre}"></h5>
+                    <p class="card-text" th:text= "${descarte.descartado.descripcion}"/></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    Edad: <li class="list-group-item" style="background-color:azure" th:text= "${descarte.descartado.edad}"></li>
+                    Género: <li class="list-group-item" style="background-color:azure" th:text= "${descarte.descartado.genero}"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- cuadrado blanco principal -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+    <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
+	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/vendor/select2/select2.min.js}"></script>
+	<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
+	<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
+	<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+
+</body></html>
