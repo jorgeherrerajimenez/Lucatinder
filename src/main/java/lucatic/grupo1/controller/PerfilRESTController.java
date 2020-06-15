@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
+
+import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
+import lucatic.grupo1.service.MatchService;
 import lucatic.grupo1.service.PerfilService;
 
 /**
@@ -39,6 +42,8 @@ public class PerfilRESTController {
 	ContactoService contactoService;
 	@Autowired
 	DescarteService descarteService;
+	@Autowired
+	MatchService matchService;
 	
 	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
 	
@@ -88,5 +93,18 @@ public class PerfilRESTController {
 		public PerfilResponse getOne(@PathVariable("username") String username) {
 			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
 			return response;
+		}
+		
+		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches/{id}")
+		public List<PerfilResponse> mostrarMatches(@PathVariable("id") Long id){
+			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
+			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
+			return listMatches;
+		}
+		
+		@RequestMapping(method = RequestMethod.POST, value = "/descartarSugerencia/{id}")
+		public void descartarSugerencia(@PathVariable("id") Long id, @RequestBody PerfilResponse pr) {
+			this.descarteService.add(new Descarte(this.perfilService.findById(id),
+					this.perfilService.findById(pr.getId())));
 		}
 }
