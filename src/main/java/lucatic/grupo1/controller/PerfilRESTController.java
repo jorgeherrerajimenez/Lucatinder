@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,9 @@ import lucatic.grupo1.service.PerfilService;
 * @category MVC
 */
 
+
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
 	
