@@ -29,6 +29,7 @@ import lucatic.grupo1.service.PerfilService;
 
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
 
@@ -77,12 +78,18 @@ public class PerfilRESTController {
 	}
 
 	// Lista de Descartes
-	@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes/{id}")
-	public List<PerfilResponse> mostrarDescartes(@PathVariable("id") Long id) {
-
-		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
-
-		List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
-		return listDescartes;
-	}
+		@RequestMapping(method = RequestMethod.GET, value = "/listaDescartes/{id}")
+		public List<PerfilResponse> mostrarDescartes(@PathVariable("id") Long id) {
+			
+			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
+			
+			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
+			return listDescartes;
+		}
+		
+		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+		public PerfilResponse getOne(@PathVariable("username") String username) {
+			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
+			return response;
+		}
 }

@@ -40,11 +40,7 @@ public class MatchServiceImpl implements MatchService {
 		List<Match> matches = this.matchDAO.matchesByMatcher(id);
 		List<PerfilResponse> listResponse = new ArrayList<PerfilResponse>();
 		for (Match mtch : matches) {
-			PerfilResponse pr = new PerfilResponse();
-			pr.setNombre(mtch.getMatched().getNombre());
-			pr.setDescripcion(mtch.getMatched().getDescripcion());
-			pr.setEdad(mtch.getMatched().getEdad());
-			pr.setGenero(mtch.getMatched().getGenero());
+			PerfilResponse pr = new PerfilResponse(mtch.getMatched());
 			listResponse.add(pr);
 		}
 		return listResponse;

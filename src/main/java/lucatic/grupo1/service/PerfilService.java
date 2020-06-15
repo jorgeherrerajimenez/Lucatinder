@@ -23,5 +23,6 @@ public interface PerfilService {
 	public Long showDislikedProfiles(Long id2);
 	public Perfil findByUsername(String name);
 	public List<PerfilResponse> generateCandidatesForResponse(Long id);
+
 }
 

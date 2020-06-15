@@ -1,7 +1,10 @@
 package lucatic.grupo1.model.rs;
 
+import lucatic.grupo1.model.Perfil;
+
 public class PerfilResponse {
 	
+	private Long id;
 	private String nombre;
 	private String descripcion;
 	private short edad;
@@ -10,6 +13,26 @@ public class PerfilResponse {
 	public PerfilResponse() {
 		super();
 	}
+	
+	public PerfilResponse(Perfil p) {
+		this.id = p.getId();
+		this.nombre = p.getNombre();
+		this.genero = p.getGenero();
+		this.descripcion = p.getDescripcion();
+		this.edad = p.getEdad();
+	}
+
+	
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 
 	public String getNombre() {
 		return nombre;

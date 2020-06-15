@@ -46,11 +46,7 @@ public class ContactoServiceImpl implements ContactoService {
 		List<Contacto> contactos = this.contactoDAO.buscarContactosPorLiker(id);
 		List<PerfilResponse> listContactos = new ArrayList<PerfilResponse>();
 		for (Contacto contac : contactos) {
-			PerfilResponse pr = new PerfilResponse();
-			pr.setNombre(contac.getLiked().getNombre());
-			pr.setDescripcion(contac.getLiked().getDescripcion());
-			pr.setEdad(contac.getLiked().getEdad());
-			pr.setGenero(contac.getLiked().getGenero());
+			PerfilResponse pr = new PerfilResponse(contac.getLiked());
 			listContactos.add(pr);
 		}
 		return listContactos;
