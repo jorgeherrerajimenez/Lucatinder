@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ import lucatic.grupo1.service.PerfilService;
 */
 
 @RestController
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
 	
@@ -80,5 +82,11 @@ public class PerfilRESTController {
 			
 			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
 			return listDescartes;
+		}
+		
+		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+		public PerfilResponse getOne(@PathVariable("username") String username) {
+			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
+			return response;
 		}
 }

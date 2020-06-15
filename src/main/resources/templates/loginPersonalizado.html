@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Home - Lucatinder MVC</title>
+    <title>Please sign in</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
-    
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   </head>
   <body>
      <div class="container">
       <form class="form-signin" method="post" action="/login">
-        
-        <img src="images/lucatinderlogo5.png" alt="logo" style="width: 300px;">
+        <h2 class="form-signin-heading">Please sign in</h2>
         <p>
           <label for="username" class="sr-only">Username</label>
           <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
@@ -24,12 +21,11 @@
           <label for="password" class="sr-only">Password</label>
           <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-        <p class="pt-3 text-center">
-      		¿No tienes cuenta? <a href="/registro">Registrate</a>
-      	</p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
       
-      
-	</div>
+      <div class="container">
+      	¿No tienes cuenta? <a href="/registro">Registrate</a>
+      </div>
+</div>
 </body></html>
