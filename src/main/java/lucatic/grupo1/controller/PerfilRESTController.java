@@ -29,7 +29,7 @@ import lucatic.grupo1.service.PerfilService;
 */
 
 @RestController
-@CrossOrigin(origins="http:localhost:4200")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
 	
@@ -60,7 +60,7 @@ public class PerfilRESTController {
 		
 		return perfilService.generateCandidatesFor(id);
 	}
-	@RequestMapping(value= "/add", method=RequestMethod.PUT)
+	@RequestMapping(value= "/add", method=RequestMethod.POST)
 	public void addPerfil(@RequestBody Perfil perfil) {
 		
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: AÑADIR PERFIL");
