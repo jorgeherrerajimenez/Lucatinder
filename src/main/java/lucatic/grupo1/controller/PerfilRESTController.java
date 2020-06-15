@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,8 @@ import lucatic.grupo1.service.PerfilService;
 * @category MVC
 */
 
-@CrossOrigin(origins="http:localhost:8080", maxAge=3600)
 @RestController
+@CrossOrigin(origins="http:localhost:4200")
 @RequestMapping("/rperfil")
 public class PerfilRESTController {
 	
@@ -87,8 +88,8 @@ public class PerfilRESTController {
 		}
 		
 	//Lista Matches 
-		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches")
-		public List<PerfilResponse> mostrarMatches(@RequestParam("id") Long id){
+		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches/{id}")
+		public List<PerfilResponse> mostrarMatches(@PathVariable("id") Long id){
 			
 			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
 			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
