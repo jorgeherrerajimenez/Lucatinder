@@ -30,7 +30,6 @@ import lucatic.grupo1.service.PerfilService;
  * @category MVC
  */
 
-@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT })
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT})
 @RequestMapping("/rperfil")

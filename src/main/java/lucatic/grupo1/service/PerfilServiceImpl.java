@@ -1,4 +1,5 @@
 package lucatic.grupo1.service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,11 +74,7 @@ public class PerfilServiceImpl implements PerfilService{
 		List<Perfil> contactos = this.perfilDAO.generateCandidatesFor(id);
 		List<PerfilResponse> listContactos = new ArrayList<PerfilResponse>();
 		for (Perfil contac : contactos) {
-			PerfilResponse pr = new PerfilResponse();
-			pr.setNombre(contac.getNombre());
-			pr.setDescripcion(contac.getDescripcion());
-			pr.setEdad(contac.getEdad());
-			pr.setGenero(contac.getGenero());
+			PerfilResponse pr = new PerfilResponse(contac);
 			listContactos.add(pr);
 		}
 		return listContactos;
