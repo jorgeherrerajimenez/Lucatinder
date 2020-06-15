@@ -86,4 +86,10 @@ public class PerfilRESTController {
 			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
 			return listDescartes;
 		}
+		
+		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+		public PerfilResponse getOne(@PathVariable("username") String username) {
+			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
+			return response;
+		}
 }
