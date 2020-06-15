@@ -1,5 +1,4 @@
 package lucatic.grupo1.service;
-
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.Role;
+import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.repository.DAOPerfil;
 import lucatic.grupo1.repository.DAORole;
 
@@ -66,6 +66,24 @@ public class PerfilServiceImpl implements PerfilService{
 		
 	}
 	
+	@Override
+	public List<PerfilResponse> generateCandidatesForResponse(Long id) {
+		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: GENERANDO DIEZ PERFILES FALSOS EN BASE AL ID RESPONSE");
+		
+		List<Perfil> contactos = this.perfilDAO.generateCandidatesFor(id);
+		List<PerfilResponse> listContactos = new ArrayList<PerfilResponse>();
+		for (Perfil contac : contactos) {
+			PerfilResponse pr = new PerfilResponse();
+			pr.setNombre(contac.getNombre());
+			pr.setDescripcion(contac.getDescripcion());
+			pr.setEdad(contac.getEdad());
+			pr.setGenero(contac.getGenero());
+			listContactos.add(pr);
+		}
+		return listContactos;
+	}
+	
+		
 	//Mostrar perfiles a los que se les ha dado Like
 	@Override
 	public Long showLikedProfiles(long id) {
