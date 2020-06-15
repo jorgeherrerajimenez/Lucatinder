@@ -96,4 +96,9 @@ public class PerfilRESTController {
 			return listMatches;
 		}
 		
+		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+		public PerfilResponse getOne(@PathVariable("username") String username) {
+			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
+			return response;
+		}
 }

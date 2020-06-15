@@ -50,11 +50,7 @@ public class DescarteServiceImpl implements DescarteService {
 		List<Descarte> descartes = this.descarteDAO.buscarDescartePorDescartador(id);
 		List<PerfilResponse> listDescartes = new ArrayList<PerfilResponse>();
 		for (Descarte descart : descartes) {
-			PerfilResponse pr = new PerfilResponse();
-			pr.setNombre(descart.getDescartado().getNombre());
-			pr.setDescripcion(descart.getDescartado().getDescripcion());
-			pr.setEdad(descart.getDescartado().getEdad());
-			pr.setGenero(descart.getDescartado().getGenero());
+			PerfilResponse pr = new PerfilResponse(descart.getDescartado());
 			listDescartes.add(pr);
 		}
 	return listDescartes;
