@@ -18,6 +18,7 @@ import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
+import lucatic.grupo1.service.MatchService;
 import lucatic.grupo1.service.PerfilService;
 
 /**
@@ -42,6 +43,8 @@ public class PerfilRESTController {
 	ContactoService contactoService;
 	@Autowired
 	DescarteService descarteService;
+	@Autowired
+	MatchService matchService;
 	
 	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
 	
@@ -60,6 +63,7 @@ public class PerfilRESTController {
 		
 		return perfilService.generateCandidatesFor(id);
 	}
+	
 	@RequestMapping(value= "/add", method=RequestMethod.PUT)
 	public void addPerfil(@RequestBody Perfil perfil) {
 		
@@ -67,6 +71,7 @@ public class PerfilRESTController {
 		
 		this.perfilService.add(perfil);
 	}
+	
 	// Lista de Contactos
 		@RequestMapping(method = RequestMethod.GET, value = "/listaContactos/{id}")
 		public List<PerfilResponse> mostrarContactos(@PathVariable("id") Long id) {
@@ -85,6 +90,14 @@ public class PerfilRESTController {
 			
 			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
 			return listDescartes;
+		}
+	
+	//Lista de Matches
+		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches/{id}")
+		public List<PerfilResponse> mostrarMatches(@PathVariable("id") Long id){
+			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
+			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
+			return listMatches;
 		}
 		
 		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
