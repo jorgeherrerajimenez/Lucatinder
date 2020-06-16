@@ -6,7 +6,9 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import lucatic.grupo1.controller.PerfilRESTController;
@@ -49,7 +51,16 @@ public class DBInitializer {
 		List<Role> r = roleDAO.findByRole("USER");
 		for(Perfil p : perfiles)
 			p.setRoles(r);
+		try {
 		perfilDAO.saveAll(perfiles);
+		} catch (ConstraintViolationException ex) {
+			ex.printStackTrace();
+			perfilDAO.deleteAll();
+			this.generarNPerfilesFalsos(number);
+		} catch (DataIntegrityViolationException ex) {
+			perfilDAO.deleteAll();
+			this.generarNPerfilesFalsos(number);
+		}
 	}
 	
 }

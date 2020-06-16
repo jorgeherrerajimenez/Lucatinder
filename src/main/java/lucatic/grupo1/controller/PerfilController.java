@@ -146,13 +146,6 @@ public class PerfilController {
 		Perfil p1 = this.perfilService.findById(id1);
 		Perfil p2 = this.perfilService.findById(id2);
 		
-		if (p2.getContactos().contains(new Contacto(p2,p1))) {
-			matchService.add(new Match(p1,p2));
-			LOGGER.log(Level.INFO, "MATCH GENERADO: "+ p1.getUsername() + " and " + p2.getUsername());
-			matchService.add(new Match(p2,p1));
-			LOGGER.log(Level.INFO, "MATCH GENERADO: "+ p2.getUsername() + " and " + p1.getUsername());
-		}
-		
 		this.contactoService.add(new Contacto(p1, p2));
 		
 		LOGGER.log(Level.INFO, "CONTACTO GENERADO: "+ p1.getUsername() + " and " + p2.getUsername());
