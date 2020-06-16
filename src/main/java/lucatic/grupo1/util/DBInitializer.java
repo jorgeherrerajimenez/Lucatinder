@@ -49,10 +49,12 @@ public class DBInitializer {
 	private void generarPerfilesIniciales(int number) {
 		List<Perfil> perfiles = fakeFactory.generarNPerfiles(number);
 		List<Role> r = roleDAO.findByRole("USER");
-		Perfil def = new Perfil();
-		def.generarDefault();
-		def.setRoles(r);
-		this.perfilDAO.save(def);
+		if(this.perfilDAO.findByUsername("default") == null) {
+			Perfil def = new Perfil();
+			def.generarDefault();
+			def.setRoles(r);
+			this.perfilDAO.save(def);
+		}
 		for(Perfil p : perfiles)
 			p.setRoles(r);
 		try {
