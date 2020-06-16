@@ -22,7 +22,6 @@ public class FakerFactory_Impl implements FakeFactory_I {
 	public List<Perfil> generarNPerfiles(int number) {
 		// TODO Auto-generated method stub
 		List<Perfil> perfiles = new ArrayList<Perfil>();
-		Perfil p;
 		for(int i=0; i<number; i++) {
 			perfiles.add(this.generarPerfil());
 		}

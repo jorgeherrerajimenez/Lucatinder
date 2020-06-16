@@ -256,14 +256,21 @@ public class Perfil implements Serializable {
 
 	public void generarFake() {
 		Faker f = new Faker();
-		this.username = f.funnyName().name();
-		this.nombre = this.username;
-		this.edad = (short) f.number().numberBetween(18, 90);
+		this.nombre = f.funnyName().name();
+		this.username = this.nombre.replaceAll("\\s","").toLowerCase() + 
+				this.edad + "@gmail.com";
+		this.edad = (short) f.number().numberBetween(18, 60);
 		if((f.number().randomDigit() % 2) == 0)
 			this.genero = 'M';
 		else
 			this.genero = 'H';
 		this.descripcion = f.lorem().paragraph();
+		this.password = encoder.encode("xxx");
+	}
+	
+	public void generarDefault() {
+		this.nombre = "Default";
+		this.username = "default";
 		this.password = encoder.encode("xxx");
 	}
 
