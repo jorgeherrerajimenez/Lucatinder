@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
+import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.rs.PerfilResponse;
@@ -110,6 +111,12 @@ public class PerfilRESTController {
 		@RequestMapping(method = RequestMethod.POST, value = "/descartarSugerencia/{id}")
 		public void descartarSugerencia(@PathVariable("id") Long id, @RequestBody PerfilResponse pr) {
 			this.descarteService.add(new Descarte(this.perfilService.findById(id),
+					this.perfilService.findById(pr.getId())));
+		}
+		
+		@RequestMapping(method = RequestMethod.POST, value = "/aceptarSugerencia/{id}")
+		public void aceptarSugerencia(@PathVariable("id") Long id, @RequestBody PerfilResponse pr) {
+			this.contactoService.add(new Contacto(this.perfilService.findById(id),
 					this.perfilService.findById(pr.getId())));
 		}
 }
