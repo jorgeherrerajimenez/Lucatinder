@@ -65,7 +65,6 @@ public class PerfilRESTController {
 
 		List<PerfilResponse> listaSugerencias = perfilService.generateCandidatesForResponse(id);
 		return listaSugerencias;
-				
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.PUT)
@@ -74,6 +73,7 @@ public class PerfilRESTController {
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: AÑADIR PERFIL");
 		this.perfilService.add(perfil);
 	}
+	
 	// Lista de Contactos
 	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos/{id}")
 	public List<PerfilResponse> mostrarContactos(@PathVariable("id") Long id) {
