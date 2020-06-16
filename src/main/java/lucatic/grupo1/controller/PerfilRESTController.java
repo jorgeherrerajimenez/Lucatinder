@@ -107,13 +107,6 @@ public class PerfilRESTController {
 			return response;
 		}
 		
-		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches/{id}")
-		public List<PerfilResponse> mostrarMatches(@PathVariable("id") Long id){
-			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
-			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
-			return listMatches;
-		}
-		
 		@RequestMapping(method = RequestMethod.POST, value = "/descartarSugerencia/{id}")
 		public void descartarSugerencia(@PathVariable("id") Long id, @RequestBody PerfilResponse pr) {
 			this.descarteService.add(new Descarte(this.perfilService.findById(id),
