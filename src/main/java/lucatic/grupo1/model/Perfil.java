@@ -257,9 +257,9 @@ public class Perfil implements Serializable {
 	public void generarFake() {
 		Faker f = new Faker();
 		this.nombre = f.funnyName().name();
+		this.edad = (short) f.number().numberBetween(18, 60);
 		this.username = this.nombre.replaceAll("\\s","").toLowerCase() + 
 				this.edad + "@gmail.com";
-		this.edad = (short) f.number().numberBetween(18, 60);
 		if((f.number().randomDigit() % 2) == 0)
 			this.genero = 'M';
 		else
