@@ -9,6 +9,7 @@ public class PerfilResponse {
 	private String descripcion;
 	private short edad;
 	private char genero;
+	private String provincia;
 	
 	public PerfilResponse() {
 		super();
@@ -20,6 +21,7 @@ public class PerfilResponse {
 		this.genero = p.getGenero();
 		this.descripcion = p.getDescripcion();
 		this.edad = p.getEdad();
+		this.provincia = provincia;
 	}
 
 	
@@ -32,7 +34,14 @@ public class PerfilResponse {
 		this.id = id;
 	}
 
-
+	public String getProvincia() {
+		return provincia;
+	}
+	
+	public void setProvincia(String provincia) {
+		
+		this.provincia = provincia;
+	}
 
 	public String getNombre() {
 		return nombre;

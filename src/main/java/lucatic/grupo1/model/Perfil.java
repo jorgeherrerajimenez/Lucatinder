@@ -1,8 +1,10 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -92,18 +94,23 @@ public class Perfil implements Serializable {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Match> matchOf;
 	
+	private String provincia;
+	
+
+	
 	public Perfil() {
 		super();
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String provincia) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
+		this.provincia = provincia;
 	}
 
 
@@ -133,7 +140,16 @@ public class Perfil implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
+	
+	public void setProvincia (String provincia) {
+		this.provincia = provincia;
+	}
+	
+	public String getProvincia () {
+		
+		return provincia;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
@@ -161,6 +177,7 @@ public class Perfil implements Serializable {
 	public String getDescripcion() {
 		return descripcion;
 	}
+	
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -265,7 +282,23 @@ public class Perfil implements Serializable {
 			this.genero = 'H';
 		this.descripcion = f.lorem().paragraph();
 		this.password = encoder.encode("xxx");
+		Random rand = new Random();
+		List<String> listaProvincias = Arrays.asList("A Coruña", "Álava","Albacete","Alicante","Almería", "Asturias" + "Ávila" + 
+	"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
+	"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
+	"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
+"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
+"Tarragona", "Santa Cruz de Tenerife\r\n", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao","Zamora", "Zaragoza");
+		
+		int control = 2;
+		
+		for (int i = 0; i<control; i++) {
+			int randIndex = rand.nextInt(listaProvincias.size());
+			this.provincia = listaProvincias.get(randIndex);
+		}
+		
 	}
+
 
 	public void encodePassword() {
 		this.password = encoder.encode(this.password);

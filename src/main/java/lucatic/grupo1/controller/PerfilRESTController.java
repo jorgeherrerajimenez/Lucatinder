@@ -16,11 +16,13 @@ import org.springframework.http.HttpStatus;
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Provincia;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.MatchService;
 import lucatic.grupo1.service.PerfilService;
+import lucatic.grupo1.service.ProvinciaService;
 
 /**
  * @author Adnan H.
@@ -44,6 +46,8 @@ public class PerfilRESTController {
 	DescarteService descarteService;
 	@Autowired
 	MatchService matchService;
+	@Autowired
+	ProvinciaService provinciaService;
 	
 
 	private final static Logger LOGGER = Logger.getLogger(PerfilRESTController.class.getName());
@@ -63,8 +67,17 @@ public class PerfilRESTController {
 
 		List<PerfilResponse> listaSugerencias = perfilService.generateCandidatesForResponse(id);
 		return listaSugerencias;
-				
 	}
+		
+	@RequestMapping(value="/provincias", method = RequestMethod.GET)
+	public List<Provincia> mostrarProvincias() {
+		
+		LOGGER.log(Level.INFO, "EN CONTROLADOR PERFIL REST: MOSTRAR LISTADO DE PROVINCIAS");
+		List<Provincia> listaProvincias = provinciaService.getAll();
+		return listaProvincias;
+	}
+				
+	
 	@RequestMapping(value= "/add", method=RequestMethod.POST)
 	public void addPerfil(@RequestBody Perfil perfil) {
 
@@ -92,14 +105,7 @@ public class PerfilRESTController {
 			return listDescartes;
 		}
 		
-	//Lista Matches 
-		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches/{id}")
-		public List<PerfilResponse> mostrarMatches(@PathVariable("id") Long id){
-			
-			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
-			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
-			return listMatches;
-		}
+	
 		
 		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
 		public PerfilResponse getOne(@PathVariable("username") String username) {
