@@ -98,7 +98,7 @@ public class DBInitializer {
 			provinciaDAO.save(new Provincia("Bilbao"));
 			provinciaDAO.save(new Provincia("Zamora"));
 			provinciaDAO.save(new Provincia("Zaragoza"));
-			
+		
 			this.generarPerfilesIniciales(12);
 	}
 	

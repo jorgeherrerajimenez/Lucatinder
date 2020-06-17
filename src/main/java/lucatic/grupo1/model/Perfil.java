@@ -111,8 +111,8 @@ public class Perfil implements Serializable {
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
-		this.image=image;
-		this.provincia=provincia;
+		this.provincia = provincia;
+		this.image = image;
 	}
 
 
