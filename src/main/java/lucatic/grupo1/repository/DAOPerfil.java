@@ -32,7 +32,7 @@ public interface DAOPerfil extends JpaRepository<Perfil, Long>{
 
 	@Query(value= "SELECT * FROM perfil p WHERE (p.id NOT IN (SELECT d.descartado_id FROM descarte d WHERE d.descartador_id = ?1 )) AND "
 			+ "(p.id NOT IN (SELECT c.liked_id FROM contacto c WHERE c.liker_id= ?1) AND "
-			+ "(p.id != ?1)) AND" + "(p.provincia IN (SELECT p.provincia FROM perfil p WHERE id=?1)) LIMIT 10", nativeQuery = true)
+			+ "(p.id != ?1)) LIMIT 10", nativeQuery = true)
 	public List<Perfil> generateCandidatesFor(Long id);
 	
 }

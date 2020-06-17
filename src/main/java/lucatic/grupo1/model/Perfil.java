@@ -1,10 +1,8 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -95,23 +93,18 @@ public class Perfil implements Serializable {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Match> matchOf;
 	
-	private String provincia;
-	
-
-	
 	public Perfil() {
 		super();
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image, String provincia) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
-		this.provincia = provincia;
 		this.image = image;
 	}
 
@@ -142,16 +135,7 @@ public class Perfil implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public void setProvincia (String provincia) {
-		this.provincia = provincia;
-	}
-	
-	public String getProvincia () {
-		
-		return provincia;
-	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -179,7 +163,6 @@ public class Perfil implements Serializable {
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -279,7 +262,6 @@ public class Perfil implements Serializable {
 		this.genero = 'O';
 		this.image = "genero_otro/default.jpg";
 	}
-
 
 	public void encodePassword() {
 		this.password = encoder.encode(this.password);

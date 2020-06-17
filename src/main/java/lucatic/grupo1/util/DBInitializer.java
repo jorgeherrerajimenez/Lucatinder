@@ -14,11 +14,9 @@ import org.springframework.stereotype.Component;
 import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Materia;
 import lucatic.grupo1.model.Perfil;
-import lucatic.grupo1.model.Provincia;
 import lucatic.grupo1.model.Role;
 import lucatic.grupo1.repository.DAOMateria;
 import lucatic.grupo1.repository.DAOPerfil;
-import lucatic.grupo1.repository.DAOProvincia;
 import lucatic.grupo1.repository.DAORole;
 
 @Component
@@ -37,9 +35,6 @@ public class DBInitializer {
 	
 	@Autowired
 	DAOMateria materiaDAO;
-	
-	@Autowired
-	DAOProvincia provinciaDAO;
 
 	@PostConstruct
 	public void init() {
@@ -48,57 +43,6 @@ public class DBInitializer {
 			materiaDAO.save(new Materia("Python"));
 			materiaDAO.save(new Materia("Java"));
 			materiaDAO.save(new Materia("Otros"));
-			provinciaDAO.save(new Provincia("Alava"));
-			provinciaDAO.save(new Provincia("Albacete"));
-			provinciaDAO.save(new Provincia("Alicante"));
-			provinciaDAO.save(new Provincia("Almería"));
-			provinciaDAO.save(new Provincia("Asturias"));
-			provinciaDAO.save(new Provincia("Ávila"));
-			provinciaDAO.save(new Provincia("Badajoz"));
-			provinciaDAO.save(new Provincia("Barcelona"));
-			provinciaDAO.save(new Provincia("Burgos"));
-			provinciaDAO.save(new Provincia("Cáceres"));
-			provinciaDAO.save(new Provincia("Cádiz"));
-			provinciaDAO.save(new Provincia("Cantabria"));
-			provinciaDAO.save(new Provincia("Castellón"));
-			provinciaDAO.save(new Provincia("Ciudad Real"));
-			provinciaDAO.save(new Provincia("Córdoba"));
-			provinciaDAO.save(new Provincia("Cuenca"));
-			provinciaDAO.save(new Provincia("Gerona"));
-			provinciaDAO.save(new Provincia("Granada"));
-			provinciaDAO.save(new Provincia("Guadalajara"));
-			provinciaDAO.save(new Provincia("Guipúzcoa"));
-			provinciaDAO.save(new Provincia("Huelva"));
-			provinciaDAO.save(new Provincia("Huesca"));
-			provinciaDAO.save(new Provincia("Islas Baleares"));
-			provinciaDAO.save(new Provincia("Jaén"));
-			provinciaDAO.save(new Provincia("La Coruña"));
-			provinciaDAO.save(new Provincia("La Rioja"));
-			provinciaDAO.save(new Provincia("Las Palmas"));
-			provinciaDAO.save(new Provincia("León"));
-			provinciaDAO.save(new Provincia("Lérida"));
-			provinciaDAO.save(new Provincia("Lugo"));
-			provinciaDAO.save(new Provincia("Madrid"));
-			provinciaDAO.save(new Provincia("Málaga"));
-			provinciaDAO.save(new Provincia("Murcia"));
-			provinciaDAO.save(new Provincia("Navarra"));
-			provinciaDAO.save(new Provincia("Orense"));
-			provinciaDAO.save(new Provincia("Palencia"));
-			provinciaDAO.save(new Provincia("Pontevedra"));
-			provinciaDAO.save(new Provincia("Salamanca"));
-			provinciaDAO.save(new Provincia("Santa Cruz de Tenerife"));
-			provinciaDAO.save(new Provincia("Segovia"));
-			provinciaDAO.save(new Provincia("Sevilla"));
-			provinciaDAO.save(new Provincia("Soria"));
-			provinciaDAO.save(new Provincia("Tarragona"));
-			provinciaDAO.save(new Provincia("Teruel"));
-			provinciaDAO.save(new Provincia("Toledo"));
-			provinciaDAO.save(new Provincia("Valencia"));
-			provinciaDAO.save(new Provincia("Valladolid"));
-			provinciaDAO.save(new Provincia("Bilbao"));
-			provinciaDAO.save(new Provincia("Zamora"));
-			provinciaDAO.save(new Provincia("Zaragoza"));
-		
 			this.generarPerfilesIniciales(12);
 	}
 	
@@ -124,12 +68,5 @@ public class DBInitializer {
 			this.generarPerfilesIniciales(number);
 		}
 	}
-	
-
-		
-		
-		
-		
-		
 	
 }
