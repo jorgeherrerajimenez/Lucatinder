@@ -18,7 +18,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import com.github.javafaker.Faker;
 import javax.persistence.JoinColumn;
 
 
@@ -43,8 +43,12 @@ public class Perfil implements Serializable {
 	private short edad;
 	@Column(length = 300)
 	private String descripcion;
+	private String password;
+	private String image;
 	private String password = encoder.encode("xxx");
 	private boolean enabled = true;
+	
+	
 	
 	@ManyToMany
 	@JoinTable(
@@ -96,13 +100,14 @@ public class Perfil implements Serializable {
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
+		this.image=image;
 	}
 
 
@@ -258,18 +263,90 @@ public class Perfil implements Serializable {
 		this.nombre = "Default";
 		this.username = "default";
 		this.password = encoder.encode("xxx");
+		
+		
+		
+		if(genero == 'H') {
+			int img=(int)(Math.random()*6)+1;
+			
+			switch (img) {
+			  case 1:
+					  this.image="genero_masculino/uno.jpg";
+			    break;
+			  case 2:
+					  this.image="genero_masculino/dos.jpg";
+			    break;
+			  case 3:
+					  this.image="genero_masculino/tres.jpg";
+			    break;
+			  case 4:
+					  this.image="genero_masculino/cuatro.jpg";
+			    break;
+			  case 5:
+					  this.image="genero_masculino/cinco.jpg";
+			    break;
+			  case 6:
+					  this.image="genero_masculino/seis.jpg";
+			    break;
+			}
+		}else if(genero == 'M') {
+			int img=(int)(Math.random()*6)+1;
+			
+			switch (img) {
+			  case 1:
+					  this.image="genero_femenino/uno.jpg";
+			    break;
+			  case 2:
+					  this.image="genero_femenino/dos.jpg";
+			    break;
+			  case 3:
+					  this.image="genero_femenino/tres.jpg";
+			    break;
+			  case 4:
+					  this.image="genero_femenino/cuatro.jpg";
+			    break;
+			  case 5:
+					  this.image="genero_femenino/cinco.jpg";
+			    break;
+			  case 6:
+					  this.image="genero_femenino/seis.jpg";
+			    break;
+			}
+		}
+		
 	}
 
 	public void encodePassword() {
 		this.password = encoder.encode(this.password);
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Perfil [id=" + id + ", nombre=" + nombre + ", username=" + username + ", genero=" + genero + ", edad="
+//				+ edad + ", descripcion=" + descripcion + ", password=" + password + ", enabled=" + enabled
+//				+ ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados + ", descartadores="
+//				+ descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+//	}
+	
+	
+
 	@Override
 	public String toString() {
-		return "Perfil [id=" + id + ", nombre=" + nombre + ", username=" + username + ", genero=" + genero + ", edad="
-				+ edad + ", descripcion=" + descripcion + ", password=" + password + ", enabled=" + enabled
-				+ ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados + ", descartadores="
-				+ descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
+				+ descripcion + ", image=" + image + ", enabled=" + enabled + ", gustosInformaticos="
+				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
+				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+	}
+
+	
+	
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	
