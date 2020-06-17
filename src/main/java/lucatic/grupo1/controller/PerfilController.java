@@ -22,11 +22,13 @@ import lucatic.grupo1.model.Descarte;
 import lucatic.grupo1.model.Match;
 import lucatic.grupo1.model.Materia;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Provincia;
 import lucatic.grupo1.service.ContactoService;
 import lucatic.grupo1.service.DescarteService;
 import lucatic.grupo1.service.MatchService;
 import lucatic.grupo1.service.MateriaService;
 import lucatic.grupo1.service.PerfilService;
+import lucatic.grupo1.service.ProvinciaService;
 
 /**
  * @author Adnan H.
@@ -55,6 +57,9 @@ public class PerfilController {
 	
 	@Autowired 
 	MateriaService materiaService;
+	
+	@Autowired
+	ProvinciaService provinciaService;
 
 	// Crea un logger en la clase PerfilController
 	private final static Logger LOGGER = Logger.getLogger(PerfilController.class.getName());
@@ -75,10 +80,11 @@ public class PerfilController {
 	//Dar de alta un usuario
 	@Transactional
 	@RequestMapping(method = RequestMethod.POST, value = "/addPerfil")
-	public RedirectView addPerfil(@RequestParam(value = "gustos", required = false) short[] gustos,Perfil perfil,Model model) {
+	public RedirectView addPerfil(@RequestParam(value = "gustos", required = false) short[] gustos,Perfil perfil,Model model, Provincia ciudad) {
 		
 		LOGGER.log(Level.INFO, "- EN CONTROLADOR DE PERFIL: DENTRO DEL MÉTODO AÑADIR PERFIL");
 		perfil.setGustosInformaticos(new ArrayList<Materia>());
+		
 		for(short i: gustos)
 			perfil.getGustosInformaticos().add(materiaService.getMateria(i));
 		perfil.encodePassword();
