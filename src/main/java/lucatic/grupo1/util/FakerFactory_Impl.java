@@ -79,6 +79,58 @@ public class FakerFactory_Impl implements FakeFactory_I {
 			return this.descripcionesMujer.get(number);
 	}
 	
+	private String seleccionarImagen(char genero) {
+		String image = null;
+		int img=(int)(Math.random()*6)+1;
+		if(genero == 'H') {
+			switch (img) {
+			  case 1:
+					  image="genero_masculino/uno.jpg";
+			    break;
+			  case 2:
+					  image="genero_masculino/dos.jpg";
+			    break;
+			  case 3:
+					  image="genero_masculino/tres.jpg";
+			    break;
+			  case 4:
+					  image="genero_masculino/cuatro.jpg";
+			    break;
+			  case 5:
+					  image="genero_masculino/cinco.jpg";
+			    break;
+			  case 6:
+					  image="genero_masculino/seis.jpg";
+			    break;
+			}
+		}else if(genero == 'M') {	
+			switch (img) {
+			  case 1:
+					  image="genero_femenino/uno.jpg";
+			    break;
+			  case 2:
+					  image="genero_femenino/dos.jpg";
+			    break;
+			  case 3:
+					  image="genero_femenino/tres.jpg";
+			    break;
+			  case 4:
+					  image="genero_femenino/cuatro.jpg";
+			    break;
+			  case 5:
+					  image="genero_femenino/cinco.jpg";
+			    break;
+			  case 6:
+					  image="genero_femenino/seis.jpg";
+			    break;
+			}
+		} else {
+			
+			image = "genero_otro/"+ (img%3) + ".jpg";
+		}
+		return image;
+	}
+	
 	@Override
 	public Perfil generarPerfil() {
 		// TODO Auto-generated method stub
@@ -91,8 +143,8 @@ public class FakerFactory_Impl implements FakeFactory_I {
 		else
 			genero = 'H';
 		String descripcion = this.seleccionarDescripcion(genero);
-		
-		return new Perfil(nombre,username,genero,edad,descripcion);
+		String imagen = this.seleccionarImagen(genero);
+		return new Perfil(nombre,username,genero,edad,descripcion,imagen);
 	}
 
 	@Override
