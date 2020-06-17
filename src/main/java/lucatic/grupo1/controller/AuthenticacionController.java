@@ -12,12 +12,16 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.repository.DAOMateria;
+import lucatic.grupo1.repository.DAOProvincia;
 
 @Controller
 public class AuthenticacionController {
 	
 	@Autowired
 	private DAOMateria materiaDAO;
+	
+	@Autowired
+	private DAOProvincia provinciaDAO;
 	
 	@GetMapping("/login")
 	public ModelAndView loginForm() {
@@ -29,6 +33,7 @@ public class AuthenticacionController {
 	public ModelAndView initForm(@ModelAttribute("perfil") Perfil perfil, Model model) {
 		ModelAndView mv = new ModelAndView("registro");
 		mv.addObject("listaGustos", materiaDAO.findAll());
+		mv.addObject("listaProvincias", provinciaDAO.findAll());
 		return mv;
 	}
 	
