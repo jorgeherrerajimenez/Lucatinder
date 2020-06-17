@@ -2,7 +2,6 @@ package lucatic.grupo1.model;
 
 import java.io.Serializable;
 
-
 /**
 * @author Jorge H.
 * @author Maira Q.
