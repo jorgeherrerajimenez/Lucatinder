@@ -3,6 +3,7 @@ package lucatic.grupo1.controller;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import lucatic.grupo1.service.PerfilService;
  * @version 04/06/20
  * @category MVC
  */
+
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST, RequestMethod.PUT})
@@ -63,7 +65,6 @@ public class PerfilRESTController {
 
 		List<PerfilResponse> listaSugerencias = perfilService.generateCandidatesForResponse(id);
 		return listaSugerencias;
-				
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.PUT)
@@ -72,7 +73,7 @@ public class PerfilRESTController {
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: AÑADIR PERFIL");
 		this.perfilService.add(perfil);
 	}
-
+	
 	// Lista de Contactos
 	@RequestMapping(method = RequestMethod.GET, value = "/listaContactos/{id}")
 	public List<PerfilResponse> mostrarContactos(@PathVariable("id") Long id) {
@@ -92,18 +93,19 @@ public class PerfilRESTController {
 			List<PerfilResponse> listDescartes = this.descarteService.mostrarDescartesREST(id);
 			return listDescartes;
 		}
-		
-		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
-		public PerfilResponse getOne(@PathVariable("username") String username) {
-			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
-			return response;
-		}
-		
+	
+	//Lista de Matches
 		@RequestMapping(method = RequestMethod.GET, value= "/listaMatches/{id}")
 		public List<PerfilResponse> mostrarMatches(@PathVariable("id") Long id){
 			LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: MOSTRAR DESCARTES");
 			List<PerfilResponse> listMatches = this.matchService.mostrarMatchesREST(id);
 			return listMatches;
+		}
+		
+		@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+		public PerfilResponse getOne(@PathVariable("username") String username) {
+			PerfilResponse response = new PerfilResponse(perfilService.findByUsername(username));
+			return response;
 		}
 		
 		@RequestMapping(method = RequestMethod.POST, value = "/descartarSugerencia/{id}")
