@@ -18,7 +18,6 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.JoinColumn;
 
 
@@ -43,8 +42,11 @@ public class Perfil implements Serializable {
 	private short edad;
 	@Column(length = 300)
 	private String descripcion;
+	private String image;
 	private String password = encoder.encode("xxx");
 	private boolean enabled = true;
+	
+	
 	
 	@ManyToMany
 	@JoinTable(
@@ -96,13 +98,14 @@ public class Perfil implements Serializable {
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
+		this.image=image;
 	}
 
 
@@ -220,8 +223,6 @@ public class Perfil implements Serializable {
 		return roles;
 	}
 
-
-
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
@@ -253,25 +254,34 @@ public class Perfil implements Serializable {
 	}
 
 
-	
 	public void generarDefault() {
 		this.nombre = "Default";
 		this.username = "default";
 		this.password = encoder.encode("xxx");
+		this.descripcion = "Soy el usuario por defecto. No tengo edad, ni genero. Puedes llamarme dios...";
+		this.genero = 'O';
+		this.image = "genero_otro/default.jpg";
 	}
 
 	public void encodePassword() {
 		this.password = encoder.encode(this.password);
 	}
 
-	@Override
-	public String toString() {
-		return "Perfil [id=" + id + ", nombre=" + nombre + ", username=" + username + ", genero=" + genero + ", edad="
-				+ edad + ", descripcion=" + descripcion + ", password=" + password + ", enabled=" + enabled
-				+ ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados + ", descartadores="
-				+ descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
+				+ descripcion + ", image=" + image + ", enabled=" + enabled + ", gustosInformaticos="
+				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
+				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+	}
+
 }
