@@ -98,13 +98,19 @@ public class DBInitializer {
 			provinciaDAO.save(new Provincia("Bilbao"));
 			provinciaDAO.save(new Provincia("Zamora"));
 			provinciaDAO.save(new Provincia("Zaragoza"));
-			
-			this.generarNPerfilesFalsos(12);
+		
+			this.generarPerfilesIniciales(12);
 	}
 	
-	private void generarNPerfilesFalsos(int number) {
+	private void generarPerfilesIniciales(int number) {
 		List<Perfil> perfiles = fakeFactory.generarNPerfiles(number);
 		List<Role> r = roleDAO.findByRole("USER");
+		if(this.perfilDAO.findByUsername("default") == null) {
+			Perfil def = new Perfil();
+			def.generarDefault();
+			def.setRoles(r);
+			this.perfilDAO.save(def);
+		}
 		for(Perfil p : perfiles)
 			p.setRoles(r);
 		try {
@@ -112,10 +118,10 @@ public class DBInitializer {
 		} catch (ConstraintViolationException ex) {
 			ex.printStackTrace();
 			perfilDAO.deleteAll();
-			this.generarNPerfilesFalsos(number);
+			this.generarPerfilesIniciales(number);
 		} catch (DataIntegrityViolationException ex) {
 			perfilDAO.deleteAll();
-			this.generarNPerfilesFalsos(number);
+			this.generarPerfilesIniciales(number);
 		}
 	}
 	

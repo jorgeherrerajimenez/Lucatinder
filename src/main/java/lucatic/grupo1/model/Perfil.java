@@ -20,9 +20,6 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.github.javafaker.Faker;
-
 import javax.persistence.JoinColumn;
 
 
@@ -45,9 +42,13 @@ public class Perfil implements Serializable {
 	private String username;
 	private char genero;
 	private short edad;
+	@Column(length = 300)
 	private String descripcion;
-	private String password;
+	private String image;
+	private String password = encoder.encode("xxx");
 	private boolean enabled = true;
+	
+	
 	
 	@ManyToMany
 	@JoinTable(
@@ -103,7 +104,7 @@ public class Perfil implements Serializable {
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String provincia) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image, String provincia) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
@@ -111,6 +112,7 @@ public class Perfil implements Serializable {
 		this.edad = edad;
 		this.descripcion = descripcion;
 		this.provincia = provincia;
+		this.image = image;
 	}
 
 
@@ -238,8 +240,6 @@ public class Perfil implements Serializable {
 		return roles;
 	}
 
-
-
 	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
@@ -266,37 +266,18 @@ public class Perfil implements Serializable {
 		return matchOf;
 	}
 
-
 	public void setMatchOf(Collection<Match> matchOf) {
 		this.matchOf = matchOf;
 	}
 
-	public void generarFake() {
-		Faker f = new Faker();
-		this.username = f.funnyName().name();
-		this.nombre = this.username;
-		this.edad = (short) f.number().numberBetween(18, 90);
-		if((f.number().randomDigit() % 2) == 0)
-			this.genero = 'M';
-		else
-			this.genero = 'H';
-		this.descripcion = f.lorem().paragraph();
+
+	public void generarDefault() {
+		this.nombre = "Default";
+		this.username = "default";
 		this.password = encoder.encode("xxx");
-		Random rand = new Random();
-		List<String> listaProvincias = Arrays.asList("A Coruña", "Álava","Albacete","Alicante","Almería", "Asturias" + "Ávila" + 
-	"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
-	"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
-	"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
-"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
-"Tarragona", "Santa Cruz de Tenerife\r\n", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao","Zamora", "Zaragoza");
-		
-		int control = 2;
-		
-		for (int i = 0; i<control; i++) {
-			int randIndex = rand.nextInt(listaProvincias.size());
-			this.provincia = listaProvincias.get(randIndex);
-		}
-		
+		this.descripcion = "Soy el usuario por defecto. No tengo edad, ni genero. Puedes llamarme dios...";
+		this.genero = 'O';
+		this.image = "genero_otro/default.jpg";
 	}
 
 
@@ -304,14 +285,78 @@ public class Perfil implements Serializable {
 		this.password = encoder.encode(this.password);
 	}
 
-	@Override
-	public String toString() {
-		return "Perfil [id=" + id + ", nombre=" + nombre + ", username=" + username + ", genero=" + genero + ", edad="
-				+ edad + ", descripcion=" + descripcion + ", password=" + password + ", enabled=" + enabled
-				+ ", gustosInformaticos=" + gustosInformaticos + ", descartados=" + descartados + ", descartadores="
-				+ descartadores + ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
-	
-	
+	@Override
+	public String toString() {
+		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
+				+ descripcion + ", image=" + image + ", enabled=" + enabled + ", gustosInformaticos="
+				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
+				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + edad;
+		result = prime * result + genero;
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Perfil other = (Perfil) obj;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (edad != other.edad)
+			return false;
+		if (genero != other.genero)
+			return false;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+
 }

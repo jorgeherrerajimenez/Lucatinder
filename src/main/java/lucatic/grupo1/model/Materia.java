@@ -42,6 +42,14 @@ public class Materia implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	public List<Perfil> getPerfiles() {
+		return perfiles;
+	}
+	public void setPerfiles(List<Perfil> perfiles) {
+		this.perfiles = perfiles;
+	}
+	
 	@Override
 	public String toString() {
 		return "Materia [id=" + id + ", nombre=" + nombre + "]";
