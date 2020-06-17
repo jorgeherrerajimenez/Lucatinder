@@ -18,11 +18,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import com.github.javafaker.Faker;
-
-
-
 import javax.persistence.JoinColumn;
 
 
@@ -45,9 +41,11 @@ public class Perfil implements Serializable {
 	private String username;
 	private char genero;
 	private short edad;
+	@Column(length = 300)
 	private String descripcion;
 	private String password;
 	private String image;
+	private String password = encoder.encode("xxx");
 	private boolean enabled = true;
 	
 	
@@ -255,21 +253,15 @@ public class Perfil implements Serializable {
 		return matchOf;
 	}
 
-
 	public void setMatchOf(Collection<Match> matchOf) {
 		this.matchOf = matchOf;
 	}
 
-	public void generarFake() {
-		Faker f = new Faker();
-		this.username = f.funnyName().name();
-		this.nombre = this.username;
-		this.edad = (short) f.number().numberBetween(18, 90);
-		if((f.number().randomDigit() % 2) == 0)
-			this.genero = 'M';
-		else
-			this.genero = 'H';
-		this.descripcion = f.lorem().paragraph();
+
+	
+	public void generarDefault() {
+		this.nombre = "Default";
+		this.username = "default";
 		this.password = encoder.encode("xxx");
 		
 		
