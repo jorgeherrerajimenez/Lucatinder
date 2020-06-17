@@ -9,6 +9,7 @@ public class PerfilResponse {
 	private String descripcion;
 	private short edad;
 	private char genero;
+	private String image;
 	
 	public PerfilResponse() {
 		super();
@@ -20,6 +21,7 @@ public class PerfilResponse {
 		this.genero = p.getGenero();
 		this.descripcion = p.getDescripcion();
 		this.edad = p.getEdad();
+		this.image = p.getImage();
 	}
 
 	
@@ -31,7 +33,6 @@ public class PerfilResponse {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 
 	public String getNombre() {
@@ -66,5 +67,11 @@ public class PerfilResponse {
 		this.descripcion = descripcion;
 	}
 
-	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 }
