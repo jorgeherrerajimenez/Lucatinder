@@ -99,7 +99,7 @@ public class DBInitializer {
 			provinciaDAO.save(new Provincia("Zamora"));
 			provinciaDAO.save(new Provincia("Zaragoza"));
 			
-			this.generarNPerfilesFalsos(12);
+			this.generarPerfilesIniciales(12);
 	}
 	
 	private void generarPerfilesIniciales(int number) {
