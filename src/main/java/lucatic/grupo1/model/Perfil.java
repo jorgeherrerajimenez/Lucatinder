@@ -258,6 +258,8 @@ public class Perfil implements Serializable {
 		this.nombre = "Default";
 		this.username = "default";
 		this.password = encoder.encode("xxx");
+		this.descripcion = "Soy el usuario por defecto";
+		this.genero = 'O';
 	}
 
 	public void encodePassword() {
