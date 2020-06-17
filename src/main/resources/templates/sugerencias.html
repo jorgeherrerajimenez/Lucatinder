@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body style="background-color: azure; height: auto;">
 
     <!-- Menú-->
 
@@ -37,44 +37,29 @@
 
 
     <!-- cuadrado blanco principal-->
-    <div class="limiter">
-        <div class="container-login100">
-
-            <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50" th:each= "perfil : ${listaSugerencias}">
-                <img class="card-img-top img-thumbnail" th:src="@{/images/usericon.png}" alt="Image Icon">
+    <div class="container">
+            <div class="row">
+            <div class="col-6 p-4" th:each= "perfil : ${listaSugerencias}">
+            	<div class="card" style="height: 100%;">  
+            	<img class="card-img-top img-thumbnail" style="width:380px; height:370px" th:src="@{/images/}+${perfil.image}" alt="Image Icon">
                 <div class="card-body">
                     <h5 class="card-title" th:text= "${perfil.nombre}"></h5>
                     <p class="card-text" th:text= "${perfil.descripcion}"/></p>
-                </div>
+                
                 <ul class="list-group list-group-flush">
                     Edad: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.edad}"></li>
                     Género: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.genero}"></li>
                 </ul>
-                <div class="card-body">
-                     <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
-                    <a th:href="@{/perfil/addDescarte(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:red"><i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i></a>
+              </div>
+                <div class="card-body" style="text-align: center; letter-spacing: 3rem">
+                     <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen; font-size: 1.5rem"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
+                    <a th:href="@{/perfil/addDescarte(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:red; font-size: 1.5rem"><i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i></a>
                 </div>
 
-				
-		<!- ${perfilAnnadido.id}==${perfil.id} &&  -->
             </div>
-        </div>
-    </div>
-
-    
-    <!-- cuadrado blanco principal -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
+            </div>
+            </div>
+    </div> 
 
 
 

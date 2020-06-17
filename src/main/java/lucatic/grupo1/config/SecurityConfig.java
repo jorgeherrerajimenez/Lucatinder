@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/registro").permitAll()
 			.antMatchers("/login").permitAll()
-			.antMatchers("/perfil/addPerfil").permitAll()
+			.antMatchers("/perfil/addPerfil/**").permitAll()
 			.antMatchers("/rperfil/**").permitAll()
 			.anyRequest().hasAuthority("USER")
 				.and()
@@ -77,7 +77,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web
 			.ignoring()
-			.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+			.antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/vendor/**", "/fonts/**");
 	}
 	
 }

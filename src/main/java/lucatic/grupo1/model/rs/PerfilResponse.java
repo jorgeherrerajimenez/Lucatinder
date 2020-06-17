@@ -75,11 +75,5 @@ public class PerfilResponse {
 		this.descripcion = descripcion;
 	}
 
-	public PerfilResponse(String nombre, String descripcion, short edad, char genero) {
-		super();
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.edad = edad;
-		this.genero = genero;
-	}
+	
 }
