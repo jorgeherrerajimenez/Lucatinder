@@ -1,10 +1,8 @@
 package lucatic.grupo1.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Random;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -95,24 +93,19 @@ public class Perfil implements Serializable {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Collection<Match> matchOf;
 	
-	private String provincia;
-	
-
-	
 	public Perfil() {
 		super();
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image, String provincia) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
 		this.descripcion = descripcion;
-		this.provincia = provincia;
-		this.image = image;
+		this.image=image;
 	}
 
 
@@ -142,16 +135,7 @@ public class Perfil implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public void setProvincia (String provincia) {
-		this.provincia = provincia;
-	}
-	
-	public String getProvincia () {
-		
-		return provincia;
-	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -179,7 +163,6 @@ public class Perfil implements Serializable {
 	public String getDescripcion() {
 		return descripcion;
 	}
-	
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
@@ -280,7 +263,6 @@ public class Perfil implements Serializable {
 		this.image = "genero_otro/default.jpg";
 	}
 
-
 	public void encodePassword() {
 		this.password = encoder.encode(this.password);
 	}
@@ -300,63 +282,6 @@ public class Perfil implements Serializable {
 				+ descripcion + ", image=" + image + ", enabled=" + enabled + ", gustosInformaticos="
 				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
 				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
-	}
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + edad;
-		result = prime * result + genero;
-		result = prime * result + ((image == null) ? 0 : image.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Perfil other = (Perfil) obj;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
-		if (edad != other.edad)
-			return false;
-		if (genero != other.genero)
-			return false;
-		if (image == null) {
-			if (other.image != null)
-				return false;
-		} else if (!image.equals(other.image))
-			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
-				return false;
-		} else if (!nombre.equals(other.nombre))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (username == null) {
-			if (other.username != null)
-				return false;
-		} else if (!username.equals(other.username))
-			return false;
-		return true;
 	}
 
 }
