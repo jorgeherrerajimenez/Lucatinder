@@ -16,11 +16,12 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/stylecards.css}">
     
 
 </head>
 
-<body style="background-color: azure; height: auto;">
+<body style="background: #F8E0F7; height: auto;">
 
     <!-- Menú-->
 
@@ -37,8 +38,8 @@
      <div class="container">
             <div class="row">
             	<div class="col-6 p-4" th:each="contacto : ${contactos}">
-            		<div class="card" style="height: 100%;">  
-            		<img class="card-img-top img-thumbnail" style="width:380px; height:370px" th:src="@{/images/}+${contacto.liked.image}" alt="Image Icon">
+            		<div class="card bordercards shadowcards" style="height: 100%;">
+            	<img class="img-thumbnail mx-auto d-block bordercards"  style="height: 420px;" th:src="@{/images/}+${contacto.liked.image}" alt="Image Icon">
                 <div class="card-body">
                     <h5 class="card-title" th:text= "${contacto.liked.nombre}"></h5>
                     <p class="card-text" th:text= "${contacto.liked.descripcion}"/></p>
