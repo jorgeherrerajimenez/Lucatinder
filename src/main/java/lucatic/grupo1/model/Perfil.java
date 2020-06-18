@@ -292,7 +292,7 @@ public class Perfil implements Serializable {
 		this.nombre = "Default";
 		this.username = "default";
 		this.password = encoder.encode("xxx");
-		this.descripcion = "Soy el usuario por defecto. No tengo edad, ni genero. Puedes llamarme dios...";
+		this.descripcion = "Soy el usuario por defecto. No tengo edad, provincia, ni género. Puedes llamarme dios...";
 		this.genero = 'O';
 		this.image = "genero_otro/default.jpg";
 	}
