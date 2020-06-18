@@ -27,9 +27,9 @@ class DAOContactoTest {
     private Perfil p1,p2,p3;
     @BeforeAll
     void setUpBeforeClass() throws Exception {
-    	this.p1 = new Perfil("Prueba1", "Prueba1", 'H',(short) 20, "Prueba1", null);
-        this.p2 = new Perfil("Prueba2", "Prueba2", 'M',(short) 20, "Prueba2", null);
-        this.p3 = new Perfil("Prueba3", "Prueba3", 'O',(short) 20, "Prueba3", null);
+    	this.p1 = new Perfil("Prueba1", "Prueba1", 'H',(short) 20, "Prueba1", null, null);
+        this.p2 = new Perfil("Prueba2", "Prueba2", 'M',(short) 20, "Prueba2", null, null);
+        this.p3 = new Perfil("Prueba3", "Prueba3", 'O',(short) 20, "Prueba3", null, null);
         perfil.save(p1);
         perfil.save(p2);
         perfil.save(p3);

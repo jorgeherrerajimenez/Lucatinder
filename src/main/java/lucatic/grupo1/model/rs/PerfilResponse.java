@@ -1,6 +1,7 @@
 package lucatic.grupo1.model.rs;
 
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Provincia;
 
 public class PerfilResponse {
 	
@@ -10,6 +11,7 @@ public class PerfilResponse {
 	private short edad;
 	private char genero;
 	private String image;
+	private Provincia provincia;
 	
 	public PerfilResponse() {
 		super();
@@ -22,6 +24,7 @@ public class PerfilResponse {
 		this.descripcion = p.getDescripcion();
 		this.edad = p.getEdad();
 		this.image = p.getImage();
+		this.provincia = p.getProvincia();
 	}
 
 	
@@ -74,4 +77,13 @@ public class PerfilResponse {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+	
 }
