@@ -1,78 +1,140 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
-<head>
-    <title>Main User</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" type="image/png" th:href="@{/images/icons/favicon.ico}"/>
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animate/animate.css}">	
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/css-hamburgers/hamburgers.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/animsition/css/animsition.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/select2/select2.min.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-</head>
-<body>
-         <!-- Menú-->
-		    <nav class="navbar navbar-light bg-dark">
-		        <a class="navbar-brand" href="/logout">
-		            <img class="pl-5" th:src="@{/images/logopekeblanco.png}" alt="logoimage">
-		        </a>
-		        <a class="navbar-brand" style="color:white" href="/logout">
-		            Cerrar Sesion <div><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></div>
-		        </a>
-		    </nav>
-    	<!-- Menú-->
-        <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-					<span class="login100-form-title p-b-33">
-					    ¿QUÉ DESEA?
-					</span>
-					<div class="container-login100-form-btn m-t-20">
-					<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}" class="login100-form-btn">
-						<button class="login100-form-btn">
-							Sugerencias <i class="pl-3 fa fa-search fa-2x" aria-hidden="true"></i>
-						</button>
+  <head>
+    <title>Home - MVC</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    
+
+    <link rel="stylesheet" th:href="@{/css/open-iconic-bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/animate.css}"/>
+    
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+
+    <link rel="stylesheet" th:href="@{/css/aos.css}"/>
+
+    <link rel="stylesheet" th:href="@{/css/ionicons.min.css}"/>
+
+    
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}"/>
+    <link rel="stylesheet" th:href="@{/css/icomoon.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+	
+	
+	
+	
+  </head>
+  <body>
+    <div id="particles-js"></div>
+  <nav class="navbar navbar-light" style="background: linear-gradient(to bottom, #ee7bae -64%, #575757 100%);">
+    
+	<div class="container">
+      <img th:src="@{/images/logopekeblanco.png}" th:href="@{/index.html}"></img>
+      <a class="btn btn-outline-danger my-2 my-sm-0" href="/logout" type="submit">Logout</a>
+  </nav>
+    <!-- END nav -->
+    <!------------------ Hover Effect Style : Demo - 1 --------------->
+        <div class="container">
+		
+            <h3 class="text-center mt-4 mb-4">Bienvenido Usuario</h3>
+            <div class="row mt-40">
+            
+                
+                	<div class="col-md-3 col-sm-6">
+                		<a th:href="@{/perfil/listaSugerencias(id=${perfil.id})}">
+							<div class="box1">
+								<img th:src="@{/images/suggestions-icon.png}" alt="">
+								<h3 class="title">Sugerencias</h3>
+							</div>
 						</a>
 					</div>
-					<div class="container-login100-form-btn m-t-20">
-						<a th:href="@{/perfil/listaMatches(id=${perfil.id})}" class="login100-form-btn">
-							<button class="login100-form-btn">
-								Match <i class="pl-3 fa fa-venus-mars fa-2x" aria-hidden="true"></i>
-							</button>
+                
+            
+	             
+	                <div class="col-md-3 col-sm-6">
+	                	<a th:href="@{/perfil/listaContactos(id=${perfil.id})}">
+							<div class="box1">
+								<img th:src="@{/images/contacts-icon.png}" alt="" class="img-thumbn">
+								<h3 class="title">Contactos</h3>
+							</div>
 						</a>
-					</div>
-					<div class="container-login100-form-btn m-t-20">
-						<a th:href="@{/perfil/listaContactos(id=${perfil.id})}" class="login100-form-btn stretched-link">
-							<button class="login100-form-btn">
-								Contactos<i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i>
-							</button>
+	                </div>
+	             
+	             
+	                <div class="col-md-3 col-sm-6">
+	                	<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}">
+							<div class="box1">
+								<img th:src="@{/images/discards-icon.png}" alt="">
+								<h3 class="title">Descartes</h3>
+							</div>
 						</a>
-					</div>
-					<div class="container-login100-form-btn m-t-20">
-						<a th:href="@{/perfil/listaDescartes(id=${perfil.id})}" class="login100-form-btn stretched-link">
-							<button class="login100-form-btn">
-								Descartados <i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i>
-							</button>
+	                </div>
+	             
+	             
+					<div class="col-md-3 col-sm-6">
+						<a th:href="@{/perfil/listaMatches(id=${perfil.id})}">
+							<div class="box1">
+								<img th:src="@{/images/matchs-icon.png}" alt="">
+								<h3 class="title">Matches</h3>
+							</div>
 						</a>
-					</div>
-				</form>
+	                </div>
+	             
+            </div>
+        </div>
+
+		<div class="row mt-4 mb-4">
+			<div>
+			.
 			</div>
 		</div>
-	</div>
-	<script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
-	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
-	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
-	<script th:src="@{/vendor/bootstrap/js/bootstrap.min.js}"></script>
-	<script th:src="@{/vendor/select2/select2.min.js}"></script>
-	<script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
-	<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
-	<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
-	<script th:src="@{/js/main.js}"></script>
-</body></html>
+		<div class="row mt-4 mb-4">
+			<div>
+			.
+			</div>
+		</div>
+		<div class="row mt-4 mb-4">
+			<div>
+			.
+			</div>
+		</div>
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+<script th:src="@{/js/jquery.min.js}"></script>
+  <script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+  <script th:src="@{/js/popper.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/jquery.easing.1.3.js}"></script>
+  <script th:src="@{/js/jquery.waypoints.min.js}"></script>
+  <script th:src="@{/js/jquery.stellar.min.js}"></script>
+  <script th:src="@{/js/owl.carousel.min.js}"></script>
+  <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+  <script th:src="@{/js/aos.js}"></script>
+  <script th:src="@{/js/jquery.animateNumber.min.js}"></script>
+  <script th:src="@{/js/particles.min.js}"></script>
+  <script th:src="@{/js/particle.js}"></script>
+  <script th:src="@{/js/scrollax.min.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+  
+  </body>
+  
+  <!-- Footer -->
+	<footer class="pt-5 mt-4" style="background: linear-gradient(to bottom, #ee7bae -64%, #575757 100%);">
+
+	  <!-- Copyright -->
+	  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+		<a href="https://tinder.com/"> Lucatinder.com</a>
+	  </div>
+	  <!-- Copyright -->
+
+	</footer>
+<!-- Footer --> 
+</html>

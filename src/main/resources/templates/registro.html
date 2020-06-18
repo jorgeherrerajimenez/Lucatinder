@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <link th:href="@{/https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,700,800}">rel="stylesheet">
 
     <link rel="stylesheet" th:href="@{/css/open-iconic-bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/css/animate.css}">
@@ -20,10 +19,6 @@
 
     <link rel="stylesheet" th:href="@{/css/ionicons.min.css}">
 
-    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
-    <link rel="stylesheet" th:href="@{/css/jquery.timepicker.css}">
-
-    
     <link rel="stylesheet" th:href="@{/css/flaticon.css}">
     <link rel="stylesheet" th:href="@{/css/icomoon.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -70,16 +65,16 @@
 							  <input type="number" id="edad" name="edad" class="form-control" placeholder="Edad" th:field="*{edad}" min="18" max="70" required>
 							</p>
 							<p>
-								<select name="select" class="form-control">
+								<select name="genero" class="form-control">
 								  <option selected>Seleccione Género</option> 
 								  <option id="hombre" name="genero" th:field="*{genero}" th:value="H">Hombre</option>
 								  <option id="mujer" name="genero" th:field="*{genero}" th:value="M">Mujer</option>
 								  <option id="otro" name="genero" th:field="*{genero}" th:value="O">Otro</option>
 								</select>
 							</p>
-							<p>
-			            		<select type="select" name="gustos" th:each="gusto : ${listaGustos}" />
-			                 		<option value="value1" th:value="${gusto.id}" th:text="${gusto.nombre}"></option>
+							<p >
+			            		<select type="select" name="gustos" class="form-control" />
+			                 		<option th:each="gusto : ${listaGustos}" th:value="${gusto.id}" th:text="${gusto.nombre}"></option>
 			                 	</select>
 							</p>
 							<p>
@@ -114,14 +109,9 @@
   <script th:src="@{/js/owl.carousel.min.js}"></script>
   <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
   <script th:src="@{/js/aos.js}"></script>
-  <script th:src="@{/js/jquery.animateNumber.min.js}"></script>
-  <script th:src="@{/js/bootstrap-datepicker.js}"></script>
-  <script th:src="@{/js/jquery.timepicker.min.js}"></script>
   <script th:src="@{/js/particles.min.js}"></script>
   <script th:src="@{/js/particle.js}"></script>
   <script th:src="@{/js/scrollax.min.js}"></script>
-  <script th:src="@{/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false}"></script>
-  <script th:src="@{/js/google-map.js}"></script>
   <script th:src="@{/js/main.js}"></script>
   </body>
 </html>
