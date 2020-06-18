@@ -35,6 +35,7 @@ public class Perfil implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	private String provincia;
 	private String nombre;
 	@Column(unique=true)
 	private String username;
@@ -98,7 +99,7 @@ public class Perfil implements Serializable {
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image, String provincia) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
@@ -106,16 +107,18 @@ public class Perfil implements Serializable {
 		this.edad = edad;
 		this.descripcion = descripcion;
 		this.image=image;
+		this.provincia = provincia;
 	}
 
 
-	public Perfil(Long id, String nombre, String username, char genero, short edad, String descripcion,
+	public Perfil(Long id, String nombre, String username, char genero, short edad, String provincia, String descripcion,
 			List<Materia> gustosInformaticos) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.genero = genero;
 		this.edad = edad;
+		this.provincia = provincia;
 		this.descripcion = descripcion;
 		this.gustosInformaticos = gustosInformaticos;
 	}
@@ -158,6 +161,16 @@ public class Perfil implements Serializable {
 
 	public void setEdad(short edad) {
 		this.edad = edad;
+	}
+	
+	public String getProvincia() {
+		
+		return provincia;
+	}
+	
+	public void setProvincia(String provincia) {
+		
+		this.provincia = provincia;
 	}
 
 	public String getDescripcion() {

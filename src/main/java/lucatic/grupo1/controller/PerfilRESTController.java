@@ -67,7 +67,7 @@ public class PerfilRESTController {
 		return listaSugerencias;
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.PUT)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void addPerfil(@RequestBody Perfil perfil) {
 
 		LOGGER.log(Level.INFO, "-EN CONTROLADOR PERFIL REST: AÑADIR PERFIL");

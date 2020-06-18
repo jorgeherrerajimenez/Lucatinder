@@ -16,9 +16,7 @@ public class FakerFactory_Impl implements FakeFactory_I {
 	
 	private List<String> descripcionesHombre = new ArrayList<String>();
 	private List<String> descripcionesMujer = new ArrayList<String>();
-	private Faker faker = new Faker();
-	private String provincia;
-	
+	private Faker faker = new Faker();	
 	
 	public FakerFactory_Impl() {
 		super();
@@ -147,22 +145,17 @@ public class FakerFactory_Impl implements FakeFactory_I {
 			genero = 'H';
 		String descripcion = this.seleccionarDescripcion(genero);
 		String imagen = this.seleccionarImagen(genero);
-		Random rand = new Random();
+		String provincia = "Málaga";
 		List<String> listaProvincias = Arrays.asList("A Coruña", "Álava","Albacete","Alicante","Almería", "Asturias", "Ávila", 
-	"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
-	"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
-	"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
-"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
-"Tarragona", "Santa Cruz de Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao","Zamora", "Zaragoza");
+				"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
+				"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
+				"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
+				"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
+				"Tarragona", "Santa Cruz de Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao","Zamora", "Zaragoza");
 		
-		int control = 2;
-		
-		for (int i = 0; i<control; i++) {
-			int randIndex = rand.nextInt(listaProvincias.size());
-			this.provincia = listaProvincias.get(randIndex);
-			}
-		
-		return new Perfil(nombre,username,genero,edad,descripcion,imagen, provincia);
+		Random rand = new Random();
+		provincia = listaProvincias.get(rand.nextInt(listaProvincias.size()));
+		return new Perfil(nombre,username,genero,edad, descripcion,imagen, provincia);
 	}
 
 	@Override
