@@ -43,6 +43,10 @@ public class PerfilServiceImpl implements PerfilService{
 		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: AÑADIENDO PERFIL");
 		List<Role> r = roleDAO.findByRole("USER");
 		perfil.setRoles(r);
+		if (perfil.getGenero() == 'H')
+			perfil.setImage("genero_masculino/usericonboy.jpg");
+		else
+			perfil.setImage("genero_femenino/usericongirl.jpg");
 		perfilDAO.save(perfil);	
 	}
 	
@@ -66,7 +70,7 @@ public class PerfilServiceImpl implements PerfilService{
 		if (result.size() < 6) {
 			List<Perfil> resultLowPriority = this.perfilDAO.generateCandidatesFor(id);
 			for(Perfil p : resultLowPriority)
-				if (result.size()<6)
+				if ((result.size()<6)&&(!result.contains(p)))
 					result.add(p);
 		}
 		
