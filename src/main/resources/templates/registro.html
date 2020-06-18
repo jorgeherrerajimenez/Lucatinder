@@ -68,16 +68,32 @@
 							</p>
 							<p>
 								<select name="genero" class="form-control">
-								  <option selected>Seleccione Género</option> 
+								  <option disabled selected>Seleccione Género</option> 
 								  <option id="hombre" name="genero" th:field="*{genero}" th:value="H">Hombre</option>
 								  <option id="mujer" name="genero" th:field="*{genero}" th:value="M">Mujer</option>
 								  <option id="otro" name="genero" th:field="*{genero}" th:value="O">Otro</option>
 								</select>
 							</p>
 							<p >
-			            		<select type="select" name="gustos" class="form-control" />
+			            		<!--  <select type="select" name="gustos" class="form-control" multiple="true"/>
 			                 		<option th:each="gusto : ${listaGustos}" th:value="${gusto.id}" th:text="${gusto.nombre}"></option>
+			                 	</select>-->
+			                 	<select type="select" name="provincia" class="form-control">
+			                 		<option disabled selected>Seleccione Provincia</option> 
+			                 		<option th:each="provincia : ${listaProvincias}" th:value="${provincia.id}" th:text="${provincia.nombre}"></option>
 			                 	</select>
+			                 	<div class="wrap-input100 pt-3 pb-3 text-center"> 
+			                 	<tr>
+                        		<p>Selecciona tus gustos (Opcional):</p>
+                            <td>
+                            	<th:block th:each="gusto : ${listaGustos}">
+            						<input type="checkbox" name="gustos" th:value="${gusto.id}"/>
+                 					<label th:text="${gusto.nombre}"></label>
+               					</th:block>
+                            </td>
+                           
+                        </tr>
+                    </div>
 							</p>
 							<p>
 								<label for="descripcion" class="sr-only">Descripcion</label>
