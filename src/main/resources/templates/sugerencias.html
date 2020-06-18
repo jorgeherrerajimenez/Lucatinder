@@ -21,7 +21,7 @@
 
 </head>
 
-<body style="background-color: azure; height: auto;">
+<body style="background: #F8E0F7; height: auto;">
 
     <!-- Menú-->
 
@@ -49,6 +49,7 @@
                 <ul class="list-group list-group-flush">
                     Edad: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.edad}"></li>
                     Género: <li class="list-group-item" style="background-color:azure" th:text= "${perfil.genero}"></li>
+                    Provincia: <li class="list-group-item" style="background-color:azure" th:text= "${perfil?.provincia?.nombre}"></li>
                 </ul>
               </div>
                 <div class="card-body" style="text-align: center; letter-spacing: 3rem">

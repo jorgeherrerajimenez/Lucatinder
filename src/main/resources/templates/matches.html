@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 
-<body>
+<body style="background: #F8E0F7; height: auto;">
 
     <!-- Menú-->
 
@@ -44,6 +44,7 @@
                 <ul class="list-group list-group-flush">
                     Edad: <li class="list-group-item" style="background-color:azure" th:text= "${match.matched.edad}"></li>
                     Género: <li class="list-group-item" style="background-color:azure" th:text= "${match.matched.genero}"></li>
+                    Provincia: <li class="list-group-item" style="background-color:azure" th:text= "${match?.matched?.provincia?.nombre}"></li>
                 </ul>
                 
               			</div>
