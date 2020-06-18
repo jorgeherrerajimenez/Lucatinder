@@ -21,7 +21,6 @@ import lucatic.grupo1.repository.DAOContacto;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 @Service
 public class ContactoServiceImpl implements ContactoService {

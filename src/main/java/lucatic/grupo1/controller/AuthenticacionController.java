@@ -17,7 +17,6 @@ import lucatic.grupo1.repository.DAOProvincia;
 /**
 * @author Jorge H.
 * @version 05/06/20
-* @category MVC
 */
 
 @Controller

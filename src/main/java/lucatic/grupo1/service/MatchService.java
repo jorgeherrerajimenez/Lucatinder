@@ -7,7 +7,6 @@ import lucatic.grupo1.model.rs.PerfilResponse;
 /**
 * @author Jorge H.
 * @version 10/06/20
-* @category MVC
 */
 
 public interface MatchService {

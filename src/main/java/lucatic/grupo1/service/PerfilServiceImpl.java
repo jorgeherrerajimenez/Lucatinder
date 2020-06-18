@@ -20,7 +20,6 @@ import lucatic.grupo1.repository.DAORole;
 * @author Adnan H.
 * @author Maira Q.
 * @version 04/06/20
-* @category MVC
 */
 
 

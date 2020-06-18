@@ -16,7 +16,6 @@ import javax.persistence.ManyToMany;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 
 

@@ -13,7 +13,6 @@ import lucatic.grupo1.model.Role;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 @Repository
 public interface DAORole extends JpaRepository<Role, Long> {

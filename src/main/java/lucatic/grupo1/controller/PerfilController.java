@@ -34,7 +34,6 @@ import lucatic.grupo1.service.PerfilService;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 
 @Controller

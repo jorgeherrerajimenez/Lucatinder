@@ -31,7 +31,6 @@ import lucatic.grupo1.service.ProvinciaService;
  * @author Marco R.
  * @author Maira Q.
  * @version 04/06/20
- * @category MVC
  */
 
 

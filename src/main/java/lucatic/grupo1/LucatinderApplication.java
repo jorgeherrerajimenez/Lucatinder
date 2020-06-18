@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 
 @SpringBootApplication

@@ -12,6 +12,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import lucatic.grupo1.model.Contacto;
 import lucatic.grupo1.model.Perfil;
 
+//@author Jorge H.
+
+
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)

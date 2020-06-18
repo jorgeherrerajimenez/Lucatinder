@@ -9,7 +9,6 @@ import lucatic.grupo1.model.Match;
 /**
 * @author Jorge H.
 * @version 10/06/20
-* @category MVC
 */
 
 @Repository

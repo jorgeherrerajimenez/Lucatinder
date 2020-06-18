@@ -10,7 +10,6 @@ import lucatic.grupo1.model.rs.PerfilResponse;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 public interface DescarteService {
 	

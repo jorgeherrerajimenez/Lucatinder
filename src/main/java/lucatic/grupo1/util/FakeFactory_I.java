@@ -10,7 +10,6 @@ import lucatic.grupo1.model.Perfil;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 public interface FakeFactory_I {
 	

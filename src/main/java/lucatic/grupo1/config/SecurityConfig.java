@@ -15,7 +15,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 /**
 * @author Jorge H.
 * @version 05/06/20
-* @category MVC
 */
 
 @Configuration

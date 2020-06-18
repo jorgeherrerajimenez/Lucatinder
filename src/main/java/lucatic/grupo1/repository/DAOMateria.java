@@ -11,7 +11,6 @@ import lucatic.grupo1.model.Materia;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 @Repository
 public interface DAOMateria extends JpaRepository<Materia,Short> {

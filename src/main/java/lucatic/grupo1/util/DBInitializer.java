@@ -29,7 +29,6 @@ import lucatic.grupo1.repository.DAORole;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 @Component
 public class DBInitializer {
@@ -93,7 +92,7 @@ public class DBInitializer {
 	private void initProvincia() {
 		List<String> list = Arrays.asList("A Coruña", "Álava","Albacete","Alicante","Almería", "Asturias", "Ávila",
 			"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
-			"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
+			"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipúzkoa", 
 			"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
 			"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
 			"Tarragona", "Santa Cruz de Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao",

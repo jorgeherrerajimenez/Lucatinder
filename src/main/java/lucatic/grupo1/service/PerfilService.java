@@ -10,7 +10,6 @@ import lucatic.grupo1.model.rs.PerfilResponse;
 * @author Adnan H.
 * @author Jorge H.
 * @version 04/06/20
-* @category MVC
 */
 
 public interface PerfilService {

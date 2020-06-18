@@ -11,7 +11,6 @@ import lucatic.grupo1.model.Perfil;
 /**
 * @author Adnan H.
 * @version 07/06/20
-* @category MVC
 */
 
 @Repository

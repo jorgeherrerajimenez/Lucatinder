@@ -14,7 +14,6 @@ import lucatic.grupo1.repository.DAOMateria;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 @Service
 public class MateriaServiceImpl implements MateriaService {

@@ -13,7 +13,6 @@ import lucatic.grupo1.repository.DAOMatch;
 /**
 * @author Jorge H.
 * @version 11/06/20
-* @category MVC
 */
 
 @Service

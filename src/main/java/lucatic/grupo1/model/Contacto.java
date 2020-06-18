@@ -24,7 +24,6 @@ import javax.persistence.ManyToOne;
  * @author Marco R.
  * @author Maira P.
  * @version 18/06/20
- * @category MVC
  */
 
 

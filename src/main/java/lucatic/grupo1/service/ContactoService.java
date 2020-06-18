@@ -8,7 +8,6 @@ import lucatic.grupo1.model.rs.PerfilResponse;
 /**
 * @author Maira Q.
 * @version 04/06/20
-* @category MVC
 */
 
 public interface ContactoService {
