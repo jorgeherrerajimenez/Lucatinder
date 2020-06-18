@@ -1,4 +1,4 @@
-/*package lucatic.grupo1;
+package lucatic.grupo1;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,10 +25,10 @@ public class PerfilRepositoryIntegrationTest {
 	private DAOPerfil perfilDAO;
 	
 	
-	/*@Test
+	@Test
 	public void addDeleteTest() {
 	 
-		Perfil perfil = new Perfil("Marco Rueda","mrueda@gmail.com", "H".charAt(0), (short)27, "Soltero y amante de Python");
+		Perfil perfil = new Perfil("Marco Rueda","mrueda@gmail.com", "H".charAt(0), (short)27, "Soltero y amante de Python", null, null);
 		
 		Long numero = perfilDAO.count();
 
@@ -48,4 +48,4 @@ public class PerfilRepositoryIntegrationTest {
 		
 	}
 
-}*/
+}

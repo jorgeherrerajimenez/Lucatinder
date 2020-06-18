@@ -74,7 +74,13 @@
 								  <option id="otro" name="genero" th:field="*{genero}" th:value="O">Otro</option>
 								</select>
 							</p>
-							<p >
+							<p>
+								<select th:field="*{provincia}" name="provincia">
+									<option disabled>Selecciona una provincia</option>
+									<option th:each= "i : ${provincia.nombre}" th:value= "${i}" th:text="${i}">
+									</option>
+								</select>
+							</p>
 			            		<select type="select" name="gustos" class="form-control" />
 			                 		<option th:each="gusto : ${listaGustos}" th:value="${gusto.id}" th:text="${gusto.nombre}"></option>
 			                 	</select>
