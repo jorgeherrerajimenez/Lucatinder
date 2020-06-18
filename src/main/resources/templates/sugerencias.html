@@ -16,14 +16,15 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/stylecards.css}">
     
-
+​
 </head>
-
+​
 <body style="background: #F8E0F7; height: auto;">
-
+​
     <!-- Menú-->
-
+​
     <div id="particles-js"></div>
   	<nav class="navbar navbar-light" style="background: linear-gradient(to bottom, #ee7bae -64%, #575757 100%);">
     
@@ -31,16 +32,16 @@
       	<img th:src="@{/images/logopekeblanco.png}" th:href="@{/index.html}"></img>
       	<a class="btn btn-outline-danger my-2 my-sm-0" href="/perfil/main" type="submit">Atrás</a>
   	</nav>
-
+​
     <!-- Menú-->
-
-
+​
+​
     <!-- cuadrado blanco principal-->
     <div class="container">
             <div class="row">
             <div class="col-6 p-4" th:each= "perfil : ${listaSugerencias}">
-            	<div class="card" style="height: 100%;">  
-            	<img class="card-img-top img-thumbnail" style="width:380px; height:370px" th:src="@{/images/}+${perfil.image}" alt="Image Icon">
+            	<div class="card bordercards shadowcards" style="height: 100%;">  
+            	<img class="img-thumbnail mx-auto d-block bordercards"  style="height: 420px;" th:src="@{/images/}+${perfil.image}" alt="Image Icon">
                 <div class="card-body">
                     <h5 class="card-title" th:text= "${perfil.nombre}"></h5>
                     <p class="card-text" th:text= "${perfil.descripcion}"/></p>
@@ -55,14 +56,14 @@
                      <a th:href="@{/perfil/addContacto(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:limegreen; font-size: 1.5rem"><i class="pl-3 fa fa-heart fa-2x" aria-hidden="true"></i></a>
                     <a th:href="@{/perfil/addDescarte(id=${perfilUsuario.id},id2=${perfil.id})}" class="card-link" style="color:red; font-size: 1.5rem"><i class="pl-3 fa fa-times fa-2x" aria-hidden="true"></i></a>
                 </div>
-
+​
             </div>
             </div>
             </div>
     </div> 
-
-
-
+​
+​
+​
     <script th:src="@{/vendor/jquery/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/vendor/animsition/js/animsition.min.js}"></script>
 	<script th:src="@{/vendor/bootstrap/js/popper.js}"></script>
@@ -72,5 +73,4 @@
 	<script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
 	<script th:src="@{/vendor/countdowntime/countdowntime.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-
-</body></html>
+​
