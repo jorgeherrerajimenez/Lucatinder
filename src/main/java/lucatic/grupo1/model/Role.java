@@ -9,6 +9,19 @@ import javax.persistence.ManyToMany;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
+
+
+
+
 @Entity
 public class Role {
 	@Id

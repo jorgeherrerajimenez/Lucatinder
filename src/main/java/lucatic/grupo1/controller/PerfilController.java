@@ -29,11 +29,11 @@ import lucatic.grupo1.service.MateriaService;
 import lucatic.grupo1.service.PerfilService;
 
 /**
- * @author Adnan H.
+* @author Jorge H.
  * @author Jorge H.
  * @author Marco R.
  * @author Maira P.
- * @version 04/06/20
+ * @version 18/06/20
  * @category MVC
  */
 

@@ -9,6 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
+
+
 @Entity
 public class Materia implements Serializable {
 	

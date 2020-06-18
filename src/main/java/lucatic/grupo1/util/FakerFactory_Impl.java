@@ -8,7 +8,15 @@ import org.springframework.stereotype.Component;
 import com.github.javafaker.Faker;
 
 import lucatic.grupo1.model.Perfil;
-
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
 @Component
 public class FakerFactory_Impl implements FakeFactory_I {
 	

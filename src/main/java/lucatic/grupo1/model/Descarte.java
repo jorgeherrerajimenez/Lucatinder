@@ -16,6 +16,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
+
+
 @Entity
 public class Descarte implements Serializable {
 	

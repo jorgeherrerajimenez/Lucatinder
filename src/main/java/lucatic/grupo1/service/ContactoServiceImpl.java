@@ -14,7 +14,15 @@ import lucatic.grupo1.model.Match;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.model.rs.PerfilResponse;
 import lucatic.grupo1.repository.DAOContacto;
-
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
 @Service
 public class ContactoServiceImpl implements ContactoService {
 	
