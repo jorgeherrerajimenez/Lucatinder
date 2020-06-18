@@ -36,7 +36,6 @@ public class Perfil implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String provincia;
 	private String nombre;
 	@Column(unique=true)
 	private String username;
@@ -116,7 +115,7 @@ public class Perfil implements Serializable {
 	}
 
 
-	public Perfil(Long id, String nombre, String username, char genero, short edad, String provincia, String descripcion,
+	public Perfil(Long id, String nombre, String username, char genero, short edad, Provincia provincia, String descripcion,
 			List<Materia> gustosInformaticos) {
 		super();
 		this.id = id;
@@ -168,15 +167,7 @@ public class Perfil implements Serializable {
 		this.edad = edad;
 	}
 	
-	public String getProvincia() {
-		
-		return provincia;
-	}
-	
-	public void setProvincia(String provincia) {
-		
-		this.provincia = provincia;
-	}
+
 
 	public String getDescripcion() {
 		return descripcion;
