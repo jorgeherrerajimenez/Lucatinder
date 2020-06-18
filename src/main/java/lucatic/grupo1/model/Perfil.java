@@ -308,5 +308,7 @@ public class Perfil implements Serializable {
 				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
 				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
 	}
+	
+	
 
 }
