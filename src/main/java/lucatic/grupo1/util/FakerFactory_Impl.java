@@ -70,6 +70,7 @@ public class FakerFactory_Impl implements FakeFactory_I {
 				"tampoco me gusta ser el entretenimiento de la modernidad actual. " + 
 				"Prefiero quedar y hablar, o al menos ir por unas cañas." + 
 				"O mejor encontrarnos por Git a ver si hacemos merge");
+		
 	}
 
 	private String seleccionarDescripcion(char genero) {
@@ -145,17 +146,7 @@ public class FakerFactory_Impl implements FakeFactory_I {
 			genero = 'H';
 		String descripcion = this.seleccionarDescripcion(genero);
 		String imagen = this.seleccionarImagen(genero);
-		String provincia = "Málaga";
-		List<String> listaProvincias = Arrays.asList("A Coruña", "Álava","Albacete","Alicante","Almería", "Asturias", "Ávila", 
-				"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
-				"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
-				"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
-				"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
-				"Tarragona", "Santa Cruz de Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao","Zamora", "Zaragoza");
-		
-		Random rand = new Random();
-		provincia = listaProvincias.get(rand.nextInt(listaProvincias.size()));
-		return new Perfil(nombre,username,genero,edad, descripcion,imagen, provincia);
+		return new Perfil(nombre,username,genero,edad,descripcion,imagen,null);
 	}
 
 	@Override

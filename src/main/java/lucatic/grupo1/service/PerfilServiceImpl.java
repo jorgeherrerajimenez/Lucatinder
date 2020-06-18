@@ -61,9 +61,17 @@ public class PerfilServiceImpl implements PerfilService{
 	//Mandando perfiles falsos del DAO a la capa de control
 	@Override
 	public List<Perfil> generateCandidatesFor(Long id) {
-		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: GENERANDO DIEZ PERFILES FALSOS EN BASE AL ID");
-
-		return perfilDAO.generateCandidatesFor(id);
+		LOGGER.log(Level.INFO, "EN CAPA SERVICIOS: GENERANDO CANDIDATOS PARA USUARIO CON ID "+id);
+		
+		List<Perfil> result = this.perfilDAO.generateCandidatesByProvince(id);
+		if (result.size() < 6) {
+			List<Perfil> resultLowPriority = this.perfilDAO.generateCandidatesFor(id);
+			for(Perfil p : resultLowPriority)
+				if (result.size()<6)
+					result.add(p);
+		}
+		
+		return result;
 		
 	}
 	

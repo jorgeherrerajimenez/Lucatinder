@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
@@ -44,6 +45,9 @@ public class Perfil implements Serializable {
 	@Column(length = 300)
 	private String descripcion;
 	private String image;
+	@ManyToOne
+	@JoinColumn(name = "provincia_id")
+	private Provincia provincia;
 	private String password = encoder.encode("xxx");
 	private boolean enabled = true;
 	
@@ -99,7 +103,8 @@ public class Perfil implements Serializable {
 	}
 	
 	
-	public Perfil(String nombre, String username, char genero, short edad, String descripcion, String image, String provincia) {
+	public Perfil(String nombre, String username, char genero, short edad, String descripcion,
+			String image, Provincia provincia) {
 		super();
 		this.nombre = nombre;
 		this.username = username;
@@ -265,6 +270,31 @@ public class Perfil implements Serializable {
 	public void setMatchOf(Collection<Match> matchOf) {
 		this.matchOf = matchOf;
 	}
+	
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+	
+	
+	public Provincia getProvincia() {
+		return provincia;
+	}
+
+
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
+
+
+	public void setMatches(Collection<Match> matches) {
+		this.matches = matches;
+	}
 
 
 	public void generarDefault() {
@@ -280,21 +310,12 @@ public class Perfil implements Serializable {
 		this.password = encoder.encode(this.password);
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-	
 	@Override
 	public String toString() {
 		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
 				+ descripcion + ", image=" + image + ", enabled=" + enabled + ", gustosInformaticos="
 				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
-				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
+				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + " Provincia="+ provincia.toString() + "]";
 	}
 
 }

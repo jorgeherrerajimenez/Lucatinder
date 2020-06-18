@@ -13,6 +13,12 @@ import org.springframework.web.servlet.view.RedirectView;
 import lucatic.grupo1.model.Perfil;
 import lucatic.grupo1.repository.DAOMateria;
 
+/**
+* @author Jorge H.
+* @version 05/06/20
+* @category MVC
+*/
+
 @Controller
 public class AuthenticacionController {
 	
