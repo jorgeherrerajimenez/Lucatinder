@@ -38,5 +38,13 @@ public class DAOPerfilTest {
         Assertions.assertEquals((short) 20, p.getEdad());
     }
     
+    
+    @Test
+    void testDos() {
+    	Perfil p = dao.findByUsername("Prueba");
+        Assertions.assertEquals("M", p.getGenero());
+        Assertions.assertEquals("H", p.getGenero());
+        Assertions.assertEquals("O", p.getGenero());
+    }
 
 }

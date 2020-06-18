@@ -7,7 +7,15 @@ import org.springframework.stereotype.Service;
 
 import lucatic.grupo1.model.Provincia;
 import lucatic.grupo1.repository.DAOProvincia;
-
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
 @Service
 public class ProvinciaServiceImpl implements ProvinciaService {
 	

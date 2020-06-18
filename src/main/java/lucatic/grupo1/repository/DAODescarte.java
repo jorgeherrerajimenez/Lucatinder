@@ -8,7 +8,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import lucatic.grupo1.model.Descarte;
-
+/**
+* 
+ * @author Jorge H.
+ * @author Adnan H.
+ * @author Marco R.
+ * @author Maira P.
+ * @version 18/06/20
+ * @category MVC
+ */
 @Repository
 public interface DAODescarte extends JpaRepository<Descarte,Long> {
 
