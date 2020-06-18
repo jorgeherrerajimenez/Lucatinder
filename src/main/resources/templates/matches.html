@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/vendor/daterangepicker/daterangepicker.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/stylecards.css}">
 </head>
 
 <body style="background: #F8E0F7; height: auto;">
@@ -35,16 +36,16 @@
  <div class="container">
             <div class="row">
             	<div class="col-6 p-4" th:each="match : ${matches}">
-            		<div class="card" style="height: 100%;">  
-            		<img class="card-img-top img-thumbnail" style="width:380px; height:370px" th:src="@{/images/}+${match.matched.image}" alt="Image Icon">
+            	<div class="card bordercards shadowcards" style="height: 100%;">
+            		<img class="img-thumbnail mx-auto d-block bordercards"  style="height: 420px;" th:src="@{/images/}+${match.matched.image}" alt="Image Icon">
                 <div class="card-body">
                     <h5 class="card-title" th:text= "${match.matched.nombre}"></h5>
                     <p class="card-text" th:text= "${match.matched.descripcion}"/></p>
                 
                 <ul class="list-group list-group-flush">
-                    Edad: <li class="list-group-item" style="background-color:azure" th:text= "${match.matched.edad}"></li>
-                    Género: <li class="list-group-item" style="background-color:azure" th:text= "${match.matched.genero}"></li>
-                    Provincia: <li class="list-group-item" style="background-color:azure" th:text= "${match?.matched?.provincia?.nombre}"></li>
+                    Edad: <li class="list-group-item" style="background-color:#FBEFFB" th:text= "${match.matched.edad}"></li>
+                    Género: <li class="list-group-item" style="background-color:#FBEFFB" th:text= "${match.matched.genero}"></li>
+                    Provincia: <li class="list-group-item" style="background-color:#FBEFFB" th:text= "${match?.matched?.provincia?.nombre}"></li>
                 </ul>
                 
               			</div>
