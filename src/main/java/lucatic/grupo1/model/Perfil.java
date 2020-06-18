@@ -303,7 +303,9 @@ public class Perfil implements Serializable {
 		return "Perfil [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", descripcion="
 				+ descripcion + ", image=" + image + ", enabled=" + enabled + ", gustosInformaticos="
 				+ gustosInformaticos + ", descartados=" + descartados + ", descartadores=" + descartadores
-				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + " Provincia="+ provincia.toString() + "]";
+				+ ", contactos=" + contactos + ", contactoDe=" + contactoDe + ", roles=" + roles + "]";
 	}
+	
+	
 
 }
