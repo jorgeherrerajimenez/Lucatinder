@@ -1,6 +1,8 @@
 package lucatic.grupo1.util;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -14,9 +16,11 @@ import org.springframework.stereotype.Component;
 import lucatic.grupo1.controller.PerfilRESTController;
 import lucatic.grupo1.model.Materia;
 import lucatic.grupo1.model.Perfil;
+import lucatic.grupo1.model.Provincia;
 import lucatic.grupo1.model.Role;
 import lucatic.grupo1.repository.DAOMateria;
 import lucatic.grupo1.repository.DAOPerfil;
+import lucatic.grupo1.repository.DAOProvincia;
 import lucatic.grupo1.repository.DAORole;
 
 @Component
@@ -28,22 +32,29 @@ public class DBInitializer {
 	private FakeFactory_I fakeFactory;
 	
 	@Autowired
-	DAORole roleDAO;
-	
-	@Autowired
 	DAOPerfil perfilDAO;
 	
 	@Autowired
 	DAOMateria materiaDAO;
+	
+	@Autowired
+	DAORole roleDAO;
+	
+	@Autowired
+	DAOProvincia provinciaDAO;
+	
+	private List<Provincia> provincias;
+	private Random r = new Random();
+	
 
 	@PostConstruct
 	public void init() {
 			LOGGER.log(Level.INFO, "POBLANDO BASE DE DATOS...");
 			roleDAO.save(new Role("USER"));
-			materiaDAO.save(new Materia("Python"));
-			materiaDAO.save(new Materia("Java"));
-			materiaDAO.save(new Materia("Otros"));
-			this.generarPerfilesIniciales(12);
+			this.initMateria();
+			this.initProvincia();
+			this.provincias = this.provinciaDAO.findAll();
+			this.generarPerfilesIniciales(25);
 	}
 	
 	private void generarPerfilesIniciales(int number) {
@@ -55,8 +66,10 @@ public class DBInitializer {
 			def.setRoles(r);
 			this.perfilDAO.save(def);
 		}
-		for(Perfil p : perfiles)
+		for(Perfil p : perfiles) {
 			p.setRoles(r);
+			p.setProvincia(this.provincias.get(this.r.nextInt(this.provincias.size())));
+		}
 		try {
 		perfilDAO.saveAll(perfiles);
 		} catch (ConstraintViolationException ex) {
@@ -67,6 +80,24 @@ public class DBInitializer {
 			perfilDAO.deleteAll();
 			this.generarPerfilesIniciales(number);
 		}
+	}
+	
+	private void initProvincia() {
+		List<String> list = Arrays.asList("A Coruña", "Álava","Albacete","Alicante","Almería", "Asturias", "Ávila",
+			"Badajoz", "Baleares", "Barcelona", "Burgos", "Cáceres", "Cádiz", "Cantabria", 
+			"Castellón", "Ciudad Real", "Córdoba", "Cuenca", "Girona", "Granada", "Guadalajara", "Gipuzkoa", 
+			"Huelva", "Huesca","Jaén", "La Rioja","Las Palmas", "León","Lérida", "Lugo", "Madrid","Málaga", 
+			"Murcia", "Navarra", "Ourense", "Palencia", "Pontevedra", "Salamanca", "Segovia", "Sevilla", "Soria", 
+			"Tarragona", "Santa Cruz de Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Bilbao",
+			"Zamora", "Zaragoza");
+		for(String s : list)
+			this.provinciaDAO.save(new Provincia(s));
+	}
+	
+	private void initMateria() {
+		materiaDAO.save(new Materia("Python"));
+		materiaDAO.save(new Materia("Java"));
+		materiaDAO.save(new Materia("Otros"));
 	}
 	
 }

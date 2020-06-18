@@ -21,7 +21,7 @@ public class DAOPerfilTest {
     
     @BeforeAll
     void savePrueba() {
-      dao.save(new Perfil("Prueba", "Prueba", 'H',(short) 20, "Prueba", null));
+      dao.save(new Perfil("Prueba", "Prueba", 'H',(short) 20, "Prueba", null, null));
 	}
     
     @AfterAll

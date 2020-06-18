@@ -69,6 +69,7 @@ public class FakerFactory_Impl implements FakeFactory_I {
 				"tampoco me gusta ser el entretenimiento de la modernidad actual. " + 
 				"Prefiero quedar y hablar, o al menos ir por unas cañas." + 
 				"O mejor encontrarnos por Git a ver si hacemos merge");
+		
 	}
 
 	private String seleccionarDescripcion(char genero) {
@@ -144,7 +145,7 @@ public class FakerFactory_Impl implements FakeFactory_I {
 			genero = 'H';
 		String descripcion = this.seleccionarDescripcion(genero);
 		String imagen = this.seleccionarImagen(genero);
-		return new Perfil(nombre,username,genero,edad,descripcion,imagen);
+		return new Perfil(nombre,username,genero,edad,descripcion,imagen,null);
 	}
 
 	@Override
